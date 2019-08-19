@@ -6,7 +6,7 @@ T = 20
 MASS_NUM = 1000
 MIN_MASS = 1
 MAX_MASS = 10000
-AMPLITUDE_DECAY_RATE = 0.09
+AMPLITUDE_DECAY_RATE = 0.3
 
 
 def amplitude(n):
@@ -37,7 +37,7 @@ def psi(mass_range):
 
 
 def main():
-    mass_range = np.linspace(MIN_MASS, MAX_MASS, 500)
+    mass_range = np.linspace(MIN_MASS, MAX_MASS, MASS_NUM)
     plt.plot(mass_range, psi(mass_range))
 
     plt.title(r"Signal")
