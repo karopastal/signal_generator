@@ -1,5 +1,4 @@
 import numpy as np
-from scipy import signal
 import matplotlib.pyplot as plt
 
 T = 20
@@ -22,8 +21,13 @@ def gaussianify(all_periods, n, height, center, width, offset):
         all_periods[n, j] = gaussian(j, height, center, width, offset)
 
 
-def psi(mass_range):
-    all_periods = np.zeros((T, len(mass_range)))
+def mass_range():
+    return np.linspace(MIN_MASS, MAX_MASS, MASS_NUM)
+
+
+def psi_signal():
+    x = mass_range()
+    all_periods = np.zeros((T, len(x)))
 
     for n in range(T):
         height = amplitude(n)
@@ -37,9 +41,9 @@ def psi(mass_range):
 
 
 def main():
-    mass_range = np.linspace(MIN_MASS, MAX_MASS, MASS_NUM)
-    plt.plot(mass_range, psi(mass_range))
+    x = mass_range()
 
+    plt.plot(x, psi_signal())
     plt.title(r"Signal")
     plt.ylabel("Amplitude")
     plt.xlabel("Mass")
