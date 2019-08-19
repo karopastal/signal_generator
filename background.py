@@ -1,14 +1,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-BACKGROUND_DECAY_RATE = 0.005
-BG_NUM = 1000
+BACKGROUND_DECAY_RATE = 0.00005
+BG_NUM = 100000
 MIN_BG = 1
-MAX_BG = 10000
+MAX_BG = 100000
+
+
+def max_bg():
+    return MAX_BG
+
+
+def bg_num():
+    return BG_NUM
+
+
+def amplitude():
+    return 10
 
 
 def background_noise(n):
-    return np.exp(-1*BACKGROUND_DECAY_RATE*n)
+    return amplitude()*np.exp(-1*BACKGROUND_DECAY_RATE*n)
 
 
 def background_range():
