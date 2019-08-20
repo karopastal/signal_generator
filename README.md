@@ -25,6 +25,9 @@ $ python clean.py
 $ python fluctuations.py
 ```
 
+![fluctuated](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/signal_background_noise.png)
+
+
 ##### plot background
 ```buildoutcfg
 $ python background.py
