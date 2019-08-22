@@ -16,7 +16,7 @@ def bg_num():
 
 
 def amplitude():
-    return 10
+    return 100
 
 
 def background_noise(n):

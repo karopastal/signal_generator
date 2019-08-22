@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-T = 20
-MASS_NUM = 1000
+T = 50
+MASS_NUM = 15000
 MIN_MASS = 1
-MAX_MASS = 10000
-AMPLITUDE_DECAY_RATE = 0.3
+MAX_MASS = 15000
+AMPLITUDE_DECAY_RATE = 0.1
 
 
 def amplitude(n):
@@ -30,9 +30,9 @@ def psi_signal():
     all_periods = np.zeros((T, len(x)))
 
     for n in range(T):
-        height = amplitude(n)
-        center = 10 + n*50
-        width = 3 + n
+        height = 50*amplitude(n)
+        center = n*1000
+        width = 50 + n*20
         offset = 0
 
         gaussianify(all_periods, n, height, center, width, offset)

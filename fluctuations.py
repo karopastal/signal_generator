@@ -8,6 +8,10 @@ MIN_RANGE = 1
 MAX_RANGE = background.max_bg()
 
 
+def sampling_range():
+    return RANGE_NUM
+
+
 def bins_mean():
     return clean.bins_segments().mean(axis=1) * clean.bin_segment_size()
 

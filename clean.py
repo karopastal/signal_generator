@@ -6,7 +6,7 @@ import mass_signal
 RANGE_NUM = background.bg_num()
 MIN_RANGE = 1
 MAX_RANGE = background.max_bg()
-BIN_SEGMENT = 1000
+BIN_SEGMENT = 5
 
 
 def clean_range():
