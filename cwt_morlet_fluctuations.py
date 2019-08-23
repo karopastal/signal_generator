@@ -7,7 +7,7 @@ import clean
 SAMPLING_RATE = fluctuations.sampling_range()
 SAMPLING_PERIOD = 1/SAMPLING_RATE
 
-cmor_wavelet = pywt.ContinuousWavelet('cmor2.5-2.0)')
+cmor_wavelet = pywt.ContinuousWavelet('cmor2.0-1.0')
 
 print(cmor_wavelet)
 
