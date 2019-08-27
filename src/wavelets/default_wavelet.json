@@ -1,0 +1,13 @@
+[
+  {
+    "wavelet": {
+      "id": 0,
+      "description": "basic wavelet",
+      "name": "cmor",
+      "B": 2.0,
+      "C": 1.0,
+      "min_scales": 1,
+      "max_scales": 128
+    }
+  }
+]
