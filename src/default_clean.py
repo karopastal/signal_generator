@@ -1,7 +1,24 @@
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from default_signal import DefaultSignal
 from default_background import DefaultBackground
+
+
+def signal_id():
+    try:
+        return int(sys.argv[1:][0])
+    except:
+        print("INFO: illegal or missing SIGNAL_ID, using default")
+        return 0
+
+
+def background_id():
+    try:
+        return int(sys.argv[1:][1])
+    except:
+        print("INFO: illegal or missing BG_ID, using default")
+        return 0
 
 
 def psi_clean(ds, dbg):
@@ -16,8 +33,8 @@ def psi_clean(ds, dbg):
 
 
 def main():
-    ds = DefaultSignal(id=0)
-    dbg = DefaultBackground(id=0)
+    ds = DefaultSignal(id=signal_id())
+    dbg = DefaultBackground(id=background_id())
 
     x = dbg.background_range()
 

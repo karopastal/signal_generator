@@ -1,3 +1,4 @@
+import sys
 import pywt
 import json
 import numpy as np
@@ -10,10 +11,44 @@ from default_background import DefaultBackground
 # SAMPLING_PERIOD = 1/SAMPLING_RATE
 
 
+def signal_id():
+    try:
+        return int(sys.argv[1:][0])
+    except:
+        print("INFO: illegal or missing SIGNAL_ID, using default")
+        return 0
+
+
+def background_id():
+    try:
+        return int(sys.argv[1:][1])
+    except:
+        print("INFO: illegal or missing BG_ID, using default")
+        return 0
+
+
+def wavelet_id():
+    try:
+        return int(sys.argv[1:][2])
+    except:
+        print("INFO: illegal or missing WAVELET_ID, using default")
+        return 0
+
+
+def load_config(id, data):
+    if id >= len(data) or id < 0:
+        print("WARNING: '%s' wrong SIGNAL_ID, using default." % id)
+        return data[0]
+    else:
+        return data[id]
+
+
 class DefaultCWTClean:
     def __init__(self, id=0):
         with open("src/wavelets/default_wavelet.json") as f:
-            config = json.load(f)[id]
+            data = json.load(f)
+
+        config = load_config(id, data)
 
         self.B = config["wavelet"]["B"]
         self.C = config["wavelet"]["C"]
@@ -25,9 +60,9 @@ class DefaultCWTClean:
 
 
 def main():
-    ds = DefaultSignal(id=0)
-    dbg = DefaultBackground(id=0)
-    cmor = DefaultCWTClean(id=0)
+    ds = DefaultSignal(id=signal_id())
+    dbg = DefaultBackground(id=background_id())
+    cmor = DefaultCWTClean(id=wavelet_id())
 
     print(cmor.wavelet)
 
