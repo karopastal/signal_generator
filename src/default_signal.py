@@ -24,9 +24,9 @@ def gaussian(x, height, center, width, offset):
     return height*np.exp(-(x - center)**2/(2*width**2)) + offset
 
 
-def gaussianify(all_periods, n, height, center, width, offset):
+def gaussianify(all_periods, n, x_signal_range, height, center, width, offset):
     for j in range(all_periods.shape[1]):
-        all_periods[n, j] = gaussian(j, height, center, width, offset)
+        all_periods[n, j] = gaussian(x_signal_range[j], height, center, width, offset)
 
 
 class DefaultSignal:
@@ -50,12 +50,12 @@ class DefaultSignal:
     def amplitude(self, n):
         return np.exp(-1*n*self.amplitude_decay_rate)
 
-    def mass_range(self):
+    def signal_range(self):
         return np.linspace(self.min_mass, self.max_mass, self.mass_num)
 
     def psi_signal(self):
-        x = self.mass_range()
-        all_periods = np.zeros((self.T, len(x)))
+        x_signal_range = self.signal_range()
+        all_periods = np.zeros((self.T, len(x_signal_range)))
 
         for n in range(self.T):
             height = eval(self.height)*self.amplitude(n)
@@ -63,7 +63,7 @@ class DefaultSignal:
             width = eval(self.width)
             offset = eval(self.offset)
 
-            gaussianify(all_periods, n, height, center, width, offset)
+            gaussianify(all_periods, n, x_signal_range, height, center, width, offset)
 
         return all_periods.sum(axis=0)
 
@@ -71,7 +71,7 @@ class DefaultSignal:
 def main():
     ds = DefaultSignal(id=signal_id())
 
-    plt.plot(ds.mass_range(), ds.psi_signal())
+    plt.plot(ds.signal_range(), ds.psi_signal())
     plt.title(r"Signal")
     plt.ylabel("Amplitude")
     plt.xlabel("Mass")

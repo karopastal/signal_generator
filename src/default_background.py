@@ -40,11 +40,11 @@ class DefaultBackground:
         return np.linspace(self.min_bg, self.max_bg, self.bg_num)
 
     def psi_background(self):
-        x = self.background_range()
-        out = np.zeros_like(x)
+        x_background_range = self.background_range()
+        out = np.zeros_like(x_background_range)
 
         for n in range(len(out)):
-            out[n] = self.background_noise(n)
+            out[n] = self.background_noise(x_background_range[n])
 
         return out
 

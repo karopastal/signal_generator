@@ -4,23 +4,12 @@
     "type": "default_background",
     "description": "basic background properties",
     "range": {
-      "amplitude": 100,
-      "BG_NUM": 100000,
-      "MIN_BG": 1,
-      "MAX_BG": 100000,
-      "BACKGROUND_DECAY_RATE": 0.00005
-    }
-  },
-  {
-    "id": 1,
-    "type": "default_background",
-    "description": "lower resolution",
-    "range": {
-      "amplitude": 100,
+      "amplitude": 0,
       "BG_NUM": 1000,
       "MIN_BG": 1,
-      "MAX_BG": 1000,
-      "BACKGROUND_DECAY_RATE": 0.005
+      "MAX_BG": 500,
+      "BACKGROUND_DECAY_RATE": 0.005,
+      "RESOLUTION_RATIO": 2
     }
   }
 ]

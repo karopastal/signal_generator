@@ -23,8 +23,8 @@ def background_id():
 
 def psi_clean(ds, dbg):
     # default to the median of the backgrounds
-    signal_start_index = int(dbg.max_bg / 2)
-    signal_end_index = signal_start_index + ds.psi_signal().shape[0]
+    signal_start_index = int(dbg.bg_num/2)
+    signal_end_index = signal_start_index + ds.mass_num
 
     out = dbg.psi_background()
     out[signal_start_index:signal_end_index] += ds.psi_signal()
