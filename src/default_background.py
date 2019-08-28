@@ -1,12 +1,31 @@
+import sys
 import json
 import numpy as np
 import matplotlib.pyplot as plt
 
 
+def background_id():
+    try:
+        return int(sys.argv[1:][0])
+    except:
+        print("INFO: illegal or missing BG_ID, using default")
+        return 0
+
+
+def load_config(id, data):
+    if id >= len(data) or id < 0:
+        print("WARNING: '%s' wrong BG_ID, using default." % id)
+        return data[0]
+    else:
+        return data[id]
+
+
 class DefaultBackground:
     def __init__(self, id=0):
         with open("src/backgrounds/default_background.json") as f:
-            config = json.load(f)[id]
+            data = json.load(f)
+
+        config = load_config(id, data)
 
         self.amplitude = config["range"]["amplitude"]
         self.min_bg = config["range"]["MIN_BG"]
@@ -31,7 +50,7 @@ class DefaultBackground:
 
 
 def main():
-    dbg = DefaultBackground(id=0)
+    dbg = DefaultBackground(id=background_id())
 
     plt.plot(dbg.background_range(), dbg.psi_background())
     plt.title(r"Background")

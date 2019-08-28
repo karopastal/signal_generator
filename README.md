@@ -1,46 +1,44 @@
-### Signal + Background Generator
+## Signal + Background Generator
 
 python 3.7
 
 ```buildoutcfg
 $ git clone https://github.com/karopastal/signal_generator.git
 ```
+
+All commands accept `id` (integers) as arguments according to the configurations at `src/signals`, `src/backgrounds`, `src/wavelets`
+for example:
+``` 
+make plot-cwt-clean SIGNAL_ID=1 BG_ID=0 WAVELET_ID=0 
+```
+
+### Commands:
+
 #### plot signal
 ```buildoutcfg
-$ python mass_signal.py
+$ make plot-signal SIGNAL_ID={ 0, 1 ... }
 ```
-![signal](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/mass_signal.png)
-
+#### plot background
+```buildoutcfg
+$ make plot-background BG_ID={ 0, 1 ... }
+```
 #### plot clean signal + background
 ```buildoutcfg
-$ python clean.py
+$ make plot-clean SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... }
 ```
-
-![clean](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/clean_signal_bg.png)
 
 #### plot fluctuated signal + background
 ```buildoutcfg
-$ python fluctuations.py
+$ make plot-fluctuations SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... }
 ```
 
-![fluctuated](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/noise_signal_bg.png)
-
-
-#### plot CWT using Morlet wavelet w/o fluctuations
-
-As a sanity check we can see that the CWT preforming as expected by detecting the signal at the right translation
-and getting a pattern for greater scales (lower frequencies) as the signal decays. 
+#### plot CWT using Morlet wavelet w/o fluctuations 
 
 ```buildoutcfg
-$ python cwt_morlet_clean.py
+$ make plot-cwt-clean SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... } WAVELET_ID={0, 1 ... }
 ```
-
-![cwt_clean](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/clean_coeffs_300_800.png)
-
 
 #### plot CWT using Morlet wavelet w/ fluctuations
 ```buildoutcfg
-$ python cwt_morlet_fluctuations.py
+$ make plot-cwt-fluctuations SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... } WAVELET_ID={0, 1 ... }
 ```
-
-![cwt_fluctuated](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/fluc_coeffs_300_800.png)

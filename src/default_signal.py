@@ -1,6 +1,23 @@
+import sys
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+
+
+def signal_id():
+    try:
+        return int(sys.argv[1:][0])
+    except:
+        print("INFO: illegal or missing SIGNAL_ID, using default")
+        return 0
+
+
+def load_config(id, data):
+    if id >= len(data) or id < 0:
+        print("WARNING: '%s' wrong SIGNAL_ID, using default." % id)
+        return data[0]
+    else:
+        return data[id]
 
 
 def gaussian(x, height, center, width, offset):
@@ -15,7 +32,9 @@ def gaussianify(all_periods, n, height, center, width, offset):
 class DefaultSignal:
     def __init__(self, id=0):
         with open("src/signals/default_signal.json") as f:
-            config = json.load(f)[id]
+            data = json.load(f)
+
+        config = load_config(id, data)
 
         self.height = config["gaussian"]["height"]
         self.center = config["gaussian"]["center"]
@@ -50,7 +69,8 @@ class DefaultSignal:
 
 
 def main():
-    ds = DefaultSignal(id=0)
+    ds = DefaultSignal(id=signal_id())
+
     plt.plot(ds.mass_range(), ds.psi_signal())
     plt.title(r"Signal")
     plt.ylabel("Amplitude")
