@@ -1,37 +1,20 @@
 [
   {
-    "id": 0,
-    "type": "default_signal",
-    "description": "basic signal properties",
-    "range": {
-      "T": 50,
-      "MASS_NUM": 15000,
-      "MIN_MASS": 1,
-      "MAX_MASS": 15000,
-      "AMPLITUDE_DECAY_RATE": 0.1
-      },
-    "gaussian": {
-      "height": "50",
-      "center": "n*1000",
-      "width": "50+n*20",
-      "offset": "0"
-    }
-  },
-  {
     "id": 1,
     "type": "default_signal",
-    "description": "variation of the basic signal",
+    "description": "basic signal",
     "range": {
-      "T": 5,
-      "MASS_NUM": 15000,
+      "T": 10,
+      "MASS_NUM": 200,
       "MIN_MASS": 1,
-      "MAX_MASS": 15000,
-      "AMPLITUDE_DECAY_RATE": 0.1
+      "MAX_MASS": 100,
+      "AMPLITUDE_DECAY_RATE": 0.0,
+      "DISCRETIZATION_RATIO": 2
     },
     "gaussian": {
-      "height": "50",
-      "center": "n*1000",
-      "width": "50+n*20",
+      "height": "300",
+      "center": "10*n+5",
+      "width": "1.5",
       "offset": "0"
     }
   }

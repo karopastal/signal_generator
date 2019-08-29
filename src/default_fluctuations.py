@@ -5,7 +5,7 @@ from default_clean import psi_clean
 from default_signal import DefaultSignal
 from default_background import DefaultBackground
 
-BIN_SEGMENT = 10
+BIN_SEGMENT = 8
 
 
 def signal_id():
@@ -25,7 +25,7 @@ def background_id():
 
 
 def bins_segments(ds, dbg):
-    return psi_clean(ds, dbg).reshape(int(dbg.max_bg / BIN_SEGMENT), BIN_SEGMENT)
+    return psi_clean(ds, dbg).reshape(int(dbg.bg_num / BIN_SEGMENT), BIN_SEGMENT)
 
 
 def bins_mean(ds, dbg):
