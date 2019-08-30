@@ -72,9 +72,9 @@ def main():
     ds = DefaultSignal(id=signal_id())
 
     plt.plot(ds.signal_range(), ds.psi_signal())
-    plt.title(r"Signal")
-    plt.ylabel("Amplitude")
-    plt.xlabel("Mass")
+    plt.title('Signal')
+    plt.ylabel('Amplitude')
+    plt.xlabel('Mass')
 
     plt.show()
 
