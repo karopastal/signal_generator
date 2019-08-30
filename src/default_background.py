@@ -53,9 +53,9 @@ def main():
     dbg = DefaultBackground(id=background_id())
 
     plt.plot(dbg.background_range(), dbg.psi_background())
-    plt.title(r"Background")
-    plt.ylabel("Amplitude")
-    plt.xlabel("Mass")
+    plt.title('Background')
+    plt.ylabel('Amplitude')
+    plt.xlabel('Mass')
 
     plt.show()
 

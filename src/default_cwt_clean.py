@@ -74,6 +74,9 @@ def main():
 
     fig, ax = plt.subplots(figsize=(12, 12))
     ax.imshow(amp, interpolation='nearest', aspect='auto')
+    plt.title('CWT w/o noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
+    plt.ylabel('Scales')
+    plt.xlabel('Translation')
     plt.show()
 
 
