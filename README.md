@@ -12,6 +12,20 @@ if repository already cloned, pull changes with:
 $ git pull
 ```
 
+install dependencies:
+ 
+```buildoutcfg
+$ pip3 install -r requirements.txt
+```
+
+run the managment app: 
+```buildoutcfg
+$ make web
+```
+
+visit: http://127.0.0.1:5000/
+
+
 old readme at: `docs/examples/README.old.md`
 
 All commands accept `ids` (integers) as arguments according to the configurations at `src/signals`, `src/backgrounds`, `src/wavelets`

@@ -1,4 +1,13 @@
-.PHONY: test
+.PHONY: test web
+
+web:
+	@python3 web/app.py
+
+build-fronend:
+	npm run build --prefix web/static/vue-material-dashboard-master
+
+serve-dev-frontend:
+	npm run dev --prefix web/static/vue-material-dashboard-master
 
 test:
 	@python3 -m unittest discover

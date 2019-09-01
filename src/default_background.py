@@ -27,11 +27,11 @@ class DefaultBackground:
 
         config = load_config(id, data)
 
-        self.amplitude = config["range"]["amplitude"]
-        self.min_bg = config["range"]["MIN_BG"]
-        self.max_bg = config["range"]["MAX_BG"]
-        self.bg_num = config["range"]["BG_NUM"]
-        self.background_decay_rate = config["range"]["BACKGROUND_DECAY_RATE"]
+        self.amplitude = float(config["range"]["amplitude"])
+        self.min_bg = int(config["range"]["MIN_BG"])
+        self.max_bg = int(config["range"]["MAX_BG"])
+        self.bg_num = int(config["range"]["BG_NUM"])
+        self.background_decay_rate = float(config["range"]["BACKGROUND_DECAY_RATE"])
 
     def background_noise(self, n):
         return self.amplitude*np.exp(-1*n*self.background_decay_rate)
