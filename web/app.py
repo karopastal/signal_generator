@@ -84,14 +84,9 @@ def delete_wavelet():
     return jsonify({'status': 'ok'})
 
 
-@app.route('/file1')
-def file1():
-    return send_file(app.static_folder+'/plots/width0.15.png')
-
-
-@app.route('/file2')
-def file2():
-    return send_file(app.static_folder+'/plots/width1.5.png')
+@app.route('/gallery/<path>')
+def gallery(path):
+    return send_file(app.static_folder + '/gallery/' + path)
 
 
 app.run()

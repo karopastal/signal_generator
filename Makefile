@@ -3,8 +3,9 @@
 web:
 	@python3 web/app.py
 
-build-fronend:
-	npm run build --prefix web/static/vue-material-dashboard-master
+build-web:
+	npm run build --prefix web/static/vue-material-dashboard-master && \
+	cp -r docs/gallery web/static/vue-material-dashboard-master/dist
 
 serve-dev-frontend:
 	npm run dev --prefix web/static/vue-material-dashboard-master

@@ -90,8 +90,8 @@ export default {
                       name: this.name,
                       B: this.B,
                       C: this.C,
-                      min_scales: this.MAX_SCALES,
-                      max_scales: this.MIN_SCALES
+                      min_scales: this.MIN_SCALES,
+                      max_scales: this.MAX_SCALES
               }
              }).then((response) => {
                      alert('updated successfully');

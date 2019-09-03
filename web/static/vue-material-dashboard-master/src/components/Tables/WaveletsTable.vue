@@ -15,8 +15,8 @@
         <md-table-cell md-label="Name">{{ item.wavelet.name }}</md-table-cell>
         <md-table-cell md-label="B">{{ item.wavelet.B }}</md-table-cell>
         <md-table-cell md-label="C">{{ item.wavelet.C }}</md-table-cell>
-        <md-table-cell md-label="MAX_SCALES">{{ item.wavelet.max_scales }}</md-table-cell>
         <md-table-cell md-label="MIN_SCALES">{{ item.wavelet.min_scales }}</md-table-cell>
+        <md-table-cell md-label="MAX_SCALES">{{ item.wavelet.max_scales }}</md-table-cell>
         </md-table-cell>
       </md-table-row>
     </md-table>

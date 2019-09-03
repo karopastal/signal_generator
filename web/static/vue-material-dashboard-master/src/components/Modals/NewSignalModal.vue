@@ -23,7 +23,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Width</label>
-              <md-input v-model="width" type="number"></md-input>
+              <md-input v-model="width" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
