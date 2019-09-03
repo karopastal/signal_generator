@@ -50,11 +50,11 @@ class DefaultCWTClean:
 
         config = load_config(id, data)
 
-        self.B = config["wavelet"]["B"]
-        self.C = config["wavelet"]["C"]
+        self.B = float(config["wavelet"]["B"])
+        self.C = float(config["wavelet"]["C"])
         self.name = config["wavelet"]["name"]
-        self.min_scales = config["wavelet"]["min_scales"]
-        self.max_scales = config["wavelet"]["max_scales"]
+        self.min_scales = int(config["wavelet"]["min_scales"])
+        self.max_scales = int(config["wavelet"]["max_scales"])
         self.scales = np.arange(self.min_scales, self.max_scales)
         self.wavelet = pywt.ContinuousWavelet('%s%s-%s' % (self.name, self.B, self.C))
 

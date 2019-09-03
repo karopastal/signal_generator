@@ -39,13 +39,13 @@ class DefaultSignal:
         self.height = config["gaussian"]["height"]
         self.center = config["gaussian"]["center"]
         self.width = config["gaussian"]["width"]
-        self.offset = config["gaussian"]["offset"]
+        # self.offset = config["gaussian"]["offset"]
 
-        self.T = config["range"]["T"]
-        self.min_mass = config["range"]["MIN_MASS"]
-        self.max_mass = config["range"]["MAX_MASS"]
-        self.mass_num = config["range"]["MASS_NUM"]
-        self.amplitude_decay_rate = config["range"]["AMPLITUDE_DECAY_RATE"]
+        self.T = int(config["range"]["T"])
+        self.min_mass = int(config["range"]["MIN_MASS"])
+        self.max_mass = int(config["range"]["MAX_MASS"])
+        self.mass_num = int(config["range"]["MASS_NUM"])
+        self.amplitude_decay_rate = float(config["range"]["AMPLITUDE_DECAY_RATE"])
 
     def amplitude(self, n):
         return np.exp(-1*n*self.amplitude_decay_rate)
@@ -58,10 +58,11 @@ class DefaultSignal:
         all_periods = np.zeros((self.T, len(x_signal_range)))
 
         for n in range(self.T):
-            height = eval(self.height)*self.amplitude(n)
+            height = float(eval(self.height))*self.amplitude(n)
             center = eval(self.center)
             width = eval(self.width)
-            offset = eval(self.offset)
+            # offset = eval(self.offset)
+            offset = 0
 
             gaussianify(all_periods, n, x_signal_range, height, center, width, offset)
 

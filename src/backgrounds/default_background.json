@@ -1,15 +1,1 @@
-[
-  {
-    "id": 0,
-    "type": "default_background",
-    "description": "basic background properties",
-    "range": {
-      "amplitude": 0,
-      "BG_NUM": 1000,
-      "MIN_BG": 1,
-      "MAX_BG": 500,
-      "BACKGROUND_DECAY_RATE": 0.005,
-      "DISCRETIZATION_RATIO": 2
-    }
-  }
-]
+[{"id": 0, "type": "default_background", "description": "basic background", "range": {"amplitude": "1000", "MIN_BG": "1", "MAX_BG": "500", "BG_NUM": "2000", "BACKGROUND_DECAY_RATE": "0.005"}}]
