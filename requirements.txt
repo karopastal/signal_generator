@@ -76,7 +76,7 @@ terminado==0.8.2
 testpath==0.4.2
 tornado==6.0.2
 traitlets==4.3.2
-urllib3==1.24.1
+urllib3==1.24.2
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
 virtualenvwrapper==4.8.2
