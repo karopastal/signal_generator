@@ -1,8 +1,8 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from default_signal import DefaultSignal
-from default_background import DefaultBackground
+from src.default_signal import DefaultSignal
+from src.default_background import DefaultBackground
 
 
 def signal_id():
