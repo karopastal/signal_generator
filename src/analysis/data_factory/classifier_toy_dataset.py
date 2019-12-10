@@ -10,7 +10,8 @@ PATH_SIGNALS = 'src/signals/default_signal.json'
 PATH_BACKGROUNDS = 'src/backgrounds/default_background.json'
 PATH_WAVELETS = 'src/wavelets/default_wavelet.json'
 
-PATH_CLASSIFIER_TOY_DATASET='data/classifier_toy_dataset'
+PATH_CLASSIFIER_TOY_DATASET = 'data/classifier_toy_dataset'
+PATH_CLASSIFIER_TOY_LABELS = 'data/classifier_toy_labels'
 
 """
 Tuning: 
@@ -47,26 +48,40 @@ def all_wavelets():
     return to_json(PATH_WAVELETS)
 
 
+def randomize(x, y):
+    s = np.arange(y.shape[0])
+    np.random.shuffle(s)
+
+    return x[s], y[s]
+
+
 def generate_classifier_toy_dataset():
     signals = all_signals()
     background_config = all_backgrounds()[0]
     wavelet_config = all_wavelets()[0]
 
     arrays = []
+    ids = []
 
     for signl_config in signals:
         ds = DefaultSignal(signl_config['id'])
         dbg = DefaultBackground(background_config['id'])
         cmor = DefaultCWTFluctuations(wavelet_config['id'])
 
-        for j in range(20):
+        for j in range(2000):
             data = psi_fluctuations(ds, dbg)
             [coeffs, freqs] = cmor.generate_coefficients(data)
             amp = np.abs(coeffs)
             arrays.append(amp)
+            ids.append(signl_config['id'])
 
-    toy_data_set = np.stack(arrays, axis=0)
+    x = np.stack(arrays, axis=0)
+    y = np.array(ids)
+
+    toy_data_set, labels = randomize(x, y)
+
     np.save(PATH_CLASSIFIER_TOY_DATASET, toy_data_set)
+    np.save(PATH_CLASSIFIER_TOY_LABELS, labels)
 
     print('generated classifier_toy_dataset successfully ', toy_data_set.shape)
 

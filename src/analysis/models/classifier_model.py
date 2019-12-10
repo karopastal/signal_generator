@@ -1,6 +1,7 @@
 import numpy as np
-# from keras import models
-# from keras import layers
+from keras import models
+from keras import layers
+from keras import utils
 
 """ stages:
 1. naive sequential neural network, lets try to classify signals (tagging)
@@ -11,44 +12,45 @@ import numpy as np
 """
 
 PATH_CLASSIFIER_TOY_DATASET='data/classifier_toy_dataset.npy'
-
-classifier_toy_data = np.load(PATH_CLASSIFIER_TOY_DATASET)
-print(classifier_toy_data.shape)
+PATH_CLASSIFIER_TOY_LABELS = 'data/classifier_toy_labels.npy'
 
 
-# model = models.Sequential()
-#
-# model.add(layers.Dense(46, activation='relu', input_shape=(10000,)))
-# model.add(layers.Dense(46, activation='relu'))
-# model.add(layers.Dense(46, activation='softmax'))
-#
-# model.compile(optimizer='rmsprop',
-#               loss='categorical_crossentropy',
-#               metrics=['accuracy'])
-#
-# print(model.summary())
-
-""" model.fit() """
-
-# x_val = x_train[:1000]
-# partial_x_train = x_train[1000:]
-#
-# y_val = one_hot_train_labels[:1000]
-# partial_y_train = one_hot_train_labels[1000:]
-#
-# history = model.fit(partial_x_train,
-#                     partial_y_train,
-#                     epochs=20,
-#                     batch_size=516,
-#                     validation_data=(x_val, y_val))
+def to_one_hot(labels, dimension=3):
+    results = np.zeros((len(labels), dimension))
+    for i, label in enumerate(labels):
+        results[i, label] = 1.
+    return results
 
 
-# def train():
-#     pass
-#
-#
-# def validate():
-#     pass
+X = np.load(PATH_CLASSIFIER_TOY_DATASET)
+y = np.load(PATH_CLASSIFIER_TOY_LABELS)
+
+X_train = utils.normalize(X[:1000], axis=1)
+y_train = to_one_hot(y[:1000])
+
+X_test = utils.normalize(X[1001:1800], axis=1)
+y_test = to_one_hot(y[1001:1800])
+
+X_validate = utils.normalize(X[1801:2000], axis=1)
+y_validate = to_one_hot(y[1801:2000])
+
+model = models.Sequential()
+
+model.add(layers.Flatten())
+model.add(layers.Dense(128, activation='relu'))
+model.add(layers.Dense(128, activation='relu'))
+model.add(layers.Dense(3, activation='softmax'))
+
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+history = model.fit(X_train,
+                    y_train,
+                    epochs=5,
+                    validation_data=(X_validate, y_validate))
+
 
 def main():
     pass
