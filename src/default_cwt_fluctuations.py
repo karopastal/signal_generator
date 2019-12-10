@@ -3,9 +3,9 @@ import pywt
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-from default_fluctuations import psi_fluctuations
-from default_signal import DefaultSignal
-from default_background import DefaultBackground
+from src.default_fluctuations import psi_fluctuations
+from src.default_signal import DefaultSignal
+from src.default_background import DefaultBackground
 
 # SAMPLING_RATE = default_fluctuations.sampling_range()
 # SAMPLING_PERIOD = 1/SAMPLING_RATE
@@ -43,7 +43,7 @@ def load_config(id, data):
         return data[id]
 
 
-class DefaultCWTClean:
+class DefaultCWTFluctuations:
     def __init__(self, id=0):
         with open("src/wavelets/default_wavelet.json") as f:
             data = json.load(f)
@@ -58,17 +58,20 @@ class DefaultCWTClean:
         self.scales = np.arange(self.min_scales, self.max_scales)
         self.wavelet = pywt.ContinuousWavelet('%s%s-%s' % (self.name, self.B, self.C))
 
+    def generate_coefficients(self, data):
+        return pywt.cwt(data, self.scales, self.wavelet)
+
 
 def main():
     ds = DefaultSignal(id=signal_id())
     dbg = DefaultBackground(id=background_id())
-    cmor = DefaultCWTClean(id=wavelet_id())
+    cmor = DefaultCWTFluctuations(id=wavelet_id())
 
     print(cmor.wavelet)
 
     data = psi_fluctuations(ds, dbg)
 
-    [coeffs, freqs] = pywt.cwt(data, cmor.scales, cmor.wavelet)
+    [coeffs, freqs] = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
 

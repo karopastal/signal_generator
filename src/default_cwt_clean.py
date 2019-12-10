@@ -3,9 +3,9 @@ import pywt
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-from default_clean import psi_clean
-from default_signal import DefaultSignal
-from default_background import DefaultBackground
+from src.default_clean import psi_clean
+from src.default_signal import DefaultSignal
+from src.default_background import DefaultBackground
 
 # SAMPLING_RATE = default_fluctuations.sampling_range()
 # SAMPLING_PERIOD = 1/SAMPLING_RATE
@@ -58,6 +58,9 @@ class DefaultCWTClean:
         self.scales = np.arange(self.min_scales, self.max_scales)
         self.wavelet = pywt.ContinuousWavelet('%s%s-%s' % (self.name, self.B, self.C))
 
+    def generate_coefficients(self, data):
+        return pywt.cwt(data, self.scales, self.wavelet)
+
 
 def main():
     ds = DefaultSignal(id=signal_id())
@@ -68,7 +71,7 @@ def main():
 
     data = psi_clean(ds, dbg)
 
-    [coeffs, freqs] = pywt.cwt(data, cmor.scales, cmor.wavelet)
+    [coeffs, freqs] = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
 

@@ -1,11 +1,11 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from default_clean import psi_clean
-from default_signal import DefaultSignal
-from default_background import DefaultBackground
+from src.default_clean import psi_clean
+from src.default_signal import DefaultSignal
+from src.default_background import DefaultBackground
 
-BIN_SEGMENT = 8
+BIN_SEGMENT = 5
 
 
 def signal_id():

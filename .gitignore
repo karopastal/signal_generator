@@ -1,1 +1,3 @@
 __pycache__
+.idea
+data/classifier_toy_dataset.npy
