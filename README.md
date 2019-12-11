@@ -1,4 +1,19 @@
-## Signal + Background Generator
+# Signals Over Background Discovery
+
+Applying continuous wavelet transforms with autoencoder neural networks for signals over background discovery
+
+![](https://media.giphy.com/media/IvrumpcMNOhrO/giphy.gif)
+
+1. [Setup](#setup)   
+2. [Signals, Backgrounds and Wavelets](#signals-backgrounds-and-wavelets)
+   * [sessions](#sessions)
+   * [commands](#commands)
+3. [Analysis](#analysis)
+    * [classifiers (fully connected, convolutional, recurrent)](#classifiers)
+    * [autoencoders (fully connected, convolutional, recurrent)](#autoencoders)
+
+<a name="setup"></a>
+## Setup
 
 python 3.7
 
@@ -28,13 +43,44 @@ visit: http://127.0.0.1:5000/
 
 old readme at: `docs/examples/README.old.md`
 
+<a name="signals-backgrounds-and-wavelets"></a>
+## Signals, Backgrounds and Wavelets
+
+This is a basic summary of the commands and functionality, for the full tutorial visit [here](https://karopastal.github.io/post/2019/11/21/continious-wavelet-transforms/) 
+
+<a name="sessions"></a>
+### sessions
+After configuring the signals, backgrounds and wavelets via the [managment app](http://localhost:5000), the session
+of a particular configuration can be saved.
+
+Save session:
+```shell script
+  $ make save-session NAME={sessions_name}
+```
+
+Load a saved session:
+```shell script
+  $ make load-session NAME={sessions_name}
+```
+
+Delete a saved session:
+```shell script
+  $ make delete-session NAME={sessions_name}
+```
+
+List the saved sessions:
+```shell script
+  $ make list-sessions
+```
+
+<a name="commands"></a>
+### commands
 All commands accept `ids` (integers) as arguments according to the configurations at `src/signals`, `src/backgrounds`, `src/wavelets`
 for example:
+
 ``` 
 make plot-cwt-clean SIGNAL_ID=1 BG_ID=0 WAVELET_ID=0 
 ```
-
-### Commands:
 
 #### plot signal
 ```buildoutcfg
@@ -64,3 +110,34 @@ $ make plot-cwt-clean SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... } WAVELET_ID={0, 1
 ```buildoutcfg
 $ make plot-cwt-fluctuations SIGNAL_ID={ 0, 1 ... } BG_ID={ 0, 1 ... } WAVELET_ID={0, 1 ... }
 ```
+
+<a name="analysis"></a>
+## Analysis
+The analysis consists of training different models and test their performance.
+At this stage we shall generate a local toy dataset to get quickly up and running
+with the training and testing of the models.
+
+<a name="classifiers"></a>
+### Classifiers
+Deep neural networks.
+
+#### fully-connected
+Build the local toy dataset:
+```shell script
+    $ make classifier-toy-dataset
+```
+
+Train and test the fully-connected model:
+```shell script
+    $ make classifier-model
+```
+
+#### convolutional
+    coming soon
+    
+#### recurrent
+    under considerations
+
+<a name="autoencoders"></a>
+### Autoencoders
+   coming soon
