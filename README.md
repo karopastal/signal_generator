@@ -46,7 +46,7 @@ old readme at: `docs/examples/README.old.md`
 <a name="signals-backgrounds-and-wavelets"></a>
 ## Signals, Backgrounds and Wavelets
 
-This is a basic summary of the commands and functionality, for the full tutorial visit [here](https://karopastal.github.io//post/2019/11/25/generating-signals-backgrounds-and-wavelets/) 
+This is a basic summary of the commands and functionality, for the full tutorial visit [here](https://karopastal.github.io/post/2019/12/10/generating-signals-backgrounds-and-wavelets/) 
 
 <a name="sessions"></a>
 ### sessions
@@ -129,7 +129,7 @@ Build the local toy dataset:
 
 Train and test the fully-connected model:
 ```shell script
-    $ make classifier-model
+    $ make classifier-fully-connected-model
 ```
 
 #### convolutional

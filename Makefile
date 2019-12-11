@@ -41,13 +41,16 @@ purge:
 
 classifier-toy-dataset:
 	@make load-session NAME=classifier_toy_dataset && \
-	python3 -m src.analysis.data_factory.classifier_toy_dataset
+	python3 -m src.analysis.datasets_factory.classifier_toy_dataset
 
 visualise:
 	@python3 -m src.visuals.${NAME}
 
-classifier-model:
-	@python3 -m src.analysis.models.classifier_model
+classifier-fully-connected-model:
+	@python3 -m src.analysis.models.classifier_fully_connected_model
+
+classifier-convolutional-model:
+	@python3 -m src.analysis.models.classifier_convolutional_model
 
 plot-background:
 	@python3 -m src.default_background $(BG_ID)
