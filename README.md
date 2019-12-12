@@ -121,20 +121,24 @@ with the training and testing of the models.
 ### Classifiers
 Deep neural networks.
 
-#### fully-connected
-Build the local toy dataset:
+#### Build the local toy dataset:
 ```shell script
     $ make classifier-toy-dataset
 ```
 
+#### fully-connected
 Train and test the fully-connected model:
 ```shell script
-    $ make classifier-model
+    $ make classifier-fully-connected-model
 ```
 
 #### convolutional
-    coming soon
-    
+Train and test the convolutional model:
+
+```shell script
+    $ make classifier-convolutional-model
+```    
+
 #### recurrent
     under considerations
 
