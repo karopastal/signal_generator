@@ -9,8 +9,8 @@ Applying continuous wavelet transforms with autoencoder neural networks for sign
    * [sessions](#sessions)
    * [commands](#commands)
 3. [Analysis](#analysis)
-    * [classifiers (fully connected, convolutional, recurrent)](#classifiers)
-    * [autoencoders (fully connected, convolutional, recurrent)](#autoencoders)
+    * [classifiers (fully connected, convolutional)](#classifiers)
+    * [autoencoders (fully connected, convolutional)](#autoencoders)
 
 <a name="setup"></a>
 ## Setup
@@ -138,9 +138,6 @@ Train and test the convolutional model:
 ```shell script
     $ make classifier-convolutional-model
 ```    
-
-#### recurrent
-    under considerations
 
 <a name="autoencoders"></a>
 ### Autoencoders
