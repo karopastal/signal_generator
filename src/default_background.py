@@ -22,7 +22,7 @@ def load_config(id, data):
 
 class DefaultBackground:
     def __init__(self, id=0):
-        with open("src/backgrounds/default_background.json") as f:
+        with open("config/backgrounds/default_background.json") as f:
             data = json.load(f)
 
         config = load_config(id, data)

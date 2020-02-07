@@ -45,7 +45,7 @@ def load_config(id, data):
 
 class DefaultCWTClean:
     def __init__(self, id=0):
-        with open("src/wavelets/default_wavelet.json") as f:
+        with open("config/wavelets/default_wavelet.json") as f:
             data = json.load(f)
 
         config = load_config(id, data)
@@ -76,7 +76,7 @@ def main():
     amp = np.abs(coeffs)
 
     fig, ax = plt.subplots(figsize=(12, 12))
-    ax.imshow(amp, interpolation='nearest', aspect='auto')
+    ax.imshow(amp, interpolation='nearest', aspect='auto', cmap='pink')
     plt.title('CWT w/o noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
     plt.ylabel('Scales')
     plt.xlabel('Translation')

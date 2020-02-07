@@ -1,8 +1,8 @@
 import json
 
-PATH_SIGNALS = 'src/signals/default_signal.json'
-PATH_BACKGROUNDS = 'src/backgrounds/default_background.json'
-PATH_WAVELETS = 'src/wavelets/default_wavelet.json'
+PATH_SIGNALS = 'config/signals/default_signal.json'
+PATH_BACKGROUNDS = 'config/backgrounds/default_background.json'
+PATH_WAVELETS = 'config/wavelets/default_wavelet.json'
 
 
 def write_json_to_path(path, data):
