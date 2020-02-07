@@ -31,7 +31,7 @@ def gaussianify(all_periods, n, x_signal_range, height, center, width, offset):
 
 class DefaultSignal:
     def __init__(self, id=0):
-        with open("src/signals/default_signal.json") as f:
+        with open("config/signals/default_signal.json") as f:
             data = json.load(f)
 
         config = load_config(id, data)
