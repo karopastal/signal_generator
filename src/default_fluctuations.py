@@ -29,7 +29,7 @@ def bins_segments(ds, dbg):
 
 
 def bins_mean(ds, dbg):
-    return bins_segments(ds, dbg).mean(axis=1)*BIN_SEGMENT
+    return bins_segments(ds, dbg).mean(axis=1) #*BIN_SEGMENT
 
 
 def psi_fluctuations(ds, dbg):

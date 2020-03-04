@@ -1,5 +1,5 @@
 list-sessions:
-	@ls src/signals/sessions
+	@ls config/signals/sessions
 
 save-session:
 	@cp config/backgrounds/default_background.json config/backgrounds/sessions/${NAME}.json && \
