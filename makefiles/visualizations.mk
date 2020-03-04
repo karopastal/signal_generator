@@ -21,3 +21,7 @@ plot-cwt-clean:
 
 plot-cwt-fluctuations:
 	@python3 -m src.default_cwt_fluctuations $(SIGNAL_ID) $(BG_ID) $(WAVELET_ID)
+
+
+plot-cwt-fluctuations-p-value:
+	@python3 -m src.default_cwt_fluctuations_p_value $(SIGNAL_ID) $(BG_ID) $(WAVELET_ID)
