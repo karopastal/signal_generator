@@ -4,12 +4,10 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
+from src.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
 from src.default_fluctuations import psi_fluctuations
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
-
-# SAMPLING_RATE = default_fluctuations.sampling_range()
-# SAMPLING_PERIOD = 1/SAMPLING_RATE
 
 
 def signal_id():
@@ -72,11 +70,13 @@ def main():
 
     data = psi_fluctuations(ds, dbg)
     coeffs, freqs = cmor.generate_coefficients(data)
+
     amp = np.abs(coeffs)
+    amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    img = ax.imshow(amp,
+    img = ax.imshow(amp_p_value,
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
                     interpolation='nearest',
                     aspect='auto',

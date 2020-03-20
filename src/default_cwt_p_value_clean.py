@@ -4,15 +4,10 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-from src.analysis.datasets_factory.p_value_transformation import p_value_transformation
-
+from src.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
 from src.default_clean import psi_clean
-from src.default_fluctuations import psi_fluctuations
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
-
-# SAMPLING_RATE = default_fluctuations.sampling_range()
-# SAMPLING_PERIOD = 1/SAMPLING_RATE
 
 
 def signal_id():
@@ -74,18 +69,22 @@ def main():
     print(cmor.wavelet)
 
     data = psi_clean(ds, dbg)
-
-    [coeffs, freqs] = cmor.generate_coefficients(data)
+    coeffs, freqs = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
-
-    amp_p_value = p_value_transformation(amp,
-                                         signal_id=signal_id(),
-                                         bg_id=background_id(),
-                                         wavelet_id=wavelet_id())
+    amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
-    ax.imshow(amp_p_value, interpolation='lanczos', aspect='auto', cmap='pink')
+
+    img = ax.imshow(amp_p_value,
+                    extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
+                    interpolation='nearest',
+                    aspect='auto',
+                    cmap='pink')
+
+    ax.set_ylim(cmor.min_scales, cmor.max_scales)
+    fig.colorbar(img, ax=ax)
+
     plt.title('CWT w/ noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
     plt.ylabel('Scales')
     plt.xlabel('Translation')

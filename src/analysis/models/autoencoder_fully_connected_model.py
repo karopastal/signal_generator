@@ -1,13 +1,14 @@
-# import numpy as np
-# from keras.layers import Input, Dense
-# from keras.models import Model, load_model
-# from keras import utils, regularizers
+import numpy as np
+from keras.layers import Input, Dense
+from keras.models import Model, load_model
+from keras import utils, regularizers
+
 # import matplotlib.pyplot as plt
 
 
-PATH_AUTOENCODER_TOY_TRAIN_DATASET = 'data/autoencoder_toy_train_dataset.npy'
-PATH_AUTOENCODER_TOY_TEST_SIGNALS_DATASET = 'data/autoencoder_toy_test_signals_dataset.npy'
-PATH_AUTOENCODER_TOY_TEST_BACKGROUNDS_DATASET = 'data/autoencoder_toy_backgrounds_test_dataset.npy'
+PATH_AUTOENCODER_TRAIN = 'data/autoencoder_train.npy'
+PATH_AUTOENCODER_TEST_SIGNALS = 'data/autoencoder_test_signals.npy'
+PATH_AUTOENCODER_TEST_BACKGROUNDS = 'data/autoencoder_test_backgrounds.npy'
 
 PATH_AUTOENCODER = 'data/models/f_c_autoencoder.h5'
 PATH_ENCODER = 'data/models/f_c_encoder.h5'
@@ -22,16 +23,18 @@ def normalize_and_reshape(data):
 
 
 def load_data():
-    x_train_backgrounds = normalize_and_reshape(np.load(PATH_AUTOENCODER_TOY_TRAIN_DATASET))
-    x_test_signals = normalize_and_reshape(np.load(PATH_AUTOENCODER_TOY_TEST_SIGNALS_DATASET))
-    x_test_backgrounds = normalize_and_reshape(np.load(PATH_AUTOENCODER_TOY_TEST_BACKGROUNDS_DATASET))
+    x_train_backgrounds = normalize_and_reshape(np.load(PATH_AUTOENCODER_TRAIN))
+    x_test_signals = normalize_and_reshape(np.load(PATH_AUTOENCODER_TEST_SIGNALS))
+    x_test_backgrounds = normalize_and_reshape(np.load(PATH_AUTOENCODER_TEST_BACKGROUNDS))
+
+    print(x_train_backgrounds.shape, x_test_signals.shape, x_test_backgrounds.shape)
 
     return x_train_backgrounds, x_test_signals, x_test_backgrounds
 
 
 def load_autoencoder_fully_connected_model(img_shape):
     encoding_dim = 128
-    input_img = Input(shape=(63*500,))
+    input_img = Input(shape=(img_shape,))
 
     encoded = Dense(728, activation='relu')(input_img)
     encoded = Dense(256, activation='relu')(encoded)
@@ -39,7 +42,7 @@ def load_autoencoder_fully_connected_model(img_shape):
 
     decoded = Dense(256, activation='relu')(encoded)
     decoded = Dense(728, activation='relu')(decoded)
-    decoded = Dense(63*500, activation='sigmoid')(decoded)
+    decoded = Dense(img_shape, activation='sigmoid')(decoded)
 
     # this model maps an input to its reconstruction
     autoencoder = Model(input_img, decoded)
@@ -78,7 +81,7 @@ def main():
 
     print(x_train_backgrounds[0].shape)
 
-    img_shape = x_train_backgrounds[0].shape
+    img_shape = x_train_backgrounds[0].shape[0]
     encoder, decoder, autoencoder = load_autoencoder_fully_connected_model(img_shape)
 
     train_model(autoencoder, x_train_backgrounds, x_test_backgrounds[:500])
@@ -103,5 +106,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    print("autoencoder too expirimental at this stage")
+    main()
