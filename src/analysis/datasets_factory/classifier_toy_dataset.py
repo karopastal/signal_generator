@@ -4,7 +4,7 @@ import numpy as np
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
 from src.default_fluctuations import psi_fluctuations
-from src.default_cwt_fluctuations_p_value import DefaultCWTFluctuations
+from src.default_cwt_p_value_fluctuations import DefaultCWTFluctuations
 
 PATH_SIGNALS = 'src/signals/default_signal.json'
 PATH_BACKGROUNDS = 'src/backgrounds/default_background.json'

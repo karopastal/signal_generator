@@ -70,13 +70,21 @@ def main():
     print(cmor.wavelet)
 
     data = psi_clean(ds, dbg)
-
-    [coeffs, freqs] = cmor.generate_coefficients(data)
-
+    coeffs, freqs = cmor.generate_coefficients(data)
     amp = np.abs(coeffs)
 
     fig, ax = plt.subplots(figsize=(12, 12))
-    ax.imshow(amp, interpolation='nearest', aspect='auto', cmap='pink')
+
+    img = ax.imshow(amp,
+                    extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
+                    interpolation='nearest',
+                    aspect='auto',
+                    cmap='pink')
+
+    ax.set_ylim(cmor.min_scales, cmor.max_scales)
+
+    fig.colorbar(img, ax=ax)
+
     plt.title('CWT w/o noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
     plt.ylabel('Scales')
     plt.xlabel('Translation')

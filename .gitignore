@@ -4,7 +4,7 @@ __pycache__
 data/classifier_toy_dataset.npy
 data/classifier_toy_labels.npy
 
-data/autoencoder_toy_train_dataset.npy
-data/autoencoder_toy_test_signals_dataset.npy
-data/autoencoder_toy_backgrounds_test_dataset.npy
+data/autoencoder_train.npy
+data/autoencoder_test_signals.npy
+data/autoencoder_test_backgrounds.npy
 data/models
