@@ -5,6 +5,7 @@ include makefiles/models.mk
 include makefiles/datasets.mk
 include makefiles/sessions.mk
 include makefiles/visualizations.mk
+include makefiles/queue_jobs.mk
 
 #test:
 #	@python3 -m unittest discover

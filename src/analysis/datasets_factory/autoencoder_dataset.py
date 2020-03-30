@@ -9,7 +9,7 @@ import numpy as np
 from src.analysis.datasets_factory.p_value_transformation import *
 
 PATH_TO_SAMPLES = 'data/autoencoder_p_value_samples'
-PATH_TO_PROBABILITIES = 'data/autoencoder_p_value_samples'
+PATH_TO_PROBABILITIES = 'data/autoencoder_probabilities'
 
 PATH_AUTOENCODER_TRAIN = 'data/autoencoder_train'
 PATH_AUTOENCODER_TEST_SIGNALS = 'data/autoencoder_test_signals'
