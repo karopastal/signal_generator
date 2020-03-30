@@ -1,5 +1,0 @@
-#!/bin/bash
-
-make load-session NAME=autoencoder_toy_dataset
-
-qsub -cwd -q kats.q -S python3 -m src.analysis.datasets_factory.autoencoder_dataset
