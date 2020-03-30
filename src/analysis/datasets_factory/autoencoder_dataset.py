@@ -8,6 +8,9 @@ import numpy as np
 
 from src.analysis.datasets_factory.p_value_transformation import *
 
+PATH_TO_SAMPLES = 'data/autoencoder_p_value_samples'
+PATH_TO_PROBABILITIES = 'data/autoencoder_p_value_samples'
+
 PATH_AUTOENCODER_TRAIN = 'data/autoencoder_train'
 PATH_AUTOENCODER_TEST_SIGNALS = 'data/autoencoder_test_signals'
 PATH_AUTOENCODER_TEST_BACKGROUNDS = 'data/autoencoder_test_backgrounds'
@@ -67,6 +70,9 @@ def build():
                                                              signal_id=0,
                                                              bg_id=1,
                                                              wavelet_id=0)
+    np.save(PATH_TO_SAMPLES, samples)
+    np.save(PATH_TO_PROBABILITIES, probabilities)
+
     print("generating train dataset")
     generate_train_dataset(samples, probabilities)
 
