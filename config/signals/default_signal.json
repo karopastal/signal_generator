@@ -1,1 +1,70 @@
-[{"id": 0, "type": "default_signal", "description": "autoencoder:no_signal", "gaussian": {"center": "1", "height": "0", "width": "1"}, "range": {"T": "1", "MIN_MASS": "1", "MAX_MASS": "100", "MASS_NUM": "500", "AMPLITUDE_DECAY_RATE": "0.0"}}, {"id": 1, "type": "default_signal", "description": "autoencoder:signal1", "gaussian": {"center": "5*n", "height": "100", "width": "0.1"}, "range": {"T": "10", "MIN_MASS": "1", "MAX_MASS": "50", "MASS_NUM": "250", "AMPLITUDE_DECAY_RATE": "0.15"}}, {"id": 2, "type": "default_signal", "description": "autoencoder:signal2", "gaussian": {"center": "(0.5*n)*(0.5 + 0.25*n)", "height": "70", "width": "0.15"}, "range": {"T": "10", "MIN_MASS": "1", "MAX_MASS": "25", "MASS_NUM": "250", "AMPLITUDE_DECAY_RATE": "0.0"}}, {"id": 3, "type": "default_signal", "description": "autoencoder:signal3", "gaussian": {"center": "1", "height": "0", "width": "1"}, "range": {"T": "1", "MIN_MASS": "1", "MAX_MASS": "25", "MASS_NUM": "250", "AMPLITUDE_DECAY_RATE": "0"}}]
+[
+    {
+        "id": 0,
+        "type": "default_signal",
+        "description": "autoencoder:no_signal",
+        "gaussian": {
+            "center": "1",
+            "height": "0",
+            "width": "1"
+        },
+        "range": {
+            "T": "1",
+            "MIN_MASS": "1",
+            "MAX_MASS": "100",
+            "MASS_NUM": "500",
+            "AMPLITUDE_DECAY_RATE": "0.0"
+        }
+    },
+    {
+        "id": 1,
+        "type": "default_signal",
+        "description": "autoencoder:signal1",
+        "gaussian": {
+            "center": "5*n",
+            "height": "100",
+            "width": "0.1"
+        },
+        "range": {
+            "T": "10",
+            "MIN_MASS": "1",
+            "MAX_MASS": "50",
+            "MASS_NUM": "250",
+            "AMPLITUDE_DECAY_RATE": "0.15"
+        }
+    },
+    {
+        "id": 2,
+        "type": "default_signal",
+        "description": "autoencoder:signal2",
+        "gaussian": {
+            "center": "(0.5*n)*(0.5 + 0.25*n)",
+            "height": "70",
+            "width": "0.15"
+        },
+        "range": {
+            "T": "10",
+            "MIN_MASS": "1",
+            "MAX_MASS": "25",
+            "MASS_NUM": "250",
+            "AMPLITUDE_DECAY_RATE": "0.0"
+        }
+    },
+    {
+        "id": 3,
+        "type": "default_signal",
+        "description": "autoencoder:signal3",
+        "gaussian": {
+            "center": "1",
+            "height": "0",
+            "width": "1"
+        },
+        "range": {
+            "T": "1",
+            "MIN_MASS": "1",
+            "MAX_MASS": "25",
+            "MASS_NUM": "250",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    }
+]

@@ -1,13 +1,16 @@
 import json
+import os
 
 PATH_SIGNALS = 'config/signals/default_signal.json'
 PATH_BACKGROUNDS = 'config/backgrounds/default_background.json'
 PATH_WAVELETS = 'config/wavelets/default_wavelet.json'
+PATH_ALL_SESSIONS = 'config/sessions/all.json'
+PATH_CURRENT_SESSION = 'config/sessions/current.json'
 
 
 def write_json_to_path(path, data):
     with open(path, 'w') as outfile:
-        json.dump(data, outfile)
+        json.dump(data, outfile, indent=4, sort_keys=False)
 
 
 def to_json(path):
@@ -27,6 +30,59 @@ def all_backgrounds():
 
 def all_wavelets():
     return to_json(PATH_WAVELETS)
+
+
+def all_sessions():
+    return to_json(PATH_ALL_SESSIONS)
+
+
+def current_session():
+    return to_json(PATH_CURRENT_SESSION)
+
+
+def new_session(data):
+    os.system('make new-session NAME=%s' % (data['basename'], ))
+
+    sessions = all_sessions()
+    data['id'] = len(sessions)
+    sessions.append(data)
+
+    write_json_to_path(PATH_ALL_SESSIONS, sessions)
+
+
+def save_current_session_changes():
+    current = current_session()
+
+    if current['id'] != -9999:
+        os.system('make save-session NAME=%s' % (current['basename'], ))
+
+
+def load_sessions(data):
+    os.system('make load-session NAME=%s' % (data['basename'], ))
+
+    write_json_to_path(PATH_CURRENT_SESSION, data)
+
+
+def delete_sessions(data):
+    sessions = all_sessions()
+    current = current_session()
+
+    if current['basename'] == data['basename'] and current['id'] == data['id']:
+        empty_session = {
+            "id": -9999,
+            "name": "session is empty, load from the list."
+        }
+
+        write_json_to_path(PATH_CURRENT_SESSION, empty_session)
+        os.system('make delete-current-session NAME=%s' % (data['basename'],))
+    else:
+        os.system('make delete-session NAME=%s' % (data['basename'],))
+
+    del sessions[int(data['id'])]
+    for i, signal in enumerate(sessions):
+        signal['id'] = i
+
+    write_json_to_path(PATH_ALL_SESSIONS, sessions)
 
 
 def update_signals(data):
