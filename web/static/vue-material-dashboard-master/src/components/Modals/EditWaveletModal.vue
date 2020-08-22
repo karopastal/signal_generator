@@ -44,9 +44,10 @@
               <md-input v-model="MAX_SCALES" type="number"></md-input>
             </md-field>
        </div>
-          <div class="md-layout-item md-size-100 text-right">
+          <div class="md-layout-item md-size-100 text-left">
             <md-button class="md-raised md-danger" @click="Delete">Delete Wavelet</md-button>
             <md-button class="md-raised md-success" @click="Update">Update Wavelet</md-button>
+            <md-button class="md-raised" @click="Close">Close</md-button>
           </div>
         </div>
       </md-card-content>
@@ -70,6 +71,9 @@ export default {
     };
   },
     methods: {
+        Close() {
+          this.$emit('close');
+        },
         Delete() {
             this.$axios.post('http://localhost:5000/api/v1/resources/delete_wavelet', {
                 id: this.item.id

@@ -44,8 +44,9 @@
               <md-input v-model="BACKGROUND_DECAY_RATE" type="number"></md-input>
             </md-field>
        </div>
-          <div class="md-layout-item md-size-100 text-right">
+          <div class="md-layout-item md-size-100 text-left">
             <md-button class="md-raised md-success" @click="create">Create Background</md-button>
+            <md-button class="md-raised" @click="$emit('close')">Close</md-button>
           </div>
         </div>
       </md-card-content>

@@ -1,1 +1,15 @@
-[{"id": 0, "type": "default_wavelet", "description": "Complex Morlet ", "wavelet": {"description": "Complex Morlet ", "name": "cmor", "B": "2.0", "C": "1.0", "min_scales": "1", "max_scales": "100"}}]
+[
+    {
+        "id": 0,
+        "type": "default_wavelet",
+        "description": "Complex Morlet ",
+        "wavelet": {
+            "description": "Complex Morlet ",
+            "name": "cmor",
+            "B": "2.0",
+            "C": "1.0",
+            "min_scales": "1",
+            "max_scales": "100"
+        }
+    }
+]

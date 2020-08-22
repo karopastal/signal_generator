@@ -15,6 +15,16 @@ def home():
     return send_from_directory(app.static_folder, 'index.html')
 
 
+@app.route('/api/v1/resources/current_sessions', methods=['GET'])
+def current_sessions():
+    return jsonify(current_session())
+
+
+@app.route('/api/v1/resources/sessions', methods=['GET'])
+def sessions():
+    return jsonify(all_sessions())
+
+
 @app.route('/api/v1/resources/signals', methods=['GET'])
 def signals():
     return jsonify(all_signals())
@@ -28,6 +38,30 @@ def backgrounds():
 @app.route('/api/v1/resources/wavelets', methods=['GET'])
 def wavelets():
     return jsonify(all_wavelets())
+
+
+@app.route('/api/v1/resources/new_sessions', methods=['POST'])
+def new_sessions():
+    new_session(data=request.json)
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/v1/resources/save_current_session', methods=['GET'])
+def save_current_session():
+    save_current_session_changes()
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/v1/resources/load_session', methods=['POST'])
+def load_session():
+    load_sessions(data=request.json)
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/v1/resources/delete_session', methods=['POST'])
+def delete_session():
+    delete_sessions(data=request.json)
+    return jsonify({'status': 'ok'})
 
 
 @app.route('/api/v1/resources/update_signal', methods=['POST'])

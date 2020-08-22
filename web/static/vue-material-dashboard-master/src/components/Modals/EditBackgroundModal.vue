@@ -44,9 +44,10 @@
               <md-input v-model="BACKGROUND_DECAY_RATE" type="number"></md-input>
             </md-field>
        </div>
-          <div class="md-layout-item md-size-100 text-right">
+          <div class="md-layout-item md-size-100 text-left">
             <md-button class="md-raised md-danger" @click="Delete">Delete Background</md-button>
             <md-button class="md-raised md-success" @click="Update">Update Background</md-button>
+            <md-button class="md-raised" @click="Close">Close</md-button>
           </div>
         </div>
       </md-card-content>
@@ -70,6 +71,9 @@ export default {
     };
   },
     methods: {
+        Close() {
+          this.$emit('close');
+        },
         Delete() {
             this.$axios.post('http://localhost:5000/api/v1/resources/delete_background', {
                 id: this.item.id
