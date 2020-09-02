@@ -1,11 +1,14 @@
 import json
 import os
+from pathlib import Path
+from src.default_clean import save_clean_plot
 
 PATH_SIGNALS = 'config/signals/default_signal.json'
 PATH_BACKGROUNDS = 'config/backgrounds/default_background.json'
 PATH_WAVELETS = 'config/wavelets/default_wavelet.json'
 PATH_ALL_SESSIONS = 'config/sessions/all.json'
 PATH_CURRENT_SESSION = 'config/sessions/current.json'
+PATH_BASEDIR_PLOTS = "web/static/vue-material-dashboard-master/dist/plots"
 
 
 def write_json_to_path(path, data):
@@ -155,3 +158,26 @@ def delete_wavelets(id):
         wavelet['id'] = i
 
     write_json_to_path(PATH_WAVELETS, wavelets)
+
+
+def plots_signal_bg(data):
+    current = current_session()
+    path = PATH_BASEDIR_PLOTS + "/" + current['basename']
+
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+    if data['fluctuations']:
+        fluc = "fluctuations"
+    else:
+        fluc = "clean"
+
+    plot_name = "signal_bg_%s_s%s_b%s" % (fluc, data['signal'], data['background'])
+    path = path + "/" + plot_name
+
+    save_clean_plot(path, data['signal'], data['background'])
+
+    return current['basename'] + "/" + plot_name + ".png"
+
+
+def plots_cwt(data):
+    print(data)

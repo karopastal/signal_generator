@@ -4,5 +4,11 @@
         "name": "autoencoder toy dataset",
         "basename": "autoencoder_toy_dataset",
         "description": "needs improvement"
+    },
+    {
+        "id": 1,
+        "name": "new session",
+        "basename": "newsession",
+        "description": "new session"
     }
 ]

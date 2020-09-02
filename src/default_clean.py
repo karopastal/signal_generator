@@ -1,5 +1,5 @@
 import sys
-import numpy as np
+import os
 import matplotlib.pyplot as plt
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
@@ -32,9 +32,9 @@ def psi_clean(ds, dbg):
     return out
 
 
-def main():
-    ds = DefaultSignal(id=signal_id())
-    dbg = DefaultBackground(id=background_id())
+def save_clean_plot(path, s_id, bg_id):
+    ds = DefaultSignal(id=s_id)
+    dbg = DefaultBackground(id=bg_id)
 
     x = dbg.background_range()
 
@@ -43,8 +43,27 @@ def main():
     plt.ylabel("Amplitude")
     plt.xlabel("Mass")
 
-    plt.show()
+    if os.path.isfile(path):
+        os.remove(path)
+
+    plt.savefig(path)
+    plt.close('all')
 
 
-if __name__ == '__main__':
-    main()
+# def main():
+#     ds = DefaultSignal(id=signal_id())
+#     dbg = DefaultBackground(id=background_id())
+#
+#     x = dbg.background_range()
+#
+#     plt.plot(x, psi_clean(ds, dbg))
+#     plt.title(r"Signal + Background")
+#     plt.ylabel("Amplitude")
+#     plt.xlabel("Mass")
+#
+#     plt.show()
+
+
+# if __name__ == '__main__':
+#     pass
+    # main()

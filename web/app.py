@@ -2,7 +2,7 @@ import json
 import flask
 from flask import request, jsonify, send_from_directory, send_file
 from flask_cors import CORS
-from api import *
+from web.api import *
 
 app = flask.Flask(__name__, static_folder='static/vue-material-dashboard-master/dist', static_url_path='')
 app.config["CACHE_TYPE"] = "null"
@@ -116,6 +116,19 @@ def new_wavelet():
 def delete_wavelet():
     delete_wavelets(id=request.json['id'])
     return jsonify({'status': 'ok'})
+
+
+@app.route('/api/v1/resources/plot_signal_and_bg', methods=['POST'])
+def plot_signal_and_bg():
+    print("Enter to functions....")
+    path = plots_signal_bg(data=request.json['data'])
+    return jsonify({'path': path})
+
+
+@app.route('/api/v1/resources/plot_cwt', methods=['POST'])
+def plot_cwt():
+    path = plots_cwt(data=request.json['data'])
+    return jsonify({'path': path})
 
 
 @app.route('/gallery/<path>')

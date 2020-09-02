@@ -20,6 +20,10 @@
         <md-icon>graphic_eq</md-icon>
         <p>Wavelets</p>
       </sidebar-link>
+      <sidebar-link to="/dynamic-plots">
+        <md-icon>tune</md-icon>
+        <p>Dynamic Plots</p>
+      </sidebar-link>
       <sidebar-link to="/gallery">
         <md-icon>bubble_chart</md-icon>
         <p>Gallery</p>
