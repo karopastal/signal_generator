@@ -6,6 +6,7 @@ import Signals from "@/pages/Signals.vue";
 import Backgrounds from "@/pages/Backgrounds.vue";
 import Wavelets from "@/pages/Wavelets.vue";
 import Icons from "@/pages/Icons.vue";
+import DynamicPlots from "@/pages/DynamicPlots.vue";
 import Gallery from "@/pages/Gallery.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
@@ -41,6 +42,11 @@ const routes = [
         path: "backgrounds",
         name: "Backgrounds",
         component: Backgrounds
+      },
+      {
+        path: "dynamic-plots",
+        name: "DynamicPlots",
+        component: DynamicPlots
       },
       {
         path: "gallery",

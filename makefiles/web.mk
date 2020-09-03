@@ -1,5 +1,5 @@
 web:
-	@python3 web/app.py
+	@python3 -m web.app
 
 build-web:
 	npm run build --prefix web/static/vue-material-dashboard-master && \
