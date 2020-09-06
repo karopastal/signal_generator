@@ -5,7 +5,7 @@ from src.default_clean import psi_clean
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
 
-BIN_SEGMENT = 5
+BIN_SEGMENT = 1
 
 
 def signal_id():

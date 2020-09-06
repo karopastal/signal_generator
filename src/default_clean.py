@@ -50,20 +50,20 @@ def save_clean_plot(path, s_id, bg_id):
     plt.close('all')
 
 
-# def main():
-#     ds = DefaultSignal(id=signal_id())
-#     dbg = DefaultBackground(id=background_id())
-#
-#     x = dbg.background_range()
-#
-#     plt.plot(x, psi_clean(ds, dbg))
-#     plt.title(r"Signal + Background")
-#     plt.ylabel("Amplitude")
-#     plt.xlabel("Mass")
-#
-#     plt.show()
+def main():
+    ds = DefaultSignal(id=signal_id())
+    dbg = DefaultBackground(id=background_id())
+
+    x = dbg.background_range()
+
+    plt.plot(x, psi_clean(ds, dbg))
+    plt.title(r"Signal + Background")
+    plt.ylabel("Amplitude")
+    plt.xlabel("Mass")
+
+    plt.show()
 
 
-# if __name__ == '__main__':
-#     pass
-    # main()
+if __name__ == '__main__':
+    main()
+

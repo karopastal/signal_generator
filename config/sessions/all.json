@@ -7,8 +7,8 @@
     },
     {
         "id": 1,
-        "name": "new session",
-        "basename": "newsession",
-        "description": "new session"
+        "name": "test dataset 1",
+        "basename": "test_dataset_1",
+        "description": "test dataset 1"
     }
 ]
