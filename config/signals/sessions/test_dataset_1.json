@@ -38,9 +38,9 @@
         "type": "default_signal",
         "description": "signal 20",
         "gaussian": {
-            "center": "2*n + 3",
-            "height": "10",
-            "width": "0.2"
+            "center": "1",
+            "height": "20",
+            "width": "0.01"
         },
         "range": {
             "T": "2",

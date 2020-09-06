@@ -2,25 +2,25 @@
     {
         "id": 0,
         "type": "default_background",
-        "description": "autoencoder:bg:1",
+        "description": "bg 40x40",
         "range": {
-            "amplitude": "0",
+            "amplitude": "70",
             "MIN_BG": "1",
-            "MAX_BG": "200",
-            "BG_NUM": "1000",
-            "BACKGROUND_DECAY_RATE": "0.00"
+            "MAX_BG": "40",
+            "BG_NUM": "40",
+            "BACKGROUND_DECAY_RATE": "0.5"
         }
     },
     {
         "id": 1,
         "type": "default_background",
-        "description": "autoencoder:bg:0",
+        "description": "no nackground",
         "range": {
-            "amplitude": "500",
+            "amplitude": "0",
             "MIN_BG": "1",
-            "MAX_BG": "200",
-            "BG_NUM": "1000",
-            "BACKGROUND_DECAY_RATE": "0.025"
+            "MAX_BG": "40",
+            "BG_NUM": "40",
+            "BACKGROUND_DECAY_RATE": "0"
         }
     }
 ]
