@@ -21,7 +21,8 @@ def load_config(id, data):
 
 
 def gaussian(x, height, center, width, offset):
-    return height*np.exp(-(x - center)**2/(2*width**2)) + offset
+    a = 1/(width*np.sqrt(2*np.pi))
+    return a*height*np.exp(-(x - center)**2/(2*width**2)) + offset
 
 
 def gaussianify(all_periods, n, x_signal_range, height, center, width, offset):

@@ -10,5 +10,11 @@
         "name": "test dataset 1",
         "basename": "test_dataset_1",
         "description": "test dataset 1"
+    },
+    {
+        "id": 2,
+        "name": "test_dataset_2",
+        "basename": "test_dataset_2",
+        "description": "test_dataset_2"
     }
 ]

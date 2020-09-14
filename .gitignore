@@ -8,3 +8,5 @@ data/autoencoder_train.npy
 data/autoencoder_test_signals.npy
 data/autoencoder_test_backgrounds.npy
 data/models
+data
+!/data/.keep
