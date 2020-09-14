@@ -4,7 +4,7 @@
         "type": "default_background",
         "description": "bg 40x40",
         "range": {
-            "amplitude": "40",
+            "amplitude": "65",
             "MIN_BG": "1",
             "MAX_BG": "40",
             "BG_NUM": "40",
