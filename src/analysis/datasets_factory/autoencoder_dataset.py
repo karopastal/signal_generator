@@ -15,10 +15,10 @@ now = datetime.now()
 current_day = today.strftime("%b-%d-%y")
 current_time = now.strftime("%H-%M-%S")
 
-SAMPLE_NUM = 5000
-TRAIN_SIZE = 10000
-TEST_SIGNALS_SIZE = 2000
-TEST_BACKGROUND_SIZE = 8000
+SAMPLE_NUM = 1000
+TRAIN_SIZE = 5000
+TEST_SIGNALS_SIZE = 1000
+TEST_BACKGROUND_SIZE = 2000
 
 BASEDIR = "data/autoencoder/%sT%s$%sk-%sk-%sk-%sk" % (current_day,
                                                       current_time,

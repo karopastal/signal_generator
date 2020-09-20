@@ -66,12 +66,20 @@ def calculate_p_value_matrix(cwt_with_signal, samples, probabilities):
     return -1 * np.log(p_values)
 
 
-def p_value_transformation_local(cwt_signal):
+def rebin(arr, new_shape):
+    shape = (new_shape[0], arr.shape[0] // new_shape[0],
+             new_shape[1], arr.shape[1] // new_shape[1])
+    return arr.reshape(shape).mean(-1).mean(1)
 
+
+def p_value_transformation_local(cwt_signal):
+    new_shape = [49, 100]
     samples = []
 
     for i in range(200):
-        samples.append(generate_sample_fluctuations(signal_id=0, bg_id=1, wavelet_id=0))
+        cwt_record = generate_sample_fluctuations(signal_id=0, bg_id=0, wavelet_id=0)
+        samples.append(rebin(cwt_record, new_shape))
+        # samples.append(cwt_record)
 
     samples = np.array(samples)
     sum_samples = np.sum(samples, axis=0)
@@ -85,7 +93,7 @@ def p_value_transformation_local(cwt_signal):
 
 
 def main():
-
+    pass
     x = generate_sample_clean(signal_id=0, bg_id=0, wavelet_id=0)
     print(p_value_transformation_local(x))
 
