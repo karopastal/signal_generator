@@ -22,11 +22,11 @@ from src.default_signal import DefaultSignal
 from src.default_cwt_clean import DefaultCWTClean
 from src.default_fluctuations import psi_fluctuations
 
-SIGNALS_NUM = 2
-SAMPLE_NUM = 500
-TRAIN_SIZE = 100
-TEST_SIGNALS_SIZE = 100
-TEST_BACKGROUND_SIZE = 100
+SIGNALS_NUM = 5
+SAMPLE_NUM = 1500
+TRAIN_SIZE = 15000
+TEST_SIGNALS_SIZE = 5000
+TEST_BACKGROUND_SIZE = 1000
 
 today = date.today()
 now = datetime.now()

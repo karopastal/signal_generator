@@ -9,7 +9,7 @@ make load-session NAME=test_dataset_2
 PYTHON3_PATH="/bin/python3"
 
 #SCRIPT_PATH="/gpfs0/kats/users/talpas/signal_generator/src/analysis/"
-SCRIPT_PATH="/gpfs0/kats/users/talpas/signal_generator/scripts/test.py"
+SCRIPT_PATH="/gpfs0/kats/users/talpas/workbench/signal_generator/scripts/build_dataset_v1_1.py"
 
 qsub -cwd -q kats.q -S $PYTHON3_PATH $SCRIPT_PATH
 
