@@ -13,7 +13,7 @@ from keras import utils, regularizers
 # PATH_ENCODER = 'data/models/test_dataset_1/pca/encoder.h5'
 # PATH_DECODER = 'data/models/test_dataset_1/pca/decoder.h5'
 
-DATASET_PATH = 'data/test_dataset_2/Sep-16-20T06-52-27$15000'
+DATASET_PATH = 'data/dataset_v1/Sep-22-20T20-34-17$15000'
 TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
@@ -23,27 +23,27 @@ PATH_ENCODER = 'data/models/test_dataset_2/pca/encoder.h5'
 PATH_DECODER = 'data/models/test_dataset_2/pca/decoder.h5'
 
 
-def plot_prediction(x_test, encoder, decoder):
-    encoded_imgs = encoder.predict(x_test)
-    decoded_imgs = decoder.predict(encoded_imgs)
-
-    print(encoded_imgs.shape)
+def plot_prediction(x_test, encoder="", decoder=""):
+    # encoded_imgs = encoder.predict(x_test)
+    # decoded_imgs = decoder.predict(encoded_imgs)
+    #
+    # print(encoded_imgs.shape)
     print(x_test.shape)
 
-    n = 1  # how many digits we will display
+    n = 4  # how many digits we will display
     plt.figure(figsize=(49, 100))
     for i in range(n):
         # display original
         ax = plt.subplot(2, n, i + 1)
-        plt.imshow(x_test[i].reshape(49, 500), cmap='pink')
+        plt.imshow(x_test[i].reshape(49, 100), cmap='pink')
         ax.get_xaxis().set_visible(False)
         ax.get_yaxis().set_visible(False)
 
         # display reconstruction
-        ax = plt.subplot(2, n, i + 1 + n)
-        plt.imshow(decoded_imgs[i].reshape(49, 500), cmap='pink')
-        ax.get_xaxis().set_visible(False)
-        ax.get_yaxis().set_visible(False)
+        # ax = plt.subplot(2, n, i + 1 + n)
+        # plt.imshow(decoded_imgs[i].reshape(49, 100), cmap='pink')
+        # ax.get_xaxis().set_visible(False)
+        # ax.get_yaxis().set_visible(False)
 
     plt.show()
 
@@ -64,7 +64,7 @@ def load_data():
     return train_data, test_bg_data, test_signal_data
 
 
-mse = tf.keras.losses.MeanSquaredError()
+# mse = tf.keras.losses.MeanSquaredError()
 # train_data, test_bg_data, test_signal_data = load_data()
 # autoencoder = load_model(PATH_AUTOENCODER)
 # encoder = load_model(PATH_ENCODER)
@@ -73,11 +73,13 @@ mse = tf.keras.losses.MeanSquaredError()
 
 def main():
     pass
+
     # encoder = load_model(PATH_ENCODER)
     # decoder = load_model(PATH_DECODER)
-    # train_data, test_bg_data, test_signal_data = load_data()
-    #
+
+    train_data, test_bg_data, test_signal_data = load_data()
     # plot_prediction(np.array([test_bg_data[0:3]]), encoder, decoder)
+    plot_prediction(train_data[0:4])
 
 
 if __name__ == '__main__':

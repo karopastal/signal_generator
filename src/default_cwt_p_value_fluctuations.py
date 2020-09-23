@@ -61,6 +61,12 @@ class DefaultCWTFluctuations:
         return pywt.cwt(data, self.scales, self.wavelet)
 
 
+def rebin(arr, new_shape):
+    shape = (new_shape[0], arr.shape[0] // new_shape[0],
+             new_shape[1], arr.shape[1] // new_shape[1])
+    return arr.reshape(shape).mean(-1).mean(1)
+
+
 def main():
     ds = DefaultSignal(id=signal_id())
     dbg = DefaultBackground(id=background_id())
@@ -72,11 +78,13 @@ def main():
     coeffs, freqs = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
+    new_shape = [49, 100]
+    # amp_p_value = p_value_transformation_local(rebin(amp, new_shape))
     amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    img = ax.imshow(amp_p_value,
+    img = ax.imshow(rebin(amp_p_value, new_shape),
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
                     interpolation='nearest',
                     aspect='auto',
