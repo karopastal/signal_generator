@@ -79,12 +79,12 @@ def main():
 
     amp = np.abs(coeffs)
     new_shape = [49, 100]
-    amp_p_value = p_value_transformation_local(rebin(amp, new_shape))
-    # amp_p_value = p_value_transformation_local(amp)
+    # amp_p_value = p_value_transformation_local(rebin(amp, new_shape))
+    amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    img = ax.imshow(amp_p_value,
+    img = ax.imshow(rebin(amp_p_value, new_shape),
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
                     interpolation='nearest',
                     aspect='auto',

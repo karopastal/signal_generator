@@ -1,7 +1,5 @@
 """
-
 working with the session: autoencoder_toy_dataset
-
 """
 
 import os

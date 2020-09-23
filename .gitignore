@@ -1,5 +1,6 @@
 __pycache__
 .idea
+.env
 
 data/classifier_toy_dataset.npy
 data/classifier_toy_labels.npy

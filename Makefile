@@ -2,6 +2,7 @@
 
 include makefiles/web.mk
 include makefiles/models.mk
+include makefiles/tests.mk
 include makefiles/datasets.mk
 include makefiles/sessions.mk
 include makefiles/visualizations.mk
