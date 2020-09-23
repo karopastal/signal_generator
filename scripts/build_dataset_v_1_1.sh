@@ -1,6 +1,9 @@
 #!/bin/bash
 
-make load-session NAME=autoencoder_toy_dataset
+# VERSION : 'dataset_v1_1'
+# SESSION : 'test_dataset_2'
+
+make load-session NAME=test_dataset_2
 
 #PYTHON3_PATH="/gpfs0/kats/projects/Python-3.4.5/python"
 PYTHON3_PATH="/bin/python3"
