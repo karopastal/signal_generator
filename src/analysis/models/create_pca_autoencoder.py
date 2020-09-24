@@ -23,7 +23,7 @@ PATH_DECODER = 'data/models/dataset_v1/pca/decoder.h5'
 SHAPE = 4900
 SIGNALS_NUM = 5
 
-DATASET_PATH = 'data/dataset_v1/Sep-21-20T12-09-32$10000'
+DATASET_PATH = 'data/dataset_v1_1/Sep-24-20T09-00-07$10000'
 TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
