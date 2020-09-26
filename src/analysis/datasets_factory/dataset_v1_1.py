@@ -2,7 +2,7 @@
 -----------
 dataset_v1_1 :
 -----------
-    ! rebining after transformation, not before.....
+    ! rebining before taking p_values
     0. session: test_dataset_2
     1. resolution: (49, 500)
     2. rebined resolution: (49, 100)
@@ -10,23 +10,26 @@ dataset_v1_1 :
 """
 
 import os
-from datetime import datetime, date
-from src.analysis.datasets_factory.p_value_transformation import *
 import matplotlib.pyplot as plt
 
-# import numpy as np
-# from src.default_clean import psi_clean
-
+from datetime import datetime, date
+from src.analysis.datasets_factory.p_value_transformation import *
 from src.default_background import DefaultBackground
 from src.default_signal import DefaultSignal
 from src.default_cwt_clean import DefaultCWTClean
 from src.default_fluctuations import psi_fluctuations
 
 SIGNALS_NUM = 5
-SAMPLE_NUM = 500
-TRAIN_SIZE = 10000
-TEST_BACKGROUND_SIZE = 1000
-TEST_SIGNALS_SIZE = 500
+SAMPLE_NUM = 5000
+TRAIN_SIZE = 25000
+TEST_BACKGROUND_SIZE = 10000
+TEST_SIGNALS_SIZE = 2000
+
+# SIGNALS_NUM = 1
+# SAMPLE_NUM = 5000
+# TRAIN_SIZE = 100
+# TEST_BACKGROUND_SIZE = 100
+# TEST_SIGNALS_SIZE = 100
 
 today = date.today()
 now = datetime.now()
@@ -78,19 +81,19 @@ def generate_cwt_fluctuations(signal_id=0, bg_id=0, wavelet_id=0):
     return amp
 
 
-def generate_record(samples, probabilities, rebin_shape, signal_id=0, bg_id=0, wavelet_id=0):
+def generate_record(samples_num, samples, probabilities, rebin_shape, signal_id=0, bg_id=0, wavelet_id=0):
     cwt_bg_record = generate_cwt_fluctuations(signal_id, bg_id, wavelet_id)
-    record = calculate_p_value_matrix(cwt_bg_record, samples, probabilities)
-    rebined_record = rebin(record, rebin_shape)
+    rebined_record = rebin(cwt_bg_record, rebin_shape)
+    record = calculate_p_value_matrix(rebined_record, samples_num, samples, probabilities)
 
-    return rebined_record
+    return record
 
 
 def create_train_dataset(samples, probabilities):
     arrays = []
 
     for i in range(TRAIN_SIZE):
-        record = generate_record(samples, probabilities, REBINED_SHAPE, signal_id=0, bg_id=0, wavelet_id=0)
+        record = generate_record(SAMPLE_NUM, samples, probabilities, REBINED_SHAPE, signal_id=0, bg_id=0, wavelet_id=0)
         arrays.append(record)
 
     dataset = np.stack(arrays, axis=0)
@@ -103,7 +106,7 @@ def create_test_backgrounds_dataset(samples, probabilities):
     arrays = []
 
     for i in range(TEST_BACKGROUND_SIZE):
-        record = generate_record(samples, probabilities, REBINED_SHAPE, signal_id=0, bg_id=0, wavelet_id=0)
+        record = generate_record(SAMPLE_NUM, samples, probabilities, REBINED_SHAPE, signal_id=0, bg_id=0, wavelet_id=0)
         arrays.append(record)
 
     dataset = np.stack(arrays, axis=0)
@@ -118,7 +121,7 @@ def create_test_signals_datasets(samples, probabilities):
         arrays = []
 
         for i in range(TEST_SIGNALS_SIZE):
-            record = generate_record(samples, probabilities, REBINED_SHAPE, signal_id=signal_id, bg_id=0, wavelet_id=0)
+            record = generate_record(SAMPLE_NUM, samples, probabilities, REBINED_SHAPE, signal_id=signal_id, bg_id=0, wavelet_id=0)
             arrays.append(record)
 
         dataset = np.stack(arrays, axis=0)
@@ -126,16 +129,16 @@ def create_test_signals_datasets(samples, probabilities):
         np.save(PATH_TEST_SIGNALS + "_" + str(signal_id), dataset)
 
 
-def build_samples_and_probabilities_local():
-    print("samples, probabilities -> size: ", SAMPLE_NUM)
-    samples, probabilities = build_samples_and_probabilities(samples_num=SAMPLE_NUM,
-                                                             rebined_shape=REBINED_SHAPE,
-                                                             signal_id=0,
-                                                             bg_id=0,
-                                                             wavelet_id=0)
-
-    np.save(PATH_TO_SAMPLES, samples)
-    np.save(PATH_TO_PROBABILITIES, probabilities)
+# def build_samples_and_probabilities_local():
+#     print("samples, probabilities -> size: ", SAMPLE_NUM)
+#     samples, probabilities = build_samples_and_probabilities(samples_num=SAMPLE_NUM,
+#                                                              rebined_shape=REBINED_SHAPE,
+#                                                              signal_id=0,
+#                                                              bg_id=0,
+#                                                              wavelet_id=0)
+#
+#     np.save(PATH_TO_SAMPLES, samples)
+#     np.save(PATH_TO_PROBABILITIES, probabilities)
 
 
 def build():

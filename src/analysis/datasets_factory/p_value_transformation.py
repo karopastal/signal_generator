@@ -71,9 +71,10 @@ def build_samples_and_probabilities(samples_num, rebined_shape, signal_id=0, bg_
     samples = []
 
     for i in range(samples_num):
-        samples.append(generate_sample_fluctuations(signal_id,
-                                                    bg_id,
-                                                    wavelet_id))
+        samples.append(generate_rebined_sample_fluctuations(rebined_shape,
+                                                            signal_id,
+                                                            bg_id,
+                                                            wavelet_id))
     samples = np.array(samples)
     sum_samples = np.sum(samples, axis=0)
     probabilities = samples / sum_samples
@@ -81,7 +82,7 @@ def build_samples_and_probabilities(samples_num, rebined_shape, signal_id=0, bg_
     return samples, probabilities
 
 
-def calculate_p_value_matrix(cwt_with_signal, samples, probabilities):
+def calculate_p_value_matrix(cwt_with_signal, samples_num, samples, probabilities):
 
     probabilities_copy = np.copy(probabilities)
 
@@ -91,7 +92,7 @@ def calculate_p_value_matrix(cwt_with_signal, samples, probabilities):
 
     ma_log_p_value = ma.log(p_values)
 
-    return -1 * ma_log_p_value.filled(ma.min(ma_log_p_value))
+    return -1 * ma_log_p_value.filled(np.log(1/samples_num))
 
 
 def p_value_transformation_local(cwt_signal):
