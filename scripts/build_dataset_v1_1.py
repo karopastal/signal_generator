@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/bin/python3 -u
 
 #-------------------------------------------------#
 #    #!/gpfs0/kats/projects/Python-3.8.4/python   #

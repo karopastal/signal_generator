@@ -21,9 +21,9 @@ from src.default_fluctuations import psi_fluctuations
 
 SIGNALS_NUM = 5
 SAMPLE_NUM = 5000
-TRAIN_SIZE = 25000
-TEST_BACKGROUND_SIZE = 10000
-TEST_SIGNALS_SIZE = 2000
+TRAIN_SIZE = 15000
+TEST_BACKGROUND_SIZE = 5000
+TEST_SIGNALS_SIZE = 1000
 
 # SIGNALS_NUM = 1
 # SAMPLE_NUM = 5000
@@ -142,7 +142,7 @@ def create_test_signals_datasets(samples, probabilities):
 
 
 def build():
-    print("samples, probabilities -> size: ", SAMPLE_NUM)
+    print(now.strftime("%H-%M-%S"), "samples, probabilities -> size: ", SAMPLE_NUM)
     samples, probabilities = build_samples_and_probabilities(samples_num=SAMPLE_NUM,
                                                              rebined_shape=REBINED_SHAPE,
                                                              signal_id=0,
@@ -152,13 +152,13 @@ def build():
     np.save(PATH_TO_SAMPLES, samples)
     np.save(PATH_TO_PROBABILITIES, probabilities)
 
-    print("train_dataset -> size: ", TRAIN_SIZE)
+    print(now.strftime("%H-%M-%S"), "train_dataset -> size: ", TRAIN_SIZE)
     create_train_dataset(samples, probabilities)
 
-    print("test_bgs_dataset -> size: ", TEST_BACKGROUND_SIZE)
+    print(now.strftime("%H-%M-%S"), ("test_bgs_dataset -> size: ", TEST_BACKGROUND_SIZE)
     create_test_backgrounds_dataset(samples, probabilities)
 
-    print("test_signals_dataset -> size: ", TEST_SIGNALS_SIZE)
+    print(now.strftime("%H-%M-%S"), "test_signals_dataset -> size: ", TEST_SIGNALS_SIZE)
     create_test_signals_datasets(samples, probabilities)
 
 
