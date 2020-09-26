@@ -13,14 +13,14 @@ from keras import utils, regularizers
 # PATH_ENCODER = 'data/models/test_dataset_1/pca/encoder.h5'
 # PATH_DECODER = 'data/models/test_dataset_1/pca/decoder.h5'
 
-DATASET_PATH = 'data/test_dataset_2/Sep-16-20T06-52-27$15000'
+DATASET_PATH = 'data/dataset_v1_1/Sep-23-20T11-56-10$100'
 TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-PATH_AUTOENCODER = 'data/models/test_dataset_2/pca/autoencoder.h5'
-PATH_ENCODER = 'data/models/test_dataset_2/pca/encoder.h5'
-PATH_DECODER = 'data/models/test_dataset_2/pca/decoder.h5'
+PATH_AUTOENCODER = 'data/models/dataset_v1_1/pca/autoencoder.h5'
+PATH_ENCODER = 'data/models/dataset_v1_1/pca/encoder.h5'
+PATH_DECODER = 'data/models/dataset_v1_1/pca/decoder.h5'
 
 
 def plot_prediction(x_test, encoder, decoder):
@@ -65,7 +65,7 @@ def load_data():
 
 
 mse = tf.keras.losses.MeanSquaredError()
-# train_data, test_bg_data, test_signal_data = load_data()
+train_data, test_bg_data, test_signal_data = load_data()
 # autoencoder = load_model(PATH_AUTOENCODER)
 # encoder = load_model(PATH_ENCODER)
 # decoder = load_model(PATH_DECODER)
@@ -76,7 +76,7 @@ def main():
     # encoder = load_model(PATH_ENCODER)
     # decoder = load_model(PATH_DECODER)
     # train_data, test_bg_data, test_signal_data = load_data()
-    #
+
     # plot_prediction(np.array([test_bg_data[0:3]]), encoder, decoder)
 
 

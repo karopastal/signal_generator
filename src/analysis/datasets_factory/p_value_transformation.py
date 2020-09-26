@@ -98,7 +98,7 @@ def p_value_transformation_local(cwt_signal):
     new_shape = [49, 100]
     samples = []
 
-    for i in range(500):
+    for i in range(5000):
         cwt_record = generate_sample_fluctuations(signal_id=0, bg_id=0, wavelet_id=0)
         # samples.append(rebin(cwt_record, new_shape))
         samples.append(cwt_record)
@@ -113,7 +113,8 @@ def p_value_transformation_local(cwt_signal):
 
     ma_log_p_value = ma.log(p_values)
 
-    return -1 * ma_log_p_value.filled(ma.min(ma_log_p_value))
+    # return -1 * ma_log_p_value.filled(ma.min(ma_log_p_value))
+    return -1 * ma_log_p_value.filled(np.log(1/5000))
 
 
 def main():
