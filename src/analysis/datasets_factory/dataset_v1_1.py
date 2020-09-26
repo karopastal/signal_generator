@@ -155,7 +155,7 @@ def build():
     print(now.strftime("%H-%M-%S"), "train_dataset -> size: ", TRAIN_SIZE)
     create_train_dataset(samples, probabilities)
 
-    print(now.strftime("%H-%M-%S"), ("test_bgs_dataset -> size: ", TEST_BACKGROUND_SIZE)
+    print(now.strftime("%H-%M-%S"), ("test_bgs_dataset -> size: ", TEST_BACKGROUND_SIZE))
     create_test_backgrounds_dataset(samples, probabilities)
 
     print(now.strftime("%H-%M-%S"), "test_signals_dataset -> size: ", TEST_SIGNALS_SIZE)
