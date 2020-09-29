@@ -59,8 +59,8 @@ def load_model():
     # -------------------------------------------------------------------
     decoder = Model(encoded_input, decoder_layer(encoded_input))
 
-    # autoencoder.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError())
-    autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+    autoencoder.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError())
+    # autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
     return autoencoder, encoder, decoder
 
@@ -68,7 +68,7 @@ def load_model():
 def train(autoencoder, train_data, test_bg_data):
     print(train_data.shape)
     autoencoder.fit(train_data, train_data,
-                    epochs=15,
+                    epochs=150,
                     batch_size=256,
                     shuffle=True,
                     validation_data=(test_bg_data, test_bg_data))
