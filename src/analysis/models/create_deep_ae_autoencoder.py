@@ -23,7 +23,13 @@ now = datetime.now()
 current_day = today.strftime("%b-%d-%y")
 current_time = now.strftime("%H-%M-%S")
 
-NAME = 'deep_ae/'
+DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-42-06$15000'
+TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
+TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
+TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
+TRAIN_SIZE = DATASET_PATH.split('$')[1]
+
+NAME = 'deep_ae_%s/' % (TRAIN_SIZE,)
 BASE_DIR = "data/models/" + NAME + "%s_T_%s" % (current_day, current_time)
 
 PATH_AUTOENCODER = BASE_DIR + '/autoencoder.h5'
@@ -32,11 +38,6 @@ PATH_DECODER = BASE_DIR + '/decoder.h5'
 
 SHAPE = 4900
 SIGNALS_NUM = 5
-
-DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-13-31$25000'
-TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
-TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
-TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
 
 def load_data():
