@@ -72,7 +72,7 @@ def load_model():
     autoencoder = Model(input_img, decoded)
     encoder = Model(input_img, encoded)
     encoded_input = Input(shape=(encoding_dim,))
-    decoder_layer = autoencoder.layers[-1]
+    decoder_layer = autoencoder.layers[-4]
     decoder = Model(encoded_input, decoder_layer(encoded_input))
 
     autoencoder.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError())
