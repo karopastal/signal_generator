@@ -67,13 +67,13 @@ def load_model():
     decoded = Dense(128, activation='relu')(encoded)
     decoded = Dense(512, activation='relu')(decoded)
     decoded = Dense(1024, activation='relu')(decoded)
-    decoded = Dense(input_img, activation='sigmoid')(decoded)
+    decoded = Dense(SHAPE, activation='sigmoid')(decoded)
 
     autoencoder = Model(input_img, decoded)
+    encoder = Model(input_img, encoded)
     encoded_input = Input(shape=(encoding_dim,))
     decoder_layer = autoencoder.layers[-1]
     decoder = Model(encoded_input, decoder_layer(encoded_input))
-    encoder = Model(input_img, encoded)
 
     autoencoder.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError())
 
