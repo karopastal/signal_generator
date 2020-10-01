@@ -65,27 +65,27 @@ def load_data():
     return [], test_bg_data, test_signal_data
 
 
-mse = tf.keras.losses.MeanSquaredError()
-train_data, test_bg_data, test_signal_data = load_data()
-autoencoder = load_model(PATH_AUTOENCODER)
-# encoder = load_model(PATH_ENCODER)
-# decoder = load_model(PATH_DECODER)
+def test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data):
+    predict_bgs_test = autoencoder.predict(test_bg_data)
+    predict_signal1_test = autoencoder.predict(test_signal_data)
 
-
-predict_bgs_test = autoencoder.predict(test_bg_data)
-predict_signal1_test = autoencoder.predict(test_signal_data)
-#
-mse(test_bg_data, predict_bgs_test)
-mse(test_signal_data, predict_signal1_test)
+    print("PREDICTIONS LOSS")
+    print("--------------------------------------")
+    print("loss backgrounds : ", mse(test_bg_data, predict_bgs_test))
+    print("loss signals : ", mse(test_signal_data, predict_signal1_test))
+    print("--------------------------------------")
 
 
 def main():
+    mse = tf.keras.losses.MeanSquaredError()
+
     autoencoder = load_model(PATH_AUTOENCODER)
     encoder = load_model(PATH_ENCODER)
     decoder = load_model(PATH_DECODER)
 
     train_data, test_bg_data, test_signal_data = load_data()
     plot_prediction(np.array(test_signal_data[0:4]), encoder, decoder)
+    test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data)
 
 
 if __name__ == '__main__':

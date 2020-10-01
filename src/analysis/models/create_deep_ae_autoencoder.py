@@ -37,6 +37,7 @@ BASE_DIR = "data/models/" + NAME + "%s_T_%s" % (current_day, current_time)
 PATH_AUTOENCODER = BASE_DIR + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR + '/encoder.h5'
 PATH_DECODER = BASE_DIR + '/decoder.h5'
+PATH_SUMMARY = BASE_DIR + '/summary.txt'
 
 SHAPE = 4900
 SIGNALS_NUM = 5
@@ -98,6 +99,9 @@ def train(autoencoder, train_data, test_bg_data):
                     validation_data=(test_bg_data, test_bg_data))
 
     autoencoder.save(PATH_AUTOENCODER)
+
+    with open('summary.txt', 'w') as fh:
+        autoencoder.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 
 def main():
