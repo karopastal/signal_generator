@@ -83,7 +83,8 @@ def load_model():
     decoder = Model(encoded_input, decoder_layer)
 
     autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
-                        loss=tf.keras.losses.MeanSquaredError())
+                        loss=tf.keras.losses.MeanSquaredError(),
+                        metrics=['accuracy'])
 
     return autoencoder, encoder, decoder
 
@@ -91,11 +92,10 @@ def load_model():
 def train(autoencoder, train_data, test_bg_data):
     print(train_data.shape)
     autoencoder.fit(train_data, train_data,
-                    epochs=100,
-                    batch_size=256,
+                    epochs=50,
+                    batch_size=64,
                     shuffle=True,
-                    validation_data=(test_bg_data, test_bg_data),
-                    metrics=['accuracy'])
+                    validation_data=(test_bg_data, test_bg_data))
 
     autoencoder.save(PATH_AUTOENCODER)
 
