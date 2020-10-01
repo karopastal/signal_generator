@@ -18,7 +18,7 @@ DATASET_PATH = 'data/test_data_v1_1_15000'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-BASE_DIR_MODELS = 'data/models/deep_ae_15000/Oct-01-20_T_12-16-59'
+BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_15-09-07'
 PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR_MODELS + '/encoder.h5'
 PATH_DECODER = BASE_DIR_MODELS + '/decoder.h5'
@@ -71,8 +71,8 @@ def test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data):
 
     print("PREDICTIONS LOSS")
     print("--------------------------------------")
-    print("loss backgrounds : ", mse(test_bg_data, predict_bgs_test))
-    print("loss signals : ", mse(test_signal_data, predict_signal1_test))
+    print("loss backgrounds : ", mse(test_bg_data, predict_bgs_test).numpy())
+    print("loss signals : ", mse(test_signal_data, predict_signal1_test).numpy())
     print("--------------------------------------")
 
 

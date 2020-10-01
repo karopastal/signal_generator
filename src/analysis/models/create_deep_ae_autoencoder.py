@@ -60,17 +60,17 @@ def load_data():
 
 
 def load_model():
-    encoding_dim = 16
+    encoding_dim = 8
     input_img = Input(shape=(SHAPE,))
 
-    encoded = Dense(1024, activation='relu')(input_img)
-    encoded = Dense(512, activation='relu')(encoded)
+    encoded = Dense(512, activation='relu')(input_img)
     encoded = Dense(128, activation='relu')(encoded)
+    encoded = Dense(64, activation='relu')(encoded)
     encoded = Dense(encoding_dim, activation='relu')(encoded)
 
-    decoded = Dense(128, activation='relu')(encoded)
+    decoded = Dense(64, activation='relu')(encoded)
+    decoded = Dense(128, activation='relu')(decoded)
     decoded = Dense(512, activation='relu')(decoded)
-    decoded = Dense(1024, activation='relu')(decoded)
     decoded = Dense(SHAPE, activation=None)(decoded)
 
     autoencoder = Model(input_img, decoded)
