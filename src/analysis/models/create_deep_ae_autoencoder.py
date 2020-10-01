@@ -107,7 +107,7 @@ def main():
     train_data, test_bg_data, test_signal_data = load_data()
     print(train_data.shape, test_bg_data.shape, test_signal_data.shape)
     autoencoder, encoder, decoder = load_model()
-    # train(autoencoder, train_data, test_bg_data)
+    train(autoencoder, train_data, test_bg_data)
 
     encoder.save(PATH_ENCODER)
     decoder.save(PATH_DECODER)
