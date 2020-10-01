@@ -4,21 +4,30 @@ import matplotlib.pyplot as plt
 from keras.models import Model, load_model
 from keras import utils, regularizers
 
-# DATASET_PATH = 'data/test_dataset_1/Sep-07-20T11-37-27$10000'
-# TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
-# TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
-# TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
-#
-# PATH_AUTOENCODER = 'data/models/test_dataset_1/pca/autoencoder.h5'
-# PATH_ENCODER = 'data/models/test_dataset_1/pca/encoder.h5'
-# PATH_DECODER = 'data/models/test_dataset_1/pca/decoder.h5'
+""" deep AE """
+
+"""
+encoding_dim = 8
+activation = linear
+--------------------------------------
+PREDICTIONS LOSS
+--------------------------------------
+loss backgrounds :  0.008300508
+loss signals     :  0.0077572223
+--------------------------------------
+"""
+# BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
+
+"""
+
+"""
+
 
 DATASET_PATH = 'data/test_data_v1_1_15000'
-# TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_15-09-07'
+BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
 PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR_MODELS + '/encoder.h5'
 PATH_DECODER = BASE_DIR_MODELS + '/decoder.h5'
@@ -72,7 +81,7 @@ def test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data):
     print("PREDICTIONS LOSS")
     print("--------------------------------------")
     print("loss backgrounds : ", mse(test_bg_data, predict_bgs_test).numpy())
-    print("loss signals : ", mse(test_signal_data, predict_signal1_test).numpy())
+    print("loss signals     : ", mse(test_signal_data, predict_signal1_test).numpy())
     print("--------------------------------------")
 
 
@@ -84,7 +93,7 @@ def main():
     decoder = load_model(PATH_DECODER)
 
     train_data, test_bg_data, test_signal_data = load_data()
-    plot_prediction(np.array(test_signal_data[0:4]), encoder, decoder)
+    plot_prediction(np.array(test_bg_data[0:4]), encoder, decoder)
     test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data)
 
 

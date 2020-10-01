@@ -71,7 +71,7 @@ def load_model():
     decoded = Dense(64, activation='relu')(encoded)
     decoded = Dense(128, activation='relu')(decoded)
     decoded = Dense(512, activation='relu')(decoded)
-    decoded = Dense(SHAPE, activation=None)(decoded)
+    decoded = Dense(SHAPE, activation='relu')(decoded)
 
     autoencoder = Model(input_img, decoded)
     encoder = Model(input_img, encoded)
@@ -102,6 +102,8 @@ def train(autoencoder, train_data, test_bg_data):
 
     with open('summary.txt', 'w') as fh:
         autoencoder.summary(print_fn=lambda x: fh.write(x + '\n'))
+
+    print("training is done")
 
 
 def main():
