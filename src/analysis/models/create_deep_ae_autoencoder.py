@@ -16,6 +16,7 @@ import numpy as np
 from datetime import datetime, date
 from keras.layers import Input, Dense
 from keras.models import Model
+from keras.optimizers import Adam
 from keras import utils
 
 today = date.today()
@@ -73,10 +74,16 @@ def load_model():
     autoencoder = Model(input_img, decoded)
     encoder = Model(input_img, encoded)
     encoded_input = Input(shape=(encoding_dim,))
-    decoder_layer = autoencoder.layers[-4]
-    decoder = Model(encoded_input, decoder_layer(encoded_input))
 
-    autoencoder.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError())
+    decoder_layer = autoencoder.layers[-4](encoded_input)
+    decoder_layer = autoencoder.layers[-3](decoder_layer)
+    decoder_layer = autoencoder.layers[-2](decoder_layer)
+    decoder_layer = autoencoder.layers[-1](decoder_layer)
+
+    decoder = Model(encoded_input, decoder_layer)
+
+    autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
+                        loss=tf.keras.losses.MeanSquaredError())
 
     return autoencoder, encoder, decoder
 
@@ -87,7 +94,8 @@ def train(autoencoder, train_data, test_bg_data):
                     epochs=100,
                     batch_size=256,
                     shuffle=True,
-                    validation_data=(test_bg_data, test_bg_data))
+                    validation_data=(test_bg_data, test_bg_data),
+                    metrics=['accuracy'])
 
     autoencoder.save(PATH_AUTOENCODER)
 
@@ -99,7 +107,7 @@ def main():
     train_data, test_bg_data, test_signal_data = load_data()
     print(train_data.shape, test_bg_data.shape, test_signal_data.shape)
     autoencoder, encoder, decoder = load_model()
-    train(autoencoder, train_data, test_bg_data)
+    # train(autoencoder, train_data, test_bg_data)
 
     encoder.save(PATH_ENCODER)
     decoder.save(PATH_DECODER)
