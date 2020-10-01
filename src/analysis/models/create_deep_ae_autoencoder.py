@@ -24,7 +24,8 @@ now = datetime.now()
 current_day = today.strftime("%b-%d-%y")
 current_time = now.strftime("%H-%M-%S")
 
-DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-42-06$15000'
+# DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-42-06$15000'
+DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-13-31$25000'
 TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
