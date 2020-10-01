@@ -18,9 +18,10 @@ DATASET_PATH = 'data/test_data_v1_1_15000'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-PATH_AUTOENCODER = 'data/models/deep_ae_25000/Sep-30-20_T_16-15-15/autoencoder.h5'
-PATH_ENCODER = 'data/models/deep_ae_25000/Sep-30-20_T_16-15-15/encoder.h5'
-PATH_DECODER = 'data/models/deep_ae_25000/Sep-30-20_T_16-15-15/decoder.h5'
+BASE_DIR_MODELS = 'data/models/deep_ae_15000/Oct-01-20_T_12-16-59'
+PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
+PATH_ENCODER = BASE_DIR_MODELS + '/encoder.h5'
+PATH_DECODER = BASE_DIR_MODELS + '/decoder.h5'
 
 
 def plot_prediction(x_test, encoder, decoder):
@@ -64,18 +65,18 @@ def load_data():
     return [], test_bg_data, test_signal_data
 
 
-# mse = tf.keras.losses.MeanSquaredError()
-# train_data, test_bg_data, test_signal_data = load_data()
-# autoencoder = load_model(PATH_AUTOENCODER)
+mse = tf.keras.losses.MeanSquaredError()
+train_data, test_bg_data, test_signal_data = load_data()
+autoencoder = load_model(PATH_AUTOENCODER)
 # encoder = load_model(PATH_ENCODER)
 # decoder = load_model(PATH_DECODER)
 
 
-# predict_bgs_test = autoencoder.predict(test_bg_data)
-# predict_signal1_test = autoencoder.predict(test_signal_data)
-
-# mse(test_bg_data, predict_bgs_test)
-# mse(test_signal_data, predict_signal1_test)
+predict_bgs_test = autoencoder.predict(test_bg_data)
+predict_signal1_test = autoencoder.predict(test_signal_data)
+#
+mse(test_bg_data, predict_bgs_test)
+mse(test_signal_data, predict_signal1_test)
 
 
 def main():
@@ -84,8 +85,7 @@ def main():
     decoder = load_model(PATH_DECODER)
 
     train_data, test_bg_data, test_signal_data = load_data()
-    plot_prediction(np.array(test_bg_data[0:3]), encoder, decoder)
-    # plot_prediction(train_data[0:4])
+    plot_prediction(np.array(test_signal_data[0:4]), encoder, decoder)
 
 
 if __name__ == '__main__':

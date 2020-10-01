@@ -58,7 +58,7 @@ def load_data():
 
 
 def load_model():
-    encoding_dim = 64
+    encoding_dim = 16
     input_img = Input(shape=(SHAPE,))
 
     encoded = Dense(1024, activation='relu')(input_img)
@@ -69,7 +69,7 @@ def load_model():
     decoded = Dense(128, activation='relu')(encoded)
     decoded = Dense(512, activation='relu')(decoded)
     decoded = Dense(1024, activation='relu')(decoded)
-    decoded = Dense(SHAPE, activation='sigmoid')(decoded)
+    decoded = Dense(SHAPE, activation=None)(decoded)
 
     autoencoder = Model(input_img, decoded)
     encoder = Model(input_img, encoded)
@@ -83,8 +83,7 @@ def load_model():
     decoder = Model(encoded_input, decoder_layer)
 
     autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
-                        loss=tf.keras.losses.MeanSquaredError(),
-                        metrics=['accuracy'])
+                        loss=tf.keras.losses.MeanSquaredError())
 
     return autoencoder, encoder, decoder
 
@@ -107,7 +106,7 @@ def main():
     train_data, test_bg_data, test_signal_data = load_data()
     print(train_data.shape, test_bg_data.shape, test_signal_data.shape)
     autoencoder, encoder, decoder = load_model()
-    train(autoencoder, train_data, test_bg_data)
+    train(autoencoder, train_data, test_signal_data)
 
     encoder.save(PATH_ENCODER)
     decoder.save(PATH_DECODER)
