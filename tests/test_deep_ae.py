@@ -5,7 +5,7 @@ from keras.models import Model, load_model
 from keras import utils, regularizers
 
 """ deep AE """
-
+############################################################################
 """
 encoding_dim = 8
 activation = linear
@@ -19,15 +19,24 @@ loss signals     :  0.0077572223
 # BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
 
 """
-
+encoding_dim = 8
+activation = relu
+--------------------------------------
+PREDICTIONS LOSS
+--------------------------------------
+loss backgrounds :  0.008345269
+loss signals     :  0.0076917736
+--------------------------------------
 """
+# BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_19-00-46'
+#########################################################################
 
 
 DATASET_PATH = 'data/test_data_v1_1_15000'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
+BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_19-00-46'
 PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR_MODELS + '/encoder.h5'
 PATH_DECODER = BASE_DIR_MODELS + '/decoder.h5'
