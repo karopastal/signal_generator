@@ -4,17 +4,7 @@ import matplotlib.pyplot as plt
 from keras.models import Model, load_model
 from keras import utils, regularizers
 
-# DATASET_PATH = 'data/test_dataset_1/Sep-07-20T11-37-27$10000'
-# TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
-# TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
-# TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
-#
-# PATH_AUTOENCODER = 'data/models/test_dataset_1/pca/autoencoder.h5'
-# PATH_ENCODER = 'data/models/test_dataset_1/pca/encoder.h5'
-# PATH_DECODER = 'data/models/test_dataset_1/pca/decoder.h5'
-
 DATASET_PATH = 'data/models/pca-01/data'
-# TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
