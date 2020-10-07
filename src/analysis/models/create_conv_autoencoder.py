@@ -5,8 +5,9 @@ import numpy as np
 from datetime import datetime, date
 from keras.models import Model
 from keras.optimizers import Adam
-from keras import utils, layers
-import keras
+from keras.callbacks import CSVLogger
+from keras import utils
+from keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D
 
 today = date.today()
 now = datetime.now()
@@ -27,6 +28,7 @@ PATH_AUTOENCODER = BASE_DIR + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR + '/encoder.h5'
 PATH_DECODER = BASE_DIR + '/decoder.h5'
 PATH_SUMMARY = BASE_DIR + '/summary.txt'
+PATH_CSV_LOGGER = BASE_DIR + '/training.log'
 
 SHAPE = 4900
 SIGNALS_NUM = 5
@@ -52,52 +54,44 @@ def load_data():
 
 
 def load_model():
-    input_layer = layers.Input(shape=(50, 100, 1))
+    input_layer = Input(shape=(50, 100, 1))
 
     # encoder
-    h = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(input_layer)
-    h = layers.MaxPooling2D((2, 2), padding='same')(h)
+    h = Conv2D(64, (3, 3), activation='relu', padding='same')(input_layer)
+    h = MaxPooling2D((2, 2), padding='same')(h)
+    h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
+    h = MaxPooling2D((2, 2), padding='same')(h)
+    encoded = Conv2D(16, (3, 3), activation='relu', padding='same')(h)
 
     # decoder
-    h = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(h)
-    h = layers.UpSampling2D((2, 2))(h)
-    output_layer = layers.Conv2D(1, (3, 3), activation='sigmoid', padding='same')(h)
+    h = Conv2D(16, (3, 3), activation='relu', padding='same')(encoded)
+    h = UpSampling2D((2, 2))(h)
+    h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
+    h = UpSampling2D((2, 2))(h)
+    decoded = Conv2D(64, (3, 3), activation='relu')(h)
 
-    autoencoder = keras.Model(input_layer, output_layer)
-    autoencoder.compile(optimizer=Adam(learning_rate=0.01), loss='mse')
+    output_layer = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(decoded)
 
-    # autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
-    #                     loss=tf.keras.losses.MeanSquaredError())
+    autoencoder = Model(input_layer, output_layer)
+    autoencoder.compile(optimizer=Adam(learning_rate=0.0001), loss=tf.keras.losses.MeanSquaredError())
+    # autoencoder.compile(optimizer='adam', loss='mse')
 
     print(autoencoder.summary())
 
     return autoencoder
-    # autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
-    #
-    # autoencoder = Model(input_img, decoded)
-    # encoder = Model(input_img, encoded)
-    # encoded_input = keras.Input(shape=(encoding_dim,))
-    #
-    # decoder_layer = autoencoder.layers[-4](encoded_input)
-    # decoder_layer = autoencoder.layers[-3](decoder_layer)
-    # decoder_layer = autoencoder.layers[-2](decoder_layer)
-    # decoder_layer = autoencoder.layers[-1](decoder_layer)
-    #
-    # decoder = Model(encoded_input, decoder_layer)
-
-    # autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
-    #                     loss=tf.keras.losses.MeanSquaredError())
-    #
-    # return autoencoder, encoder, decoder
 
 
 def train(autoencoder, train_data, test_bg_data):
     print(train_data.shape)
+
+    csv_logger = CSVLogger(PATH_CSV_LOGGER)
+
     autoencoder.fit(train_data, train_data,
-                    epochs=50,
+                    epochs=200,
                     batch_size=64,
                     shuffle=True,
-                    validation_data=(test_bg_data, test_bg_data))
+                    validation_data=(test_bg_data, test_bg_data),
+                    callbacks=[csv_logger])
 
     autoencoder.save(PATH_AUTOENCODER)
 
@@ -113,12 +107,8 @@ def main():
 
     train_data, test_bg_data = load_data()
     print(train_data.shape, test_bg_data.shape)
-    # autoencoder, encoder, decoder = load_model()
     autoencoder = load_model()
     train(autoencoder, train_data, test_bg_data)
-
-    # encoder.save(PATH_ENCODER)
-    # decoder.save(PATH_DECODER)
 
 
 if __name__ == '__main__':
