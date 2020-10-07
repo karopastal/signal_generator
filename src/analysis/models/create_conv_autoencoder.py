@@ -98,11 +98,10 @@ def main():
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
 
-    # train_data, test_bg_data = load_data()
-    # print(train_data.shape, test_bg_data.shape)
+    train_data, test_bg_data = load_data()
+    print(train_data.shape, test_bg_data.shape)
     autoencoder = load_model()
-    # train(autoencoder, train_data, test_bg_data)
-
+    train(autoencoder, train_data, test_bg_data)
 
 
 if __name__ == '__main__':
