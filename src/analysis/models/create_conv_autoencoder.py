@@ -35,43 +35,41 @@ SIGNALS_NUM = 5
 def load_data():
     train_data = np.load(TRAIN_PATH)
     test_bg_data = np.load(TEST_BACKGROUNDS)
-    # test_signal_data = np.load(TEST_SIGNALS)
 
     train_data = utils.normalize(train_data, axis=1)
     test_bg_data = utils.normalize(test_bg_data, axis=1)
-    # test_signal_data = utils.normalize(test_signal_data, axis=1)
 
-    # train_data = train_data.reshape(len(train_data), np.prod(train_data.shape[1:]))
-    # test_bg_data = test_bg_data.reshape(len(test_bg_data), np.prod(test_bg_data.shape[1:]))
-    # test_signal_data = test_signal_data.reshape(len(test_signal_data), np.prod(test_signal_data.shape[1:]))
+    train_data = train_data.reshape(len(train_data), 49, 100, 1)
+    test_bg_data = test_bg_data.reshape(len(test_bg_data), 49, 100, 1)
 
-    return train_data, test_bg_data
+    train_data_marginal = np.zeros((len(train_data), 50, 100, 1))
+    test_bg_data_marginal = np.zeros((len(test_bg_data), 50, 100, 1))
+
+    train_data_marginal[:, :-1, :, :] = train_data
+    test_bg_data_marginal[:, :-1, :, :] = test_bg_data
+
+    return train_data_marginal, test_bg_data_marginal
 
 
 def load_model():
-    input_img = keras.Input(shape=(49, 100, 1))
-    encoding_dim = (7, 10)
+    input_layer = layers.Input(shape=(50, 100, 1))
 
-    x = layers.Conv2D(16, (3, 3), activation='relu', padding='same')(input_img)
-    x = layers.MaxPooling2D((2, 2), padding='same')(x)
-    x = layers.Conv2D(8, (3, 3), activation='relu', padding='same')(x)
-    x = layers.MaxPooling2D((2, 2), padding='same')(x)
-    x = layers.Conv2D(8, (3, 3), activation='relu', padding='same')(x)
-    encoded = layers.MaxPooling2D((2, 2), padding='same')(x)
+    # encoder
+    h = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(input_layer)
+    h = layers.MaxPooling2D((2, 2), padding='same')(h)
 
-    # at this point the representation is (4, 4, 8) i.e. 128-dimensional
+    # decoder
+    h = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(h)
+    h = layers.UpSampling2D((2, 2))(h)
+    output_layer = layers.Conv2D(1, (3, 3), activation='sigmoid', padding='same')(h)
 
-    x = layers.Conv2D(8, (3, 3), activation='relu', padding='same')(encoded)
-    x = layers.UpSampling2D((2, 2))(x)
-    x = layers.Conv2D(8, (3, 3), activation='relu', padding='same')(x)
-    x = layers.UpSampling2D((2, 2))(x)
-    x = layers.Conv2D(16, (3, 3), activation='relu')(x)
-    x = layers.UpSampling2D((2, 2))(x)
-    decoded = layers.Conv2D(1, (3, 3), activation='relu', padding='same')(x)
+    autoencoder = keras.Model(input_layer, output_layer)
+    autoencoder.compile(optimizer=Adam(learning_rate=0.01), loss='mse')
 
-    autoencoder = keras.Model(input_img, decoded)
-    autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
-                        loss=tf.keras.losses.MeanSquaredError())
+    # autoencoder.compile(optimizer=Adam(learning_rate=0.0001),
+    #                     loss=tf.keras.losses.MeanSquaredError())
+
+    print(autoencoder.summary())
 
     return autoencoder
     # autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
@@ -117,7 +115,7 @@ def main():
     print(train_data.shape, test_bg_data.shape)
     # autoencoder, encoder, decoder = load_model()
     autoencoder = load_model()
-    train(autoencoder, train_data)
+    train(autoencoder, train_data, test_bg_data)
 
     # encoder.save(PATH_ENCODER)
     # decoder.save(PATH_DECODER)
