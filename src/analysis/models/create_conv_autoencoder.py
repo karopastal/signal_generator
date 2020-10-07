@@ -59,18 +59,11 @@ def load_model():
     # encoder
     h = Conv2D(64, (3, 3), activation='relu', padding='same')(input_layer)
     h = MaxPooling2D((2, 2), padding='same')(h)
-    h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
-    h = MaxPooling2D((2, 2), padding='same')(h)
-    encoded = Conv2D(16, (3, 3), activation='relu', padding='same')(h)
 
     # decoder
-    h = Conv2D(16, (3, 3), activation='relu', padding='same')(encoded)
+    h = Conv2D(64, (3, 3), activation='relu', padding='same')(h)
     h = UpSampling2D((2, 2))(h)
-    h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
-    h = UpSampling2D((2, 2))(h)
-    decoded = Conv2D(64, (3, 3), activation='relu')(h)
-
-    output_layer = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(decoded)
+    output_layer = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(h)
 
     autoencoder = Model(input_layer, output_layer)
     autoencoder.compile(optimizer=Adam(learning_rate=0.0001), loss=tf.keras.losses.MeanSquaredError())
@@ -105,10 +98,11 @@ def main():
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
 
-    train_data, test_bg_data = load_data()
-    print(train_data.shape, test_bg_data.shape)
+    # train_data, test_bg_data = load_data()
+    # print(train_data.shape, test_bg_data.shape)
     autoencoder = load_model()
-    train(autoencoder, train_data, test_bg_data)
+    # train(autoencoder, train_data, test_bg_data)
+
 
 
 if __name__ == '__main__':
