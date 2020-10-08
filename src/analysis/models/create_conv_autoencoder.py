@@ -14,7 +14,6 @@ now = datetime.now()
 current_day = today.strftime("%b-%d-%y")
 current_time = now.strftime("%H-%M-%S")
 
-# DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-42-06$15000'
 DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-13-31$25000'
 TRAIN_PATH = DATASET_PATH + '/train_backgrounds.npy'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
@@ -30,7 +29,7 @@ PATH_DECODER = BASE_DIR + '/decoder.h5'
 PATH_SUMMARY = BASE_DIR + '/summary.txt'
 PATH_CSV_LOGGER = BASE_DIR + '/training.log'
 
-SHAPE = 4900
+SHAPE = (49, 100)
 SIGNALS_NUM = 5
 
 
@@ -38,8 +37,8 @@ def load_data():
     train_data = np.load(TRAIN_PATH)
     test_bg_data = np.load(TEST_BACKGROUNDS)
 
-    train_data = utils.normalize(train_data, axis=1)
-    test_bg_data = utils.normalize(test_bg_data, axis=1)
+    train_data = train_data / -np.log(0.0001)
+    test_bg_data = test_bg_data / -np.log(0.0001)
 
     train_data = train_data.reshape(len(train_data), 49, 100, 1)
     test_bg_data = test_bg_data.reshape(len(test_bg_data), 49, 100, 1)
@@ -80,7 +79,7 @@ def train(autoencoder, train_data, test_bg_data):
     csv_logger = CSVLogger(PATH_CSV_LOGGER)
 
     autoencoder.fit(train_data, train_data,
-                    epochs=200,
+                    epochs=100,
                     batch_size=64,
                     shuffle=True,
                     validation_data=(test_bg_data, test_bg_data),
@@ -88,7 +87,7 @@ def train(autoencoder, train_data, test_bg_data):
 
     autoencoder.save(PATH_AUTOENCODER)
 
-    with open('summary.txt', 'w') as fh:
+    with open(PATH_SUMMARY, 'w') as fh:
         autoencoder.summary(print_fn=lambda x: fh.write(x + '\n'))
 
     print("model done training")
@@ -106,3 +105,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # pass
