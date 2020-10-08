@@ -54,8 +54,8 @@ def load_data():
     test_signals_data = np.load(TEST_SIGNALS)
     test_bg_data = np.load(TEST_BACKGROUNDS)
 
-    test_signals_data = utils.normalize(test_signals_data, axis=1)
-    test_bg_data = utils.normalize(test_bg_data, axis=1)
+    # test_signals_data = utils.normalize(test_signals_data, axis=1)
+    # test_bg_data = utils.normalize(test_bg_data, axis=1)
 
     test_signals_data = test_signals_data.reshape(len(test_signals_data), 49, 100, 1)
     test_bg_data = test_bg_data.reshape(len(test_bg_data), 49, 100, 1)
@@ -86,8 +86,9 @@ def main():
 
     test_bg_data, test_signal_data = load_data()
 
+    plot_prediction(np.array(test_bg_data[0:2]), autoencoder)
     plot_prediction(np.array(test_signal_data[0:2]), autoencoder)
-    # test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data)
+    test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data)
 
 
 if __name__ == '__main__':
