@@ -7,7 +7,8 @@ from keras import utils, regularizers
 """ conv ae """
 ############################################################################
 """
-activation = linear
+activation = sigmoid
+normalization = utils.normalize()
 --------------------------------------
 PREDICTIONS LOSS
 --------------------------------------
@@ -15,14 +16,51 @@ loss backgrounds :  0.0001261545
 loss signals     :  9.004219e-05
 -------------------------------------
 """
-# BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
+BASE_DIR_MODELS = 'data/models/conv_ae_25000/Oct-07-20_T_18-02-20'
+
+"""
+activation = sigmoid
+normalization = -np.log(0.001)
+--------------------------------------
+PREDICTIONS LOSS
+--------------------------------------
+loss backgrounds :  ?
+loss signals     :  ?
+-------------------------------------
+"""
+# BASE_DIR_MODELS = data/models/conv_ae_25000/Oct-08-20_T_11-48-28/
+
+"""
+activation = linear
+normalization = -np.log(0.001)
+--------------------------------------
+PREDICTIONS LOSS
+--------------------------------------
+loss backgrounds :  ?
+loss signals     :  ?
+-------------------------------------
+"""
+# BASE_DIR_MODELS = 'data/models/conv_ae_25000/Oct-08-20_T_12-49-13'
+
+"""
+activation = relu
+normalization = -np.log(0.001)
+--------------------------------------
+PREDICTIONS LOSS
+--------------------------------------
+loss backgrounds :  ?
+loss signals     :  ?
+-------------------------------------
+"""
+# BASE_DIR_MODELS = 'data/models/conv_ae_25000/Oct-08-20_T_12-49-13'
 #########################################################################
+
 
 DATASET_PATH = 'data/dataset_v1_1/Sep-27-20T01-13-31$25000'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_2.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-BASE_DIR_MODELS = 'data/models/conv_ae_25000/Oct-07-20_T_18-02-20'
+# BASE_DIR_MODELS = 'data/models/conv_ae_25000/Oct-07-20_T_18-02-20'
 PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
 
 

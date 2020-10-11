@@ -16,7 +16,7 @@ loss backgrounds :  0.008300508
 loss signals     :  0.0077572223
 --------------------------------------
 """
-# BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
+BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_18-40-37'
 
 """
 encoding_dim = 8
@@ -36,7 +36,7 @@ DATASET_PATH = 'data/test_data_v1_1_15000'
 TEST_SIGNALS = DATASET_PATH + '/test_signals_1.npy'
 TEST_BACKGROUNDS = DATASET_PATH + '/test_backgrounds.npy'
 
-BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_19-00-46'
+# BASE_DIR_MODELS = 'data/models/deep_ae_25000/Oct-01-20_T_19-00-46'
 PATH_AUTOENCODER = BASE_DIR_MODELS + '/autoencoder.h5'
 PATH_ENCODER = BASE_DIR_MODELS + '/encoder.h5'
 PATH_DECODER = BASE_DIR_MODELS + '/decoder.h5'
@@ -73,8 +73,8 @@ def load_data():
     test_signal_data = np.load(TEST_SIGNALS)
 
     # train_data = utils.normalize(train_data, axis=1)
-    test_bg_data = utils.normalize(test_bg_data, axis=1)
-    test_signal_data = utils.normalize(test_signal_data, axis=1)
+    # test_bg_data = utils.normalize(test_bg_data, axis=1)
+    # test_signal_data = utils.normalize(test_signal_data, axis=1)
 
     # train_data = train_data.reshape(len(train_data), np.prod(train_data.shape[1:]))
     test_bg_data = test_bg_data.reshape(len(test_bg_data), np.prod(test_bg_data.shape[1:]))
@@ -103,6 +103,7 @@ def main():
 
     train_data, test_bg_data, test_signal_data = load_data()
     plot_prediction(np.array(test_bg_data[0:4]), encoder, decoder)
+    plot_prediction(np.array(test_signal_data[0:4]), encoder, decoder)
     test_predictions_loss(mse, autoencoder, test_bg_data, test_signal_data)
 
 

@@ -62,7 +62,7 @@ def load_model():
     # decoder
     h = Conv2D(64, (3, 3), activation='relu', padding='same')(h)
     h = UpSampling2D((2, 2))(h)
-    output_layer = Conv2D(1, (3, 3), activation=None, padding='same')(h)
+    output_layer = Conv2D(1, (3, 3), activation='relu', padding='same')(h)
 
     autoencoder = Model(input_layer, output_layer)
     autoencoder.compile(optimizer=Adam(learning_rate=0.0001), loss=tf.keras.losses.MeanSquaredError())
