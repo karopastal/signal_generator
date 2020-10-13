@@ -143,11 +143,11 @@ def create_test_signals_datasets(samples, probabilities):
 
 def build():
     print(now.strftime("%H-%M-%S"), "samples, probabilities -> size: ", SAMPLE_NUM)
-    samples, probabilities = build_samples_and_probabilities(samples_num=SAMPLE_NUM,
-                                                             rebined_shape=REBINED_SHAPE,
-                                                             signal_id=0,
-                                                             bg_id=0,
-                                                             wavelet_id=0)
+    samples, probabilities = build_samples(samples_num=SAMPLE_NUM,
+                                           rebined_shape=REBINED_SHAPE,
+                                           signal_id=0,
+                                           bg_id=0,
+                                           wavelet_id=0)
 
     np.save(PATH_TO_SAMPLES, samples)
     np.save(PATH_TO_PROBABILITIES, probabilities)
