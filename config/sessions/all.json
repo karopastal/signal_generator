@@ -16,5 +16,11 @@
         "name": "test_dataset_2",
         "basename": "test_dataset_2",
         "description": "test_dataset_2"
+    },
+    {
+        "id": 3,
+        "name": "test_dataset_3",
+        "basename": "test_dataset_3",
+        "description": "test_dataset_3"
     }
 ]
