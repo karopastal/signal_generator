@@ -21,7 +21,7 @@ SIGNALS_NUM = 5
 TEST_SIGNALS_SIZE = 1000
 
 ORIGINAL_SHAPE = [48, 512]
-REBINED_SHAPE = [48, 128]
+REBINED_SHAPE = [48, 64]
 
 today = date.today()
 now = datetime.now()
