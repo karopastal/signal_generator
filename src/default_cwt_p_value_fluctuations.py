@@ -4,7 +4,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-from src.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
+from src.old.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
 from src.default_fluctuations import psi_fluctuations
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
@@ -78,13 +78,13 @@ def main():
     coeffs, freqs = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
-    new_shape = [49, 100]
-    # amp_p_value = p_value_transformation_local(rebin(amp, new_shape))
-    amp_p_value = p_value_transformation_local(amp)
+    new_shape = [48, 64]
+    amp_p_value = p_value_transformation_local(rebin(amp, new_shape), new_shape)
+    # amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    img = ax.imshow(rebin(amp_p_value, new_shape),
+    img = ax.imshow(rebin(amp_p_value, new_shape)/-np.log(1/500),
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
                     interpolation='nearest',
                     aspect='auto',

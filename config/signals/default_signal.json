@@ -11,8 +11,8 @@
         "range": {
             "T": "1",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     },
@@ -28,8 +28,8 @@
         "range": {
             "T": "5",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     },
@@ -45,8 +45,8 @@
         "range": {
             "T": "5",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     },
@@ -62,8 +62,8 @@
         "range": {
             "T": "5",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     },
@@ -79,8 +79,8 @@
         "range": {
             "T": "5",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     },
@@ -96,8 +96,8 @@
         "range": {
             "T": "5",
             "MIN_MASS": "1",
-            "MAX_MASS": "250",
-            "MASS_NUM": "250",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
     }

@@ -5,7 +5,7 @@ working with the session: autoencoder_toy_dataset
 import os
 
 from datetime import datetime, date
-from src.analysis.datasets_factory.p_value_transformation import *
+from src.old.analysis.datasets_factory.p_value_transformation import *
 
 k = 1000
 today = date.today()

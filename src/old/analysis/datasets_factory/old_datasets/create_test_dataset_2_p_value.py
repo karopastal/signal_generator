@@ -5,16 +5,12 @@ signal 5 picks & 1 pick.
 import os
 
 from datetime import datetime, date
-import numpy as np
-import pandas as pd
-from src.analysis.datasets_factory.p_value_transformation import *
+from src.old.analysis.datasets_factory.p_value_transformation import *
 
 from src.default_background import DefaultBackground
 from src.default_signal import DefaultSignal
 from src.default_cwt_clean import DefaultCWTClean
 from src.default_fluctuations import psi_fluctuations
-from src.default_clean import psi_clean
-
 
 #######################
 # test_dataset_2 ###
