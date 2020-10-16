@@ -13,7 +13,7 @@ import os
 import matplotlib.pyplot as plt
 
 from datetime import datetime, date
-from src.analysis.datasets_factory.p_value_transformation import *
+from src.old.analysis.datasets_factory.p_value_transformation import *
 from src.default_background import DefaultBackground
 from src.default_signal import DefaultSignal
 from src.default_cwt_clean import DefaultCWTClean

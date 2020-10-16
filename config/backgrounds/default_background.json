@@ -6,8 +6,8 @@
         "range": {
             "amplitude": "10",
             "MIN_BG": "1",
-            "MAX_BG": "500",
-            "BG_NUM": "500",
+            "MAX_BG": "512",
+            "BG_NUM": "512",
             "BACKGROUND_DECAY_RATE": "0.005"
         }
     }

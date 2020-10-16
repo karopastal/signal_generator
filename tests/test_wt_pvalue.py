@@ -1,6 +1,6 @@
 import os
 import matplotlib.pyplot as plt
-from src.analysis.datasets_factory.p_value_transformation import *
+from src.old.analysis.datasets_factory.p_value_transformation import *
 
 BASEDIR = 'data/test'
 PATH_SAMPLES = BASEDIR + '/samples.npy'

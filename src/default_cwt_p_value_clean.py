@@ -4,7 +4,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-from src.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
+from src.old.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
 from src.default_clean import psi_clean
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground

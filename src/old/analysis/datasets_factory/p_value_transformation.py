@@ -76,8 +76,6 @@ def build_samples(samples_num, rebined_shape, signal_id=0, bg_id=0, wavelet_id=0
                                                             bg_id,
                                                             wavelet_id))
     samples = np.array(samples)
-    # sum_samples = np.sum(samples, axis=0)
-    # probabilities = samples / sum_samples
 
     return samples
 
@@ -215,19 +213,18 @@ def get_bin_wt_range(bin_wt_values, range_resolution):
 #################################################################################################
 
 
-def p_value_transformation_local(cwt_signal):
+def p_value_transformation_local(cwt_signal, new_shape):
     print(cwt_signal.shape)
-    new_shape = [49, 100]
     samples = []
 
     for i in range(500):
         cwt_record = generate_sample_fluctuations(signal_id=0, bg_id=0, wavelet_id=0)
-        # samples.append(rebin(cwt_record, new_shape))
-        samples.append(cwt_record)
+        samples.append(rebin(cwt_record, new_shape))
+        # samples.append(cwt_record)
 
     samples = np.array(samples)
     keys = np.argwhere(cwt_signal < samples)
-    pvalue_table = np.zeros((49, 500))
+    pvalue_table = np.zeros(new_shape)
 
     print(pvalue_table.shape)
 
