@@ -23,10 +23,11 @@ def deep_ae_3():
 
 
 def main():
-    deep_ae_1()  # path =
+    # deep_ae_1()  # path = data/models/deep_ae/Oct-17-20_T_21-13-37
+
+    deep_ae_2()  # path =
 
     """ to be trained """
-    # deep_ae_2() # path =
     # deep_ae_3() # path =
 
 
