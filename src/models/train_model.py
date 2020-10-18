@@ -58,8 +58,8 @@ def main():
     # deep_ae_3()  # path = data/models/deep_ae/Oct-17-20_T_21-27-03
 
     """ sparse ae """
-    sparse_ae_1()  # path =
-    # sparse_ae_2()  # path =
+    # sparse_ae_1()  # path = data/models/sparse_ae/Oct-18-20_T_19-13-04/
+    sparse_ae_2()  # path =
     # sparse_ae_3()  # path =
 
 
