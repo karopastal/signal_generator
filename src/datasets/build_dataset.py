@@ -104,7 +104,7 @@ def create_test_signals_datasets(samples_wt_ranges, samples_p_value_grid):
 
     for signal_id in range(1, SIGNALS_NUM + 1):
 
-        test_signal_dataset = generate_dataset(TEST_BACKGROUND_SIZE,
+        test_signal_dataset = generate_dataset(TEST_SIGNALS_SIZE,
                                                samples_wt_ranges,
                                                samples_p_value_grid,
                                                signal_id=signal_id)
