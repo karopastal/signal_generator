@@ -56,7 +56,7 @@ def sparse_ae_4():
     encoding_dim = 32
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
     sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=1000, batch_size=64)
+    sparse_ae.train_model(epochs=5000, batch_size=64)
 
 
 def main():
