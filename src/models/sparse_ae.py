@@ -13,7 +13,7 @@ class SparseAutoencoder:
     def __init__(self,
                  path_model='',
                  path_dataset='',
-                 name='deep_ae',
+                 name='sparse_ae',
                  rho=0.05,
                  encoding_dim=32):
 
