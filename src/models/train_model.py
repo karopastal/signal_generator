@@ -91,8 +91,8 @@ def main():
     # sparse_ae_4()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-26-00'
 
     """ sparse ae v1 """
-    sparse_ae_v1_1()  # path = ''
-    # sparse_ae_v1_2()  # path = ''
+    # sparse_ae_v1_1()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-36-45'
+    sparse_ae_v1_2()  # path = ''
 
 
 if __name__ == "__main__":
