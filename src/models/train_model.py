@@ -66,7 +66,7 @@ def sparse_ae_v1_1():
     rho = 0.0001
     encoding_dim = 128
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+    sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
     sparse_ae.train_model(epochs=5000, batch_size=64)
 
 
@@ -74,7 +74,7 @@ def sparse_ae_v1_2():
     rho = 0.0001
     encoding_dim = 256
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+    sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
     sparse_ae.train_model(epochs=5000, batch_size=64)
 
 
