@@ -208,8 +208,8 @@ def main():
 
     """ sparse ae v2 """
     # sparse_ae_v2_1()  # path = 'thereisapath'
-    sparse_ae_v2_2()  # path = ''
-    # sparse_ae_v2_3()  # path = ''
+    # sparse_ae_v2_2()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-50-28'
+    sparse_ae_v2_3()  # path = ''
     # sparse_ae_v2_4()  # path = ''
     # sparse_ae_v2_5()  # path = ''
 
