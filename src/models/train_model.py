@@ -129,8 +129,8 @@ def main():
     # sparse_ae_3()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-17-01'
     # sparse_ae_4()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-26-00'
 
-    sparse_ae_5()  # path = 'data/models/sparse_ae/'
-    # sparse_ae_6()  # path = 'data/models/sparse_ae/'
+    # sparse_ae_5()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-14-43'
+    sparse_ae_6()  # path = 'data/models/sparse_ae/'
     # sparse_ae_7()  # path = 'data/models/sparse_ae/'
 
     """ sparse ae v1 """
