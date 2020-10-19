@@ -253,8 +253,8 @@ def main():
     # sparse_ae_v2_3()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-53-00'
     # sparse_ae_v2_4()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-54-47'
     # sparse_ae_v2_5()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-59-17'
-    sparse_ae_v2_6()  # path = 'data/models/sparse_ae_v2/'
-    # sparse_ae_v2_7()  # path = 'data/models/sparse_ae_v2/'
+    # sparse_ae_v2_6()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-39-30'
+    sparse_ae_v2_7()  # path = 'data/models/sparse_ae_v2/'
 
 
 if __name__ == "__main__":
