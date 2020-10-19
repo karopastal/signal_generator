@@ -174,7 +174,7 @@ def sparse_ae_v2_4():
 
 
 def sparse_ae_v2_5():
-    rho = -0.9
+    rho = 0.02
     beta = 0.3
     encoding_dim = 256
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
@@ -210,8 +210,8 @@ def main():
     # sparse_ae_v2_1()  # path = 'thereisapath'
     # sparse_ae_v2_2()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-50-28'
     # sparse_ae_v2_3()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-53-00'
-    sparse_ae_v2_4()  # path = 'data/models/sparse_ae_v2'
-    # sparse_ae_v2_5()  # path = 'data/models/sparse_ae_v2'
+    # sparse_ae_v2_4()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_23-54-47'
+    sparse_ae_v2_5()  # path = 'data/models/sparse_ae_v2'
 
 
 if __name__ == "__main__":
