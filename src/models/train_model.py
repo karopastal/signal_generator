@@ -134,6 +134,19 @@ def sparse_ae_v2_1():
     sparse_ae.train_model(epochs=100, batch_size=64)
 
 
+def sparse_ae_v2_2():
+    rho = 0.005
+    beta = 3
+    encoding_dim = 256
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=1, batch_size=64)
+
+
 def main():
     """ deep ae """
     # deep_ae_1()  # path = 'data/models/deep_ae/Oct-17-20_T_21-13-37'
@@ -155,9 +168,9 @@ def main():
     # sparse_ae_v1_2()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-38-29'
 
     """ sparse ae v2 """
-    sparse_ae_v2_1()  # path = ''
+    # sparse_ae_v2_1()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_22-16-21'
+    sparse_ae_v2_2()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_22-44-50'
 
 
 if __name__ == "__main__":
-    # execute only if run as a script
     main()

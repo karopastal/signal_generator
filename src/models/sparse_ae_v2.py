@@ -30,7 +30,7 @@ class SparsityRegularizer(regularizers.Regularizer):
         # return 0.0001 * tf.reduce_sum(backend.square(x))
 
     def get_config(self):
-        return {'name': 'SparsityRegularizer'}
+        return {'rho': float(self.rho), 'beta': float(self.beta)}
 
 
 class SparseAutoencoderV2:
@@ -49,7 +49,7 @@ class SparseAutoencoderV2:
             self.path_autoencoder = self.path_model + '/autoencoder.h5'
             self.path_summary = self.path_model + '/summary.txt'
             self.path_loss_progress = self.path_model + '/training.log'
-            self.autoencoder_model = load_model(self.path_autoencoder)
+            self.autoencoder_model = load_model(self.path_autoencoder, custom_objects={'SparsityRegularizer': SparsityRegularizer()})
             self.dataset_config = model_utils.get_dataset_config(self.path_model)
             self.path_dataset = self.dataset_config['PATH_DATASET']
             self.original_shape = self.dataset_config['ORIGINAL_SHAPE']
@@ -114,6 +114,7 @@ class SparseAutoencoderV2:
                                    validation_data=(test_bgs_data, test_bgs_data),
                                    callbacks=[csv_logger])
 
+        print(self.path_autoencoder)
         self.autoencoder_model.save(self.path_autoencoder)
 
         with open(self.path_summary, 'w') as fh:
