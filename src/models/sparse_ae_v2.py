@@ -1,6 +1,7 @@
 import numpy as np
 import src.models.utils as model_utils
-import tensorflow.keras.backend as kb
+import tensorflow.python.keras.backend as backend
+import tensorflow as tf
 
 from keras.layers import Input, Dense
 from keras.models import Model, load_model
@@ -10,7 +11,7 @@ from keras import regularizers
 
 
 def kl_divergence(rho, rho_hat):
-    return rho * kb.log(rho) - rho * kb.log(rho_hat) + (1 - rho) * kb.log(1 - rho) - (1 - rho) * kb.log(1 - rho_hat)
+    return rho * backend.log(rho) - rho * backend.log(rho_hat) + (1 - rho) * backend.log(1 - rho) - (1 - rho) * backend.log(1 - rho_hat)
 
 
 class SparsityRegularizer(regularizers.Regularizer):
@@ -20,12 +21,13 @@ class SparsityRegularizer(regularizers.Regularizer):
         self.beta = beta
 
     def __call__(self, x):
-        regularization = 0
-
-        rho_hat = kb.mean(x, axis=0)
-        regularization += self.beta * kb.sum(kl_divergence(self.rho, rho_hat))
+        regularization = backend.constant(0., dtype=x.dtype)
+        rho_hat = backend.mean(x, axis=0)
+        regularization += self.beta * tf.math.reduce_sum(kl_divergence(self.rho, rho_hat))
 
         return regularization
+        # tf.print(x, regularizers)
+        # return 0.0001 * tf.reduce_sum(backend.square(x))
 
     def get_config(self):
         return {'name': 'SparsityRegularizer'}
@@ -76,12 +78,14 @@ class SparseAutoencoderV2:
 
     def build_model(self):
         input_layer = Input(shape=(self.shape,))
+        encoded = Dense(1024, activation='relu')(input_layer)
 
         encoded = Dense(self.encoding_dim,
-                        activation='relu',
-                        activity_regularizer=SparsityRegularizer(self.rho, self.beta))(input_layer)
+                        activation='sigmoid',
+                        activity_regularizer=SparsityRegularizer(self.rho, self.beta))(encoded)
+        decoded = Dense(1024, activation='relu')(encoded)
 
-        output_layer = Dense(self.shape, activation='relu')(encoded)
+        output_layer = Dense(self.shape, activation='relu')(decoded)
 
         return Model(input_layer, output_layer)
 

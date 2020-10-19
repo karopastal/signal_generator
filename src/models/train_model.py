@@ -122,7 +122,7 @@ def sparse_ae_v1_2():
 
 
 def sparse_ae_v2_1():
-    rho = 0.05
+    rho = 0.9
     beta = 5
     encoding_dim = 128
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
@@ -131,7 +131,7 @@ def sparse_ae_v2_1():
                                     beta=beta,
                                     encoding_dim=encoding_dim)
 
-    sparse_ae.train_model(epochs=500, batch_size=64)
+    sparse_ae.train_model(epochs=100, batch_size=64)
 
 
 def main():
