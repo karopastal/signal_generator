@@ -106,8 +106,8 @@ class SparseAutoencoderV1:
         test_signal_shape = (len(test_signal_data), self.shape)
 
         print(test_signal_data.shape)
-        # factor = -1 * np.log(0.01)
-        factor = 1
+        factor = -1 * np.log(0.01)
+        # factor = 1
         norm_test_bgs_data = model_utils.normalize(test_bgs_data.reshape(test_bgs_shape), factor)
         norm_test_signal_data = model_utils.normalize(test_signal_data.reshape(test_signal_shape), factor)
 

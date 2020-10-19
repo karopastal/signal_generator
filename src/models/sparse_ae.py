@@ -15,7 +15,8 @@ class SparseAutoencoder:
                  path_dataset='',
                  name='sparse_ae',
                  rho=0.05,
-                 encoding_dim=32):
+                 activity_regularizer=regularizers.l1,
+                 encoding_dim=8):
 
         self.name = name
         self.path_model = path_model
@@ -43,6 +44,7 @@ class SparseAutoencoder:
             self.original_shape = self.dataset_config['ORIGINAL_SHAPE']
             self.shape = np.prod(self.original_shape)
             self.rho = rho
+            self.activity_regulizer = activity_regularizer
             self.encoding_dim = encoding_dim
 
             optimizer = Adam(lr=0.0001)
@@ -58,7 +60,7 @@ class SparseAutoencoder:
         encoded = Dense(64, activation='relu')(encoded)
         encoded = Dense(self.encoding_dim,
                         activation='relu',
-                        activity_regularizer=regularizers.l1(self.rho))(encoded)
+                        activity_regularizer=self.activity_regulizer(self.rho))(encoded)
 
         decoded = Dense(64, activation='relu')(encoded)
         decoded = Dense(128, activation='relu')(decoded)
@@ -108,8 +110,8 @@ class SparseAutoencoder:
         test_signal_shape = (len(test_signal_data), self.shape)
 
         print(test_signal_data.shape)
-        # factor = -1 * np.log(0.01)
-        factor = 1
+        factor = -1 * np.log(0.01)
+        # factor = 1
         norm_test_bgs_data = model_utils.normalize(test_bgs_data.reshape(test_bgs_shape), factor)
         norm_test_signal_data = model_utils.normalize(test_signal_data.reshape(test_signal_shape), factor)
 
