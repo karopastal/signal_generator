@@ -157,13 +157,13 @@ class SparseAutoencoderV2:
 
         model_utils.print_predictions_loss(losses=losses)
 
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             test_bgs_data[0:3],
-        #                             self.original_shape)
-        #
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             test_signal_data[0:3],
-        #                             self.original_shape)
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_bgs_data[0:3],
+                                    self.original_shape)
+
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_signal_data[0:3],
+                                    self.original_shape)
 
     def create_loss_distribution(self, signal_id=1):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
@@ -176,8 +176,7 @@ class SparseAutoencoderV2:
 
         test_signal_distribution = model_utils.loss_distribution(test_signal_data,
                                                                  predict_signal_test)
-        model_utils.plot_histogram(test_bgs_distribution.numpy())
-        model_utils.plot_histogram(test_signal_distribution.numpy())
+        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy())
 
         # todo: get median from test_signal_distribution and calculate the p-value from
         #       test_bgs_distribution

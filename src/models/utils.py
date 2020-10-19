@@ -120,14 +120,19 @@ def loss_distribution(test_data, prediction_data):
     return mse(test_data, prediction_data)
 
 
-def plot_histogram(data):
-    # the histogram of the data
-    n, bins, patches = plt.hist(data, bins=150, facecolor='blue', alpha=0.7)
+def ae_p_value(bgs, signal):
+    # todo: calc pvalue
+    pass
 
-    print(bins.shape, n.shape)
+
+def plot_histogram(bgs, signal):
+    # the histogram of the data
+    plt.hist(bgs, bins=150, facecolor='red', alpha=0.5, label='background')
+    plt.hist(signal, bins=150, facecolor='blue', alpha=0.5, label='background + signal')
 
     plt.xlabel('Value')
     plt.ylabel('Count')
     plt.title('Histogram')
     plt.grid(True)
+    plt.legend(loc='upper right')
     plt.show()
