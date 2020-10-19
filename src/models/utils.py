@@ -76,8 +76,6 @@ def print_predictions_loss(losses):
 def plot_progress(path_progress, title=''):
     progress = np.loadtxt(open(path_progress, "rb"), delimiter=",", skiprows=1)
 
-    print(progress)
-
     x = progress[:, 0]
     loss = progress[:, 1]
     val = progress[:, 2]

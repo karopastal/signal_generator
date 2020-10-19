@@ -49,7 +49,7 @@ class SparseAutoencoderV2:
             self.path_autoencoder = self.path_model + '/autoencoder.h5'
             self.path_summary = self.path_model + '/summary.txt'
             self.path_loss_progress = self.path_model + '/training.log'
-            self.autoencoder_model = load_model(self.path_autoencoder, custom_objects={'SparsityRegularizer': SparsityRegularizer()})
+            self.autoencoder_model = load_model(self.path_autoencoder, custom_objects={'SparsityRegularizer': SparsityRegularizer})
             self.dataset_config = model_utils.get_dataset_config(self.path_model)
             self.path_dataset = self.dataset_config['PATH_DATASET']
             self.original_shape = self.dataset_config['ORIGINAL_SHAPE']
@@ -157,13 +157,13 @@ class SparseAutoencoderV2:
 
         model_utils.print_predictions_loss(losses=losses)
 
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             predict_bgs_test[0:3],
-        #                             self.original_shape)
-        #
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             predict_signal_test[0:3],
-        #                             self.original_shape)
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_bgs_data[0:3],
+                                    self.original_shape)
+
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_signal_data[0:3],
+                                    self.original_shape)
 
     def create_loss_distribution(self, signal_id=1):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)

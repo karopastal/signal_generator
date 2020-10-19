@@ -135,7 +135,20 @@ def sparse_ae_v2_1():
 
 
 def sparse_ae_v2_2():
-    rho = 0.005
+    rho = 0.09
+    beta = 3
+    encoding_dim = 128
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=100, batch_size=64)
+
+
+def sparse_ae_v2_3():
+    rho = 0.9
     beta = 3
     encoding_dim = 256
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
@@ -144,7 +157,33 @@ def sparse_ae_v2_2():
                                     beta=beta,
                                     encoding_dim=encoding_dim)
 
-    sparse_ae.train_model(epochs=1, batch_size=64)
+    sparse_ae.train_model(epochs=100, batch_size=64)
+
+
+def sparse_ae_v2_4():
+    rho = 0.9
+    beta = 0.3
+    encoding_dim = 128
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=100, batch_size=64)
+
+
+def sparse_ae_v2_5():
+    rho = -0.9
+    beta = 0.3
+    encoding_dim = 256
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=100, batch_size=64)
 
 
 def main():
@@ -168,8 +207,11 @@ def main():
     # sparse_ae_v1_2()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-38-29'
 
     """ sparse ae v2 """
-    sparse_ae_v2_1()  # path = ''
-    # sparse_ae_v2_2()  # path = ''
+    # sparse_ae_v2_1()  # path = 'thereisapath'
+    sparse_ae_v2_2()  # path = ''
+    # sparse_ae_v2_3()  # path = ''
+    # sparse_ae_v2_4()  # path = ''
+    # sparse_ae_v2_5()  # path = ''
 
 
 if __name__ == "__main__":
