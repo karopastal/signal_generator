@@ -1,6 +1,6 @@
 import numpy as np
 import src.models.utils as model_utils
-import tensorflow as tf
+import tensorflow.keras.backend as kb
 
 from keras.layers import Input, Dense
 from keras.models import Model, load_model
@@ -10,7 +10,7 @@ from keras import regularizers
 
 
 def kl_divergence(rho, rho_hat):
-    return rho * np.log(rho) - rho * np.log(rho_hat) + (1 - rho) * np.log(1 - rho) - (1 - rho) * np.log(1 - rho_hat)
+    return rho * kb.log(rho) - rho * kb.log(rho_hat) + (1 - rho) * kb.log(1 - rho) - (1 - rho) * kb.log(1 - rho_hat)
 
 
 class SparsityRegularizer(regularizers.Regularizer):
@@ -22,8 +22,8 @@ class SparsityRegularizer(regularizers.Regularizer):
     def __call__(self, x):
         regularization = 0
 
-        rho_hat = tf.keras.backend.mean(x, axis=0)
-        regularization += self.beta * tf.keras.backend.sum(kl_divergence(self.rho, rho_hat))
+        rho_hat = kb.mean(x, axis=0)
+        regularization += self.beta * kb.sum(kl_divergence(self.rho, rho_hat))
 
         return regularization
 
