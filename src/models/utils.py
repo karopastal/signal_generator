@@ -65,11 +65,15 @@ def get_dataset_config(path_dataset):
 
 def print_predictions_loss(losses):
     mse = tf.keras.losses.MeanSquaredError()
+    loss_backgrounds = mse(losses['test_bgs_data'], losses['predict_bgs_test']).numpy()
+    loss_signals = mse(losses['test_signal_data'], losses['predict_signal_test']).numpy()
+    ratio = loss_signals / loss_backgrounds
 
     print("PREDICTIONS LOSS")
     print("--------------------------------------")
-    print("loss backgrounds : ", mse(losses['test_bgs_data'], losses['predict_bgs_test']).numpy())
-    print("loss signals     : ", mse(losses['test_signal_data'], losses['predict_signal_test']).numpy())
+    print("loss backgrounds : ", loss_backgrounds)
+    print("loss signals     : ", loss_signals)
+    print("ratio: ", ratio)
     print("--------------------------------------")
 
 

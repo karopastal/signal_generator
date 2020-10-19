@@ -157,13 +157,13 @@ class SparseAutoencoderV2:
 
         model_utils.print_predictions_loss(losses=losses)
 
-        model_utils.plot_prediction(self.autoencoder_model,
-                                    test_bgs_data[0:3],
-                                    self.original_shape)
-
-        model_utils.plot_prediction(self.autoencoder_model,
-                                    test_signal_data[0:3],
-                                    self.original_shape)
+        # model_utils.plot_prediction(self.autoencoder_model,
+        #                             test_bgs_data[0:3],
+        #                             self.original_shape)
+        #
+        # model_utils.plot_prediction(self.autoencoder_model,
+        #                             test_signal_data[0:3],
+        #                             self.original_shape)
 
     def create_loss_distribution(self, signal_id=1):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
