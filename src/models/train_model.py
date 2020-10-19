@@ -119,15 +119,19 @@ def sparse_ae_v1_2():
 
 def main():
     """ deep ae """
-    # deep_ae_1()  # path = data/models/deep_ae/Oct-17-20_T_21-13-37
-    # deep_ae_2()  # path = data/models/deep_ae/Oct-17-20_T_21-22-05
-    # deep_ae_3()  # path = data/models/deep_ae/Oct-17-20_T_21-27-03
+    # deep_ae_1()  # path = 'data/models/deep_ae/Oct-17-20_T_21-13-37'
+    # deep_ae_2()  # path = 'data/models/deep_ae/Oct-17-20_T_21-22-05'
+    # deep_ae_3()  # path = 'data/models/deep_ae/Oct-17-20_T_21-27-03'
 
     """ sparse ae """
     # sparse_ae_1()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-13-04'
     # sparse_ae_2()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-15-47'
     # sparse_ae_3()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-17-01'
     # sparse_ae_4()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-26-00'
+
+    sparse_ae_5()  # path = 'data/models/sparse_ae/'
+    # sparse_ae_6()  # path = 'data/models/sparse_ae/'
+    # sparse_ae_7()  # path = 'data/models/sparse_ae/'
 
     """ sparse ae v1 """
     # sparse_ae_v1_1()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-36-45'
