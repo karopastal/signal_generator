@@ -130,8 +130,8 @@ def main():
     # sparse_ae_4()  # path = 'data/models/sparse_ae/Oct-18-20_T_19-26-00'
 
     # sparse_ae_5()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-14-43'
-    sparse_ae_6()  # path = 'data/models/sparse_ae/'
-    # sparse_ae_7()  # path = 'data/models/sparse_ae/'
+    # sparse_ae_6()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-16-11'
+    sparse_ae_7()  # path = 'data/models/sparse_ae/'
 
     """ sparse ae v1 """
     # sparse_ae_v1_1()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-36-45'
