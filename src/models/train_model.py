@@ -168,8 +168,8 @@ def main():
     # sparse_ae_v1_2()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-38-29'
 
     """ sparse ae v2 """
-    # sparse_ae_v2_1()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_22-16-21'
-    sparse_ae_v2_2()  # path = 'data/models/sparse_ae_v2/Oct-19-20_T_22-44-50'
+    sparse_ae_v2_1()  # path = ''
+    # sparse_ae_v2_2()  # path = ''
 
 
 if __name__ == "__main__":
