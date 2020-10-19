@@ -10,7 +10,7 @@ from keras import regularizers
 
 
 def kl_divergence(rho, rho_hat):
-    return rho * tf.log(rho) - rho * tf.log(rho_hat) + (1 - rho) * tf.log(1 - rho) - (1 - rho) * tf.log(1 - rho_hat)
+    return rho * np.log(rho) - rho * np.log(rho_hat) + (1 - rho) * np.log(1 - rho) - (1 - rho) * np.log(1 - rho_hat)
 
 
 class SparsityRegularizer(regularizers.Regularizer):
