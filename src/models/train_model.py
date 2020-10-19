@@ -3,6 +3,8 @@ from keras import regularizers
 from src.models.deep_ae import DeepAutoencoder
 from src.models.sparse_ae import SparseAutoencoder
 from src.models.sparse_ae_v1 import SparseAutoencoderV1
+from src.models.sparse_ae_v2 import SparseAutoencoderV2
+
 
 # ################################# Deep AE ###################################
 
@@ -116,6 +118,21 @@ def sparse_ae_v1_2():
     sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
     sparse_ae.train_model(epochs=5000, batch_size=64)
 
+# ################################# Sparse AE V2 ###################################
+
+
+def sparse_ae_v2_1():
+    rho = 0.05
+    beta = 5
+    encoding_dim = 128
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=500, batch_size=64)
+
 
 def main():
     """ deep ae """
@@ -131,11 +148,14 @@ def main():
 
     # sparse_ae_5()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-14-43'
     # sparse_ae_6()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-16-11'
-    sparse_ae_7()  # path = 'data/models/sparse_ae/'
+    # sparse_ae_7()  # path = 'data/models/sparse_ae/Oct-19-20_T_10-18-27/'
 
     """ sparse ae v1 """
     # sparse_ae_v1_1()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-36-45'
     # sparse_ae_v1_2()  # path = 'data/models/sparse_ae_v1/Oct-18-20_T_19-38-29'
+
+    """ sparse ae v2 """
+    sparse_ae_v2_1()  # path = ''
 
 
 if __name__ == "__main__":
