@@ -38,7 +38,7 @@ class SparseAutoencoderV2:
                  name='sparse_ae_v2',
                  beta=3,
                  rho=0.05,
-                 encoding_dim=8):
+                 encoding_dim=128):
 
         self.name = name
         self.path_model = path_model
