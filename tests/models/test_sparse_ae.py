@@ -37,4 +37,4 @@ path_sparse_ae_1 = 'data/models/sparse_ae/Oct-18-20_T_19-13-04'
 sparse_ae_1 = SparseAutoencoder(path_model=path_sparse_ae_1)
 sparse_ae_1.plot_progress(title='sparse_ae_1')
 sparse_ae_1.eval_model(signal_id=1)
-sparse_ae_1.create_loss_distribution(signal_id=3)
+sparse_ae_1.create_loss_distribution(signal_id=1)

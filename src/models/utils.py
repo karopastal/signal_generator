@@ -120,19 +120,29 @@ def loss_distribution(test_data, prediction_data):
     return mse(test_data, prediction_data)
 
 
-def ae_p_value(bgs, signal):
-    # todo: calc pvalue
-    pass
+def model_efficiency_p_value(bg_losses, signal_losses):
+    signal_median = np.median(signal_losses)
+    count = 0
+
+    for bg_loss in bg_losses:
+        if bg_loss >= signal_median:
+            count += 1
+
+    p_value = count / len(bg_losses)
+
+    return p_value
 
 
 def plot_histogram(bgs, signal):
     # the histogram of the data
+    p_value = model_efficiency_p_value(bgs, signal)
+
     plt.hist(bgs, bins=150, facecolor='red', alpha=0.5, label='background')
     plt.hist(signal, bins=150, facecolor='blue', alpha=0.5, label='background + signal')
 
     plt.xlabel('Value')
     plt.ylabel('Count')
-    plt.title('Histogram')
+    plt.title('loss distribution, efficiency_p_value: %s' % (p_value, ))
     plt.grid(True)
     plt.legend(loc='upper right')
     plt.show()

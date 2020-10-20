@@ -98,8 +98,7 @@ class DeepAutoencoder:
         test_signal_shape = (len(test_signal_data), self.shape)
 
         print(test_signal_data.shape)
-        # factor = -1 * np.log(0.01)
-        factor = 1
+        factor = -1 * np.log(0.01)
         norm_test_bgs_data = model_utils.normalize(test_bgs_data.reshape(test_bgs_shape), factor)
         norm_test_signal_data = model_utils.normalize(test_signal_data.reshape(test_signal_shape), factor)
 
@@ -125,11 +124,11 @@ class DeepAutoencoder:
         model_utils.print_predictions_loss(losses=losses)
 
         # model_utils.plot_prediction(self.autoencoder_model,
-        #                             predict_bgs_test[0:3],
+        #                             test_bgs_data[0:3],
         #                             self.original_shape)
         #
         # model_utils.plot_prediction(self.autoencoder_model,
-        #                             predict_signal_test[0:3],
+        #                             test_signal_data[0:3],
         #                             self.original_shape)
 
     def create_loss_distribution(self, signal_id=1):
@@ -143,11 +142,8 @@ class DeepAutoencoder:
 
         test_signal_distribution = model_utils.loss_distribution(test_signal_data,
                                                                  predict_signal_test)
-        model_utils.plot_histogram(test_bgs_distribution.numpy())
-        model_utils.plot_histogram(test_signal_distribution.numpy())
 
-        # todo: get median from test_signal_distribution and calculate the p-value from
-        #       test_bgs_distribution
+        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy())
 
     def summary(self):
         return self.autoencoder_model.summary()

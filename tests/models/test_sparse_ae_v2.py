@@ -23,8 +23,8 @@ path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
 path_sparse_ae_v2_2 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-50-28'
 sparse_ae_v2_2 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_2)
 sparse_ae_v2_2.plot_progress(title='sparse_ae_v2_2')
-sparse_ae_v2_2.eval_model(signal_id=4)
-sparse_ae_v2_2.create_loss_distribution(signal_id=4)
+sparse_ae_v2_2.eval_model(signal_id=5)
+sparse_ae_v2_2.create_loss_distribution(signal_id=5)
 
 #
 # path_sparse_ae_v2_3 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-53-00'

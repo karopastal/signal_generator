@@ -107,7 +107,6 @@ class SparseAutoencoderV1:
 
         print(test_signal_data.shape)
         factor = -1 * np.log(0.01)
-        # factor = 1
         norm_test_bgs_data = model_utils.normalize(test_bgs_data.reshape(test_bgs_shape), factor)
         norm_test_signal_data = model_utils.normalize(test_signal_data.reshape(test_signal_shape), factor)
 
@@ -151,8 +150,7 @@ class SparseAutoencoderV1:
 
         test_signal_distribution = model_utils.loss_distribution(test_signal_data,
                                                                  predict_signal_test)
-        model_utils.plot_histogram(test_bgs_distribution.numpy())
-        model_utils.plot_histogram(test_signal_distribution.numpy())
+        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy())
 
         # todo: get median from test_signal_distribution and calculate the p-value from
         #       test_bgs_distribution

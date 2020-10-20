@@ -12,9 +12,9 @@ path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
 
 path_deep_ae_1 = 'data/models/deep_ae/Oct-17-20_T_21-13-37'
 deep_ae_1 = DeepAutoencoder(path_model=path_deep_ae_1)
-# deep_ae_1.plot_progress(title='deep_ae_1')
-deep_ae_1.eval_model(signal_id=3)
-deep_ae_1.create_loss_distribution(signal_id=3)
+deep_ae_1.plot_progress(title='deep_ae_1')
+deep_ae_1.eval_model(signal_id=1)
+deep_ae_1.create_loss_distribution(signal_id=1)
 # deep_ae_1.plot_progress(title='deep_ae_1')
 
 # path_deep_ae_2 = 'data/models/deep_ae/Oct-17-20_T_21-22-05'
