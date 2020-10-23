@@ -89,28 +89,61 @@ def plot_progress(path_progress, title=''):
     plt.title('%s model loss' % (title,))
     plt.ylabel('loss')
     plt.xlabel('epoch')
-    plt.legend(['train', 'validation'], loc='upper left')
+    plt.legend(['train', 'validation'], loc='upper right')
     plt.show()
 
+
+# def plot_prediction(autoencoder, x_test, shape):
+#     reconstructed = autoencoder.predict(x_test)
+#
+#     n = 1  # how many digits we will display
+#     plt.figure(figsize=(20, 20))
+#     for i in range(n):
+#         # display original
+#         fig = plt.subplot(2, n, i + 1)
+#         img = plt.imshow(x_test[i].reshape(shape), cmap='pink')
+#         fig.colorbar(img, ax=ax)
+#
+#         # display reconstruction
+#         fig, ax = plt.subplot(2, n, i + 1 + n)
+#         img = plt.imshow(reconstructed[i].reshape(shape), cmap='pink')
+#         fig.colorbar(img, ax=ax)
+#
+#     plt.show()
 
 def plot_prediction(autoencoder, x_test, shape):
     reconstructed = autoencoder.predict(x_test)
 
-    n = 3  # how many digits we will display
-    plt.figure(figsize=(20, 20))
-    for i in range(n):
-        # display original
-        ax = plt.subplot(2, n, i + 1)
-        plt.imshow(x_test[i].reshape(shape), cmap='pink')
-        ax.get_xaxis().set_visible(False)
-        ax.get_yaxis().set_visible(False)
+    fig, ax = plt.subplots(figsize=(12, 12))
 
-        # display reconstruction
-        ax = plt.subplot(2, n, i + 1 + n)
-        plt.imshow(reconstructed[i].reshape(shape), cmap='pink')
-        ax.get_xaxis().set_visible(False)
-        ax.get_yaxis().set_visible(False)
+    img = ax.imshow(x_test[0].reshape(shape),
+                    extent=(0, 64, 48, 0),
+                    interpolation='nearest',
+                    aspect='auto',
+                    cmap='pink')
 
+    ax.set_ylim(0, 48)
+    fig.colorbar(img, ax=ax)
+
+    plt.title('CWT of background + signal')
+    plt.ylabel('Scales')
+    plt.xlabel('Translation')
+    plt.show()
+
+    fig, ax = plt.subplots(figsize=(12, 12))
+
+    img = ax.imshow(reconstructed[0].reshape(shape),
+                    extent=(0, 64, 48, 0),
+                    interpolation='nearest',
+                    aspect='auto',
+                    cmap='pink')
+
+    ax.set_ylim(0, 48)
+    fig.colorbar(img, ax=ax)
+
+    plt.title('reconstructed CWT of background + signal')
+    plt.ylabel('Scales')
+    plt.xlabel('Translation')
     plt.show()
 
 

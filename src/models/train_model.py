@@ -16,99 +16,99 @@ def deep_ae_1():
     deep_ae.train_model(epochs=200, batch_size=64)
 
 
-def deep_ae_2():
-    encoding_dim = 16
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    deep_ae = DeepAutoencoder(path_dataset=path_dataset, encoding_dim=encoding_dim)
-    deep_ae.train_model(epochs=200, batch_size=64)
-
-
-def deep_ae_3():
-    encoding_dim = 32
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    deep_ae = DeepAutoencoder(path_dataset=path_dataset, encoding_dim=encoding_dim)
-    deep_ae.train_model(epochs=200, batch_size=64)
+# def deep_ae_2():
+#     encoding_dim = 16
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     deep_ae = DeepAutoencoder(path_dataset=path_dataset, encoding_dim=encoding_dim)
+#     deep_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def deep_ae_3():
+#     encoding_dim = 32
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     deep_ae = DeepAutoencoder(path_dataset=path_dataset, encoding_dim=encoding_dim)
+#     deep_ae.train_model(epochs=200, batch_size=64)
 
 
 # ################################# Sparse AE ###################################
 
-def sparse_ae_1():
-    rho = 0.0001
-    encoding_dim = 8
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=200, batch_size=64)
-
-
-def sparse_ae_2():
-    rho = 0.0001
-    encoding_dim = 16
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=200, batch_size=64)
-
-
-def sparse_ae_3():
-    rho = 0.0001
-    encoding_dim = 32
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=200, batch_size=64)
-
-
-def sparse_ae_4():
-    rho = 0.0001
-    encoding_dim = 32
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=5000, batch_size=64)
-
-
-def sparse_ae_5():
-    rho = 0.00001
-    encoding_dim = 8
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
-                                  activity_regularizer=regularizers.l1,
-                                  rho=rho,
-                                  encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=200, batch_size=64)
-
-
-def sparse_ae_6():
-    rho = 0.00001
-    encoding_dim = 8
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
-                                  activity_regularizer=regularizers.l2,
-                                  rho=rho,
-                                  encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=200, batch_size=64)
-
-
-def sparse_ae_7():
-    rho = 0.00001
-    encoding_dim = 8
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
-                                  activity_regularizer=regularizers.l1_l2,
-                                  rho=rho,
-                                  encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=200, batch_size=64)
+# def sparse_ae_1():
+#     rho = 0.0001
+#     encoding_dim = 8
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+#     sparse_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def sparse_ae_2():
+#     rho = 0.0001
+#     encoding_dim = 16
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+#     sparse_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def sparse_ae_3():
+#     rho = 0.0001
+#     encoding_dim = 32
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+#     sparse_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def sparse_ae_4():
+#     rho = 0.0001
+#     encoding_dim = 32
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+#     sparse_ae.train_model(epochs=5000, batch_size=64)
+#
+#
+# def sparse_ae_5():
+#     rho = 0.00001
+#     encoding_dim = 8
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
+#                                   activity_regularizer=regularizers.l1,
+#                                   rho=rho,
+#                                   encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def sparse_ae_6():
+#     rho = 0.00001
+#     encoding_dim = 8
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
+#                                   activity_regularizer=regularizers.l2,
+#                                   rho=rho,
+#                                   encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=200, batch_size=64)
+#
+#
+# def sparse_ae_7():
+#     rho = 0.00001
+#     encoding_dim = 8
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoder(path_dataset=path_dataset,
+#                                   activity_regularizer=regularizers.l1_l2,
+#                                   rho=rho,
+#                                   encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=200, batch_size=64)
 
 
 # ################################# Sparse AE V1 ###################################
 
 
-def sparse_ae_v1_1():
-    rho = 0.0001
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
-    sparse_ae.train_model(epochs=5000, batch_size=64)
+# def sparse_ae_v1_1():
+#     rho = 0.0001
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
+#     sparse_ae.train_model(epochs=5000, batch_size=64)
 
 
 def sparse_ae_v1_2():
@@ -121,17 +121,17 @@ def sparse_ae_v1_2():
 # ################################# Sparse AE V2 ###################################
 
 
-def sparse_ae_v2_1():
-    rho = 0.9
-    beta = 5
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
+# def sparse_ae_v2_1():
+    # rho = 0.9
+    # beta = 5
+    # encoding_dim = 128
+    # path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    # sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+    #                                 rho=rho,
+    #                                 beta=beta,
+    #                                 encoding_dim=encoding_dim)
+    #
+    # sparse_ae.train_model(epochs=100, batch_size=64)
 
 
 def sparse_ae_v2_2():
@@ -147,88 +147,88 @@ def sparse_ae_v2_2():
     sparse_ae.train_model(epochs=100, batch_size=64)
 
 
-def sparse_ae_v2_3():
-    rho = 0.9
-    beta = 3
-    encoding_dim = 256
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
-
-
-def sparse_ae_v2_4():
-    rho = 0.9
-    beta = 0.3
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
-
-
-def sparse_ae_v2_5():
-    rho = 0.02
-    beta = 0.3
-    encoding_dim = 256
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
+# def sparse_ae_v2_3():
+#     rho = 0.9
+#     beta = 3
+#     encoding_dim = 256
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
+#
+#
+# def sparse_ae_v2_4():
+#     rho = 0.9
+#     beta = 0.3
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
+#
+#
+# def sparse_ae_v2_5():
+#     rho = 0.02
+#     beta = 0.3
+#     encoding_dim = 256
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
 
 # ############# like v2_2 ############
 
 
-def sparse_ae_v2_6():
-    rho = 0.009
-    beta = 3
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
-
-
-def sparse_ae_v2_7():
-    rho = 0.09
-    beta = 5
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
-
-
-def sparse_ae_v2_8():
-    rho = 0.09
-    beta = 3
-    encoding_dim = 64
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=100, batch_size=64)
+# def sparse_ae_v2_6():
+#     rho = 0.009
+#     beta = 3
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
+#
+#
+# def sparse_ae_v2_7():
+#     rho = 0.09
+#     beta = 5
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
+#
+#
+# def sparse_ae_v2_8():
+#     rho = 0.09
+#     beta = 3
+#     encoding_dim = 64
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=100, batch_size=64)
 
 ############################################################
 
-
+# -------------------------------------------------------------------
 def sparse_ae_v2_9():
     rho = 0.3
     beta = 3
@@ -239,7 +239,7 @@ def sparse_ae_v2_9():
                                     beta=beta,
                                     encoding_dim=encoding_dim)
 
-    sparse_ae.train_model(epochs=100, batch_size=64)
+    sparse_ae.train_model(epochs=500, batch_size=64)
 
 
 def sparse_ae_v2_10():
@@ -252,7 +252,24 @@ def sparse_ae_v2_10():
                                     beta=beta,
                                     encoding_dim=encoding_dim)
 
+    sparse_ae.train_model(epochs=500, batch_size=64)
+
+
+def sparse_ae_v2_11():
+    rho = 0.05
+    beta = 3
+    encoding_dim = 128
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
     sparse_ae.train_model(epochs=200, batch_size=64)
+
+# -------------------------------------------------------------------------
+
+# ####### conv ae #########
 
 
 def main():
@@ -285,6 +302,11 @@ def main():
     # sparse_ae_v2_6()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-39-30'
     # sparse_ae_v2_7()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-40-27'
     # sparse_ae_v2_8()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-42-28'
+
+    # --------------------------------------------------------------------------
+    # sparse_ae_v2_9()  # path = 'data/models/sparse_ae_v2/'
+    # sparse_ae_v2_10()  # path = 'data/models/sparse_ae_v2/'
+    # sparse_ae_v2_11()  # path = 'data/models/sparse_ae_v2/'
 
 
 if __name__ == "__main__":

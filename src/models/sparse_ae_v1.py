@@ -8,6 +8,8 @@ from keras.optimizers import Adam
 from keras.callbacks import CSVLogger
 from keras import regularizers
 
+""" SparseAutoencoderV1 -> SparseL1Autoencoder """
+
 
 class SparseAutoencoderV1:
     def __init__(self,

@@ -26,18 +26,19 @@ class SparsityRegularizer(regularizers.Regularizer):
         regularization += self.beta * tf.math.reduce_sum(kl_divergence(self.rho, rho_hat))
 
         return regularization
-        # tf.print(x, regularizers)
-        # return 0.0001 * tf.reduce_sum(backend.square(x))
 
     def get_config(self):
         return {'rho': float(self.rho), 'beta': float(self.beta)}
+
+
+""" SparseAutoencoderV2 -> SparseKLAutoencoder """
 
 
 class SparseAutoencoderV2:
     def __init__(self,
                  path_model='',
                  path_dataset='',
-                 name='sparse_ae_v2',
+                 name='sparse_kl_ae',
                  beta=3,
                  rho=0.05,
                  encoding_dim=128):
