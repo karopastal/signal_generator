@@ -88,7 +88,7 @@ def main():
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
                     interpolation='nearest',
                     aspect='auto',
-                    cmap='pink')
+                    cmap='bwr')
 
     ax.set_ylim(cmor.min_scales, cmor.max_scales)
     fig.colorbar(img, ax=ax)

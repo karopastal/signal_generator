@@ -1,9 +1,9 @@
 from keras import regularizers
 
 from src.models.deep_ae import DeepAutoencoder
-from src.models.sparse_ae import SparseAutoencoder
 from src.models.sparse_ae_v1 import SparseAutoencoderV1
 from src.models.sparse_ae_v2 import SparseAutoencoderV2
+from src.models.conv_ae import ConvAutoencoder
 
 
 # ################################# Deep AE ###################################
@@ -229,30 +229,33 @@ def sparse_ae_v2_2():
 ############################################################
 
 # -------------------------------------------------------------------
-def sparse_ae_v2_9():
-    rho = 0.3
-    beta = 3
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
 
-    sparse_ae.train_model(epochs=500, batch_size=64)
+# ----------------------------------------------------------------------------------------
 
-
-def sparse_ae_v2_10():
-    rho = 0.09
-    beta = 2.5
-    encoding_dim = 128
-    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
-    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
-                                    rho=rho,
-                                    beta=beta,
-                                    encoding_dim=encoding_dim)
-
-    sparse_ae.train_model(epochs=500, batch_size=64)
+# def sparse_ae_v2_9():
+#     rho = 0.3
+#     beta = 3
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=500, batch_size=64)
+#
+#
+# def sparse_ae_v2_10():
+#     rho = 0.09
+#     beta = 2.5
+#     encoding_dim = 128
+#     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+#     sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+#                                     rho=rho,
+#                                     beta=beta,
+#                                     encoding_dim=encoding_dim)
+#
+#     sparse_ae.train_model(epochs=500, batch_size=64)
 
 
 def sparse_ae_v2_11():
@@ -267,9 +270,46 @@ def sparse_ae_v2_11():
 
     sparse_ae.train_model(epochs=200, batch_size=64)
 
+
+def sparse_ae_v2_12():
+    rho = 0.05
+    beta = 3
+    encoding_dim = 128
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+    sparse_ae = SparseAutoencoderV2(path_dataset=path_dataset,
+                                    rho=rho,
+                                    beta=beta,
+                                    encoding_dim=encoding_dim)
+
+    sparse_ae.train_model(epochs=400, batch_size=64)
+
 # -------------------------------------------------------------------------
 
 # ####### conv ae #########
+
+    # todo: read about training and evaluation at:
+    #  "https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers"
+
+
+def conv_ae_1():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvAutoencoder(path_dataset=path_dataset)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_ae_2():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvAutoencoder(path_dataset=path_dataset)
+    conv_ae.train_model(epochs=100, batch_size=64)
+
+
+def conv_ae_3():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvAutoencoder(path_dataset=path_dataset)
+    conv_ae.train_model(epochs=50, batch_size=64)
 
 
 def main():
@@ -303,10 +343,23 @@ def main():
     # sparse_ae_v2_7()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-40-27'
     # sparse_ae_v2_8()  # path = 'data/models/sparse_ae_v2/Oct-20-20_T_00-42-28'
 
-    # --------------------------------------------------------------------------
-    # sparse_ae_v2_9()  # path = 'data/models/sparse_ae_v2/'
-    # sparse_ae_v2_10()  # path = 'data/models/sparse_ae_v2/'
-    # sparse_ae_v2_11()  # path = 'data/models/sparse_ae_v2/'
+    # sparse_ae_v2_9()  # path_sparse_ae_v2_9 =  'data/models/sparse_kl_ae/Oct-26-20_T_15-09-43'
+    # sparse_ae_v2_10()  # path_sparse_ae_v2_10 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-13-43'
+    # sparse_ae_v2_11()  # path_sparse_ae_v2_11 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-15-38'
+
+    # sparse_ae_v2_11()  # path_sparse_ae_v2_11 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-15-38'
+
+    """ conv ae """
+    # conv_ae_1()  # path_conv_ae_1 = 'data/models/conv_ae/Oct-26-20_T_15-19-08'
+    # conv_ae_2()  # path_conv_ae_2 = 'data/models/conv_ae/Oct-26-20_T_15-53-55'
+    # conv_ae_3()  # path_conv_ae_3 = 'data/models/conv_ae/Oct-26-20_T_15-55-52'
+
+    """ conv ae v1"""
+
+    # conv_ae_v1_1()  # path_conv_ae_v1_1 = 'data/models/conv_ae_v1/Oct-26-20_T_16-04-40'
+    # conv_ae_v1_2()  # path_conv_ae_v1_2 = 'data/models/conv_ae_v1/Oct-26-20_T_16-05-54'
+
+    """ conv sparse ae """
 
 
 if __name__ == "__main__":

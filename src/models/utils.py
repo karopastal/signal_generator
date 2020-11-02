@@ -93,24 +93,6 @@ def plot_progress(path_progress, title=''):
     plt.show()
 
 
-# def plot_prediction(autoencoder, x_test, shape):
-#     reconstructed = autoencoder.predict(x_test)
-#
-#     n = 1  # how many digits we will display
-#     plt.figure(figsize=(20, 20))
-#     for i in range(n):
-#         # display original
-#         fig = plt.subplot(2, n, i + 1)
-#         img = plt.imshow(x_test[i].reshape(shape), cmap='pink')
-#         fig.colorbar(img, ax=ax)
-#
-#         # display reconstruction
-#         fig, ax = plt.subplot(2, n, i + 1 + n)
-#         img = plt.imshow(reconstructed[i].reshape(shape), cmap='pink')
-#         fig.colorbar(img, ax=ax)
-#
-#     plt.show()
-
 def plot_prediction(autoencoder, x_test, shape):
     reconstructed = autoencoder.predict(x_test)
 
@@ -118,9 +100,9 @@ def plot_prediction(autoencoder, x_test, shape):
 
     img = ax.imshow(x_test[0].reshape(shape),
                     extent=(0, 64, 48, 0),
-                    interpolation='nearest',
+                    interpolation='sinc',
                     aspect='auto',
-                    cmap='pink')
+                    cmap='bwr')
 
     ax.set_ylim(0, 48)
     fig.colorbar(img, ax=ax)
@@ -134,9 +116,9 @@ def plot_prediction(autoencoder, x_test, shape):
 
     img = ax.imshow(reconstructed[0].reshape(shape),
                     extent=(0, 64, 48, 0),
-                    interpolation='nearest',
+                    interpolation='sinc',
                     aspect='auto',
-                    cmap='pink')
+                    cmap='bwr')
 
     ax.set_ylim(0, 48)
     fig.colorbar(img, ax=ax)
@@ -148,9 +130,13 @@ def plot_prediction(autoencoder, x_test, shape):
 
 
 def loss_distribution(test_data, prediction_data):
-    mse = tf.keras.losses.MSE
+    mse = tf.keras.losses.mean_squared_error(
+        test_data.reshape(len(test_data), 64*48),
+        prediction_data.reshape(len(prediction_data), 48*64))
 
-    return mse(test_data, prediction_data)
+    print(mse.shape)
+
+    return mse
 
 
 def model_efficiency_p_value(bg_losses, signal_losses):
@@ -158,6 +144,7 @@ def model_efficiency_p_value(bg_losses, signal_losses):
     count = 0
 
     for bg_loss in bg_losses:
+        print(bg_loss)
         if bg_loss >= signal_median:
             count += 1
 
