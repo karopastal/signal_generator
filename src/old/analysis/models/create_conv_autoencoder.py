@@ -55,7 +55,6 @@ def load_data():
 def load_model():
     input_layer = Input(shape=(50, 100, 1))
 
-    # encoder
     h = Conv2D(64, (3, 3), activation='relu', padding='same')(input_layer)
     h = MaxPooling2D((2, 2), padding='same')(h)
 

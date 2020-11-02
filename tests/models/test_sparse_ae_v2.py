@@ -14,18 +14,37 @@ from src.models.sparse_ae_v2 import SparseAutoencoderV2
 
 path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
 
+
+# path_sparse_ae_v2_2 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-50-28'
+# sparse_ae_v2_2 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_2)
+# # sparse_ae_v2_2.plot_progress(title='sparse_ae_v2_2')
+# sparse_ae_v2_2.eval_model(signal_id=4)
+# sparse_ae_v2_2.create_loss_distribution(signal_id=4)
+
+path_sparse_ae_v2_11 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-15-38'
+sparse_ae_v2_2 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_11)
+sparse_ae_v2_2.plot_progress(title='sparse_ae_v2_2')
+sparse_ae_v2_2.eval_model(signal_id=4)
+sparse_ae_v2_2.create_loss_distribution(signal_id=4)
+
+# path_sparse_ae_v2_9 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-09-43'
+# sparse_ae_v2_9 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_9)
+# sparse_ae_v2_9.plot_progress(title='sparse_ae_v2_9')
+# sparse_ae_v2_9.eval_model(signal_id=4)
+# # sparse_ae_v2_9.create_loss_distribution(signal_id=4)
+#
+# path_sparse_ae_v2_10 = 'data/models/sparse_kl_ae/Oct-26-20_T_15-13-43'
+# sparse_ae_v2_10 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_10)
+# sparse_ae_v2_10.plot_progress(title='sparse_ae_v2_10')
+# sparse_ae_v2_10.eval_model(signal_id=4)
+# # sparse_ae_v2_10.create_loss_distribution(signal_id=4)
+
+
 # path_sparse_ae_v2_1 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-14-07'
 # sparse_ae_v2_1 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_1)
 # sparse_ae_v2_1.plot_progress(title='sparse_ae_v2_1')
 # sparse_ae_v2_1.eval_model(signal_id=1)
 # # sparse_ae_v2_1.create_loss_distribution(signal_id=3)
-#
-path_sparse_ae_v2_2 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-50-28'
-sparse_ae_v2_2 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_2)
-sparse_ae_v2_2.plot_progress(title='sparse_ae_v2_2')
-sparse_ae_v2_2.eval_model(signal_id=5)
-sparse_ae_v2_2.create_loss_distribution(signal_id=5)
-
 #
 # path_sparse_ae_v2_3 = 'data/models/sparse_ae_v2/Oct-19-20_T_23-53-00'
 # sparse_ae_v2_3 = SparseAutoencoderV2(path_model=path_sparse_ae_v2_3)

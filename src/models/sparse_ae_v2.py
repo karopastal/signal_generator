@@ -11,7 +11,10 @@ from keras import regularizers
 
 
 def kl_divergence(rho, rho_hat):
-    return rho * backend.log(rho) - rho * backend.log(rho_hat) + (1 - rho) * backend.log(1 - rho) - (1 - rho) * backend.log(1 - rho_hat)
+    return rho * backend.log(rho) - \
+           rho * backend.log(rho_hat) + \
+           (1 - rho) * backend.log(1 - rho) - \
+           (1 - rho) * backend.log(1 - rho_hat)
 
 
 class SparsityRegularizer(regularizers.Regularizer):
@@ -157,13 +160,13 @@ class SparseAutoencoderV2:
 
         model_utils.print_predictions_loss(losses=losses)
 
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             test_bgs_data[0:3],
-        #                             self.original_shape)
-        #
-        # model_utils.plot_prediction(self.autoencoder_model,
-        #                             test_signal_data[0:3],
-        #                             self.original_shape)
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_bgs_data[0:3],
+                                    self.original_shape)
+
+        model_utils.plot_prediction(self.autoencoder_model,
+                                    test_signal_data[0:3],
+                                    self.original_shape)
 
     def create_loss_distribution(self, signal_id=1):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)

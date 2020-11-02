@@ -2,4 +2,4 @@
 
 import os
 
-os.system('/bin/python3 -m src.datasets.build_dataset')
+os.system('/bin/python3 -m src.datasets.build_signals_dataset')

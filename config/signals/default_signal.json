@@ -100,5 +100,141 @@
             "MASS_NUM": "256",
             "AMPLITUDE_DECAY_RATE": "0"
         }
+    },
+    {
+        "id": 6,
+        "type": "default_signal",
+        "description": "signal_bm_4_1",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "25",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 7,
+        "type": "default_signal",
+        "description": "signal_bm_4_2",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "23",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 8,
+        "type": "default_signal",
+        "description": "signal_bm_4_3",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "21",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 9,
+        "type": "default_signal",
+        "description": "signal_bm_4_4",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "19",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 10,
+        "type": "default_signal",
+        "description": "signal_bm_4_5",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "17",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 11,
+        "type": "default_signal",
+        "description": "signal_bm_4_6",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "15",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 12,
+        "type": "default_signal",
+        "description": "signal_bm_4_7",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "13",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
+    },
+    {
+        "id": 13,
+        "type": "default_signal",
+        "description": "signal_bm_4_8",
+        "gaussian": {
+            "center": "25*n+25",
+            "height": "11",
+            "width": "5"
+        },
+        "range": {
+            "T": "5",
+            "MIN_MASS": "1",
+            "MAX_MASS": "256",
+            "MASS_NUM": "256",
+            "AMPLITUDE_DECAY_RATE": "0"
+        }
     }
 ]
