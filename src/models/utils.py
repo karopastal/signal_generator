@@ -134,8 +134,6 @@ def loss_distribution(test_data, prediction_data):
         test_data.reshape(len(test_data), 64*48),
         prediction_data.reshape(len(prediction_data), 48*64))
 
-    print(mse.shape)
-
     return mse
 
 
@@ -144,7 +142,6 @@ def model_efficiency_p_value(bg_losses, signal_losses):
     count = 0
 
     for bg_loss in bg_losses:
-        print(bg_loss)
         if bg_loss >= signal_median:
             count += 1
 

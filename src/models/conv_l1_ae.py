@@ -1,17 +1,21 @@
 import numpy as np
 import src.models.utils as model_utils
 
-from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D
+from keras import Sequential
+from keras.layers import Input, Dense, Flatten, Reshape
+from keras.layers import Conv2D, MaxPooling2D, UpSampling2D
 from keras.models import Model, load_model
 from keras.optimizers import Adam
 from keras.callbacks import CSVLogger
+from keras.regularizers import l1
 
 
-class ConvAutoencoder:
+class ConvL1Autoencoder:
     def __init__(self,
                  path_model='',
                  path_dataset='',
-                 name='conv_ae'):
+                 name='conv_l1_ae',
+                 lam=0.0001):
 
         self.name = name
         self.path_model = path_model
@@ -37,6 +41,7 @@ class ConvAutoencoder:
 
             self.shape = self.dataset_config['ORIGINAL_SHAPE']
             optimizer = Adam(lr=0.0001)
+            self.lam = lam
 
             self.autoencoder_model = self.build_model()
             self.autoencoder_model.compile(loss='mse', optimizer=optimizer)
@@ -52,16 +57,24 @@ class ConvAutoencoder:
         h = Conv2D(128, (3, 3), activation='relu', padding='same')(h)
         h = MaxPooling2D((2, 2), padding='same')(h)
 
-        # Dense()
+        # regularization
+        x = Flatten()(h)
+
+        y = Dense(x.shape[1],
+                  activation='relu',
+                  activity_regularizer=l1(self.lam))(x)
+
+        z = Reshape(h.shape[1:])(y)
 
         # decoder
-        h = Conv2D(128, (3, 3), activation='relu', padding='same')(h)
+        h = Conv2D(128, (3, 3), activation='relu', padding='same')(z)
         h = UpSampling2D((2, 2))(h)
         h = Conv2D(64, (3, 3), activation='relu', padding='same')(h)
         h = UpSampling2D((2, 2))(h)
         h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
         h = UpSampling2D((2, 2))(h)
-        output_layer = Conv2D(1, (3, 3), activation='relu', padding='same')(h)
+
+        output_layer = Conv2D(1, (3, 3), activation='elu', padding='same')(h)
 
         return Model(input_layer, output_layer)
 
