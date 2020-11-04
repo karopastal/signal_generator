@@ -4,6 +4,8 @@ from src.models.deep_ae import DeepAutoencoder
 from src.models.sparse_ae_v1 import SparseAutoencoderV1
 from src.models.sparse_ae_v2 import SparseAutoencoderV2
 from src.models.conv_ae import ConvAutoencoder
+from src.models.conv_l1_ae import ConvL1Autoencoder
+from src.models.conv_kl_ae import ConvKLAutoencoder
 
 
 # ################################# Deep AE ###################################
@@ -110,6 +112,7 @@ def deep_ae_1():
 #     sparse_ae = SparseAutoencoderV1(path_dataset=path_dataset, rho=rho, encoding_dim=encoding_dim)
 #     sparse_ae.train_model(epochs=5000, batch_size=64)
 
+# ################################# Deep AE ###################################
 
 def sparse_ae_v1_2():
     rho = 0.0001
@@ -287,9 +290,6 @@ def sparse_ae_v2_12():
 
 # ####### conv ae #########
 
-    # todo: read about training and evaluation at:
-    #  "https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers"
-
 
 def conv_ae_1():
     path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
@@ -310,6 +310,77 @@ def conv_ae_3():
 
     conv_ae = ConvAutoencoder(path_dataset=path_dataset)
     conv_ae.train_model(epochs=50, batch_size=64)
+
+# #### conv_l1_ae #####
+
+
+def conv_l1_ae_1():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvL1Autoencoder(path_dataset=path_dataset, lam=0.00001)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_l1_ae_2():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvL1Autoencoder(path_dataset=path_dataset, lam=0.0001)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_l1_ae_3():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvL1Autoencoder(path_dataset=path_dataset, lam=0.001)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_l1_ae_4():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvL1Autoencoder(path_dataset=path_dataset, lam=0.01)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+# #### conv_kl_ae #####
+
+def conv_kl_ae_1():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvKLAutoencoder(path_dataset=path_dataset,
+                                beta=0.0003,
+                                rho=0.05)
+
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_kl_ae_2():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvKLAutoencoder(path_dataset=path_dataset,
+                                beta=0.00003,
+                                rho=0.05)
+
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_kl_ae_3():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvKLAutoencoder(path_dataset=path_dataset,
+                                beta=0.00005,
+                                rho=0.05)
+    conv_ae.train_model(epochs=200, batch_size=64)
+
+
+def conv_kl_ae_4():
+    path_dataset = 'data/dataset/Oct-16-20T14-39-16$25000'
+
+    conv_ae = ConvKLAutoencoder(path_dataset=path_dataset,
+                                beta=0.005,
+                                rho=0.05)
+
+    conv_ae.train_model(epochs=200, batch_size=64)
 
 
 def main():
@@ -359,7 +430,16 @@ def main():
     # conv_ae_v1_1()  # path_conv_ae_v1_1 = 'data/models/conv_ae_v1/Oct-26-20_T_16-04-40'
     # conv_ae_v1_2()  # path_conv_ae_v1_2 = 'data/models/conv_ae_v1/Oct-26-20_T_16-05-54'
 
-    """ conv sparse ae """
+    """ conv sparse l1 ae """
+    # conv_l1_ae_1()  # path_conv_l1_ae_1 = 'data/models/conv_l1_ae/Nov-03-20_T_12-27-50'
+    # conv_l1_ae_2()  # path_conv_l1_ae_2 = 'data/models/conv_l1_ae/Nov-03-20_T_12-30-04'
+    # conv_l1_ae_3()  # path_conv_l1_ae_3 = 'data/models/conv_l1_ae/Nov-03-20_T_12-31-02'
+    # conv_l1_ae_4()  # path_conv_l1_ae_4 = 'data/models/conv_l1_ae/Nov-03-20_T_12-32-17'
+
+    # conv_kl_ae_1()  # path_conv_kl_ae_1 = 'data/models/conv_kl_ae/Nov-03-20_T_12-34-05'
+    # conv_kl_ae_2()  # path_conv_kl_ae_2 = 'data/models/conv_kl_ae/Nov-03-20_T_12-35-50'
+    # conv_kl_ae_3()  # path_conv_kl_ae_3 = 'data/models/conv_kl_ae/Nov-03-20_T_12-37-06'
+    # conv_kl_ae_4()  # path_conv_kl_ae_4 = 'data/models/conv_kl_ae/Nov-03-20_T_12-39-37'
 
 
 if __name__ == "__main__":

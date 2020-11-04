@@ -1,17 +1,47 @@
 import numpy as np
 import src.models.utils as model_utils
+import tensorflow.python.keras.backend as backend
+import tensorflow as tf
 
-from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D
+from keras.layers import Input, Dense, Flatten, Reshape
+from keras.layers import Conv2D, MaxPooling2D, UpSampling2D
 from keras.models import Model, load_model
 from keras.optimizers import Adam
 from keras.callbacks import CSVLogger
+from keras import regularizers
 
 
-class ConvAutoencoder:
+def kl_divergence(rho, rho_hat):
+    return rho * backend.log(rho) - \
+           rho * backend.log(rho_hat) + \
+           (1 - rho) * backend.log(1 - rho) - \
+           (1 - rho) * backend.log(1 - rho_hat)
+
+
+class SparsityRegularizer(regularizers.Regularizer):
+
+    def __init__(self, rho=0.1, beta=3):
+        self.rho = rho
+        self.beta = beta
+
+    def __call__(self, x):
+        regularization = backend.constant(0., dtype=x.dtype)
+        rho_hat = backend.mean(x, axis=0)
+        regularization += self.beta * tf.math.reduce_sum(kl_divergence(self.rho, rho_hat))
+
+        return regularization
+
+    def get_config(self):
+        return {'rho': float(self.rho), 'beta': float(self.beta)}
+
+
+class ConvKLAutoencoder:
     def __init__(self,
                  path_model='',
                  path_dataset='',
-                 name='conv_ae'):
+                 name='conv_kl_ae',
+                 beta=3,
+                 rho=0.005):
 
         self.name = name
         self.path_model = path_model
@@ -20,7 +50,11 @@ class ConvAutoencoder:
             self.path_autoencoder = self.path_model + '/autoencoder.h5'
             self.path_summary = self.path_model + '/summary.txt'
             self.path_loss_progress = self.path_model + '/training.log'
-            self.autoencoder_model = load_model(self.path_autoencoder)
+            custom_objects = {'SparsityRegularizer': SparsityRegularizer}
+
+            self.autoencoder_model = load_model(self.path_autoencoder,
+                                                custom_objects=custom_objects)
+
             self.dataset_config = model_utils.get_dataset_config(self.path_model)
             self.path_dataset = self.dataset_config['PATH_DATASET']
             self.shape = self.dataset_config['ORIGINAL_SHAPE']
@@ -36,7 +70,10 @@ class ConvAutoencoder:
             model_utils.copy_dataset_config(self.path_dataset, self.base_dir)
 
             self.shape = self.dataset_config['ORIGINAL_SHAPE']
+
             optimizer = Adam(lr=0.0001)
+            self.rho = rho
+            self.beta = beta
 
             self.autoencoder_model = self.build_model()
             self.autoencoder_model.compile(loss='mse', optimizer=optimizer)
@@ -52,16 +89,24 @@ class ConvAutoencoder:
         h = Conv2D(128, (3, 3), activation='relu', padding='same')(h)
         h = MaxPooling2D((2, 2), padding='same')(h)
 
-        # Dense()
+        # regularization
+        x = Flatten()(h)
+
+        y = Dense(x.shape[1],
+                  activation='sigmoid',
+                  activity_regularizer=SparsityRegularizer(self.rho, self.beta))(x)
+
+        z = Reshape(h.shape[1:])(y)
 
         # decoder
-        h = Conv2D(128, (3, 3), activation='relu', padding='same')(h)
+        h = Conv2D(128, (3, 3), activation='relu', padding='same')(z)
         h = UpSampling2D((2, 2))(h)
         h = Conv2D(64, (3, 3), activation='relu', padding='same')(h)
         h = UpSampling2D((2, 2))(h)
         h = Conv2D(32, (3, 3), activation='relu', padding='same')(h)
         h = UpSampling2D((2, 2))(h)
-        output_layer = Conv2D(1, (3, 3), activation='relu', padding='same')(h)
+
+        output_layer = Conv2D(1, (3, 3), activation='elu', padding='same')(h)
 
         return Model(input_layer, output_layer)
 
