@@ -86,14 +86,16 @@ def plot_progress(path_progress, title=''):
 
     plt.plot(x, loss)
     plt.plot(x, val)
-    plt.title('%s model loss' % (title,))
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'validation'], loc='upper right')
+    plt.title('%s model loss' % (title,), fontsize=18)
+    plt.ylabel('loss', fontsize=16)
+    plt.xlabel('epoch', fontsize=16)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(['train', 'validation'], loc='upper right', fontsize=12)
     plt.show()
 
 
-def plot_prediction(autoencoder, x_test, shape):
+def plot_prediction(autoencoder, x_test, shape, title):
     reconstructed = autoencoder.predict(x_test)
 
     fig, ax = plt.subplots(figsize=(12, 12))
@@ -105,11 +107,14 @@ def plot_prediction(autoencoder, x_test, shape):
                     cmap='bwr')
 
     ax.set_ylim(0, 48)
-    fig.colorbar(img, ax=ax)
+    cbar = fig.colorbar(img, ax=ax)
+    cbar.ax.tick_params(labelsize=12)
 
-    plt.title('CWT of background + signal')
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
+    plt.title('Input CWT of %s' % (title, ), fontsize=18)
+    plt.ylabel('Scales', fontsize=16)
+    plt.xlabel('Mass', fontsize=16)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
     plt.show()
 
     fig, ax = plt.subplots(figsize=(12, 12))
@@ -121,11 +126,15 @@ def plot_prediction(autoencoder, x_test, shape):
                     cmap='bwr')
 
     ax.set_ylim(0, 48)
-    fig.colorbar(img, ax=ax)
 
-    plt.title('reconstructed CWT of background + signal')
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
+    cbar = fig.colorbar(img, ax=ax)
+    cbar.ax.tick_params(labelsize=12)
+
+    plt.title('Output CWT %s' % (title,), fontsize=18)
+    plt.ylabel('Scales', fontsize=16)
+    plt.xlabel('Mass', fontsize=16)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
     plt.show()
 
 
@@ -150,16 +159,18 @@ def model_efficiency_p_value(bg_losses, signal_losses):
     return p_value
 
 
-def plot_histogram(bgs, signal):
+def plot_histogram(bgs, signal, name):
     # the histogram of the data
     p_value = model_efficiency_p_value(bgs, signal)
 
     plt.hist(bgs, bins=150, facecolor='red', alpha=0.5, label='background')
     plt.hist(signal, bins=150, facecolor='blue', alpha=0.5, label='background + signal')
 
-    plt.xlabel('Value')
-    plt.ylabel('Count')
-    plt.title('loss distribution, efficiency_p_value: %s' % (p_value, ))
+    plt.xlabel('Value', fontsize=16)
+    plt.ylabel('Count', fontsize=16)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.title('%s loss distribution, efficiency_p_value: %s' % (name, p_value, ), fontsize=18)
     plt.grid(True)
-    plt.legend(loc='upper right')
+    plt.legend(loc='upper right', fontsize=12)
     plt.show()

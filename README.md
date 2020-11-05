@@ -1,4 +1,4 @@
-# Signals Over Background Discovery
+# Physics beyond Standard Model - signal discovery using CWT and Autoencoders
 
 Applying continuous wavelet transforms with autoencoder neural networks for signals over background discovery
 
