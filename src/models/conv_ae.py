@@ -111,7 +111,7 @@ class ConvAutoencoder:
 
         return predictions
 
-    def eval_model(self, signal_id=1):
+    def eval_model(self, name, signal_id=1):
         losses = {}
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
 
@@ -125,15 +125,19 @@ class ConvAutoencoder:
 
         model_utils.print_predictions_loss(losses=losses)
 
+        title = '%s Background' % (name,)
         model_utils.plot_prediction(self.autoencoder_model,
                                     test_bgs_data[0:3],
-                                    self.shape)
+                                    self.shape,
+                                    title)
 
+        title = '%s Background + Signal' % (name,)
         model_utils.plot_prediction(self.autoencoder_model,
                                     test_signal_data[0:3],
-                                    self.shape)
+                                    self.shape,
+                                    title)
 
-    def create_loss_distribution(self, signal_id=1):
+    def create_loss_distribution(self, name, signal_id=1):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
 
         predict_bgs_test = self.predict(test_bgs_data)
@@ -144,7 +148,7 @@ class ConvAutoencoder:
 
         test_signal_distribution = model_utils.loss_distribution(test_signal_data,
                                                                  predict_signal_test.reshape(test_signal_data.shape))
-        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy())
+        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy(), name)
 
     def summary(self):
         return self.autoencoder_model.summary()
