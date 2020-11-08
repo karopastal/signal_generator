@@ -73,22 +73,29 @@ def main():
     coeffs, freqs = cmor.generate_coefficients(data)
     amp = np.abs(coeffs)
 
-    fig, ax = plt.subplots(figsize=(12, 12))
+    fig, ax = plt.subplots(figsize=(9, 7))
 
     img = ax.imshow(amp,
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
-                    interpolation='nearest',
+                    interpolation='sinc',
                     aspect='auto',
-                    cmap='pink')
+                    cmap='bwr')
 
     ax.set_ylim(cmor.min_scales, cmor.max_scales)
 
-    fig.colorbar(img, ax=ax)
+    cbar = fig.colorbar(img, ax=ax)
+    cbar.ax.tick_params(labelsize=18)
 
     plt.title('CWT w/o noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
-    plt.show()
+    plt.title('CWT Background + Signal', fontsize=20)
+    plt.ylabel('Scales', fontsize=18)
+    plt.xlabel('Mass', fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+
+    path = 'docs/output/cwt/cwt_bg_signal_clean.jpeg'
+    plt.savefig(path)
+    plt.close('all')
 
 
 if __name__ == '__main__':

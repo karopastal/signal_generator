@@ -56,12 +56,18 @@ def main():
 
     x = dbg.background_range()
 
-    plt.plot(x, psi_clean(ds, dbg))
-    plt.title(r"Signal + Background")
-    plt.ylabel("Amplitude")
-    plt.xlabel("Mass")
+    fig, ax = plt.subplots(figsize=(9, 7))
 
-    plt.show()
+    plt.plot(x, psi_clean(ds, dbg))
+    plt.title(r"Background + Signal", fontsize=20)
+    plt.ylabel("Events/Mass Unit", fontsize=18)
+    plt.xlabel("Mass", fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+
+    path = 'docs/output/cwt/clean_bg_signal.jpeg'
+    plt.savefig(path)
+    plt.close('all')
 
 
 if __name__ == '__main__':

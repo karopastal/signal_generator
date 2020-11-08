@@ -156,7 +156,7 @@ class ConvKLAutoencoder:
 
         return predictions
 
-    def eval_model(self, signal_id=1):
+    def eval_model(self, name, signal_id=1, file_name=''):
         losses = {}
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
 
@@ -170,15 +170,21 @@ class ConvKLAutoencoder:
 
         model_utils.print_predictions_loss(losses=losses)
 
+        title = '%s Background' % (name,)
         model_utils.plot_prediction(self.autoencoder_model,
                                     test_bgs_data[0:3],
-                                    self.shape)
+                                    self.shape,
+                                    title,
+                                    file_name=[file_name, '_bg'])
 
+        title = '%s Background + Signal' % (name,)
         model_utils.plot_prediction(self.autoencoder_model,
                                     test_signal_data[0:3],
-                                    self.shape)
+                                    self.shape,
+                                    title,
+                                    file_name=[file_name, '_bg_signal'])
 
-    def create_loss_distribution(self, signal_id=1):
+    def create_loss_distribution(self, name, signal_id=1, file_name=''):
         test_bgs_data, test_signal_data = self.load_test_data(signal_id=signal_id)
 
         predict_bgs_test = self.predict(test_bgs_data)
@@ -189,13 +195,16 @@ class ConvKLAutoencoder:
 
         test_signal_distribution = model_utils.loss_distribution(test_signal_data,
                                                                  predict_signal_test.reshape(test_signal_data.shape))
-        model_utils.plot_histogram(test_bgs_distribution.numpy(), test_signal_distribution.numpy())
+        model_utils.plot_histogram(test_bgs_distribution.numpy(),
+                                   test_signal_distribution.numpy(),
+                                   name,
+                                   file_name=file_name)
 
     def summary(self):
         return self.autoencoder_model.summary()
 
-    def plot_progress(self, title=''):
+    def plot_progress(self, title='', file_name=''):
         if self.path_model != '':
-            model_utils.plot_progress(self.path_loss_progress, title=title)
+            model_utils.plot_progress(self.path_loss_progress, title=title, file_name=file_name)
         else:
             print('error, load model first')

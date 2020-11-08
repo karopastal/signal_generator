@@ -77,26 +77,33 @@ def print_predictions_loss(losses):
     print("--------------------------------------")
 
 
-def plot_progress(path_progress, title=''):
+def plot_progress(path_progress, title='', file_name=''):
+    path = 'docs/output/' + file_name + '_model_loss.jpeg'
+
     progress = np.loadtxt(open(path_progress, "rb"), delimiter=",", skiprows=1)
 
     x = progress[:, 0]
     loss = progress[:, 1]
     val = progress[:, 2]
 
+    fig, ax = plt.subplots(figsize=(9, 7))
+
     plt.plot(x, loss)
     plt.plot(x, val)
-    plt.title('%s model loss' % (title,))
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'validation'], loc='upper right')
-    plt.show()
+    plt.title('%s model loss' % (title,), fontsize=20)
+    plt.ylabel('loss', fontsize=18)
+    plt.xlabel('epoch', fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.legend(['train', 'validation'], loc='upper right', fontsize=18)
+    plt.savefig(path)
+    plt.close('all')
 
 
-def plot_prediction(autoencoder, x_test, shape):
+def plot_prediction(autoencoder, x_test, shape, title, file_name):
     reconstructed = autoencoder.predict(x_test)
 
-    fig, ax = plt.subplots(figsize=(12, 12))
+    fig, ax = plt.subplots(figsize=(9, 7))
 
     img = ax.imshow(x_test[0].reshape(shape),
                     extent=(0, 64, 48, 0),
@@ -105,14 +112,21 @@ def plot_prediction(autoencoder, x_test, shape):
                     cmap='bwr')
 
     ax.set_ylim(0, 48)
-    fig.colorbar(img, ax=ax)
+    cbar = fig.colorbar(img, ax=ax)
+    cbar.ax.tick_params(labelsize=18)
 
-    plt.title('CWT of background + signal')
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
-    plt.show()
+    plt.title('Input CWT of %s' % (title, ), fontsize=20)
+    plt.ylabel('Scales', fontsize=18)
+    plt.xlabel('Mass', fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
 
-    fig, ax = plt.subplots(figsize=(12, 12))
+    file_name_in = file_name[0] + '_input' + file_name[1]
+    path_input = 'docs/output/' + file_name_in + '.jpeg'
+    plt.savefig(path_input)
+    plt.close('all')
+
+    fig, ax = plt.subplots(figsize=(9, 7))
 
     img = ax.imshow(reconstructed[0].reshape(shape),
                     extent=(0, 64, 48, 0),
@@ -121,12 +135,20 @@ def plot_prediction(autoencoder, x_test, shape):
                     cmap='bwr')
 
     ax.set_ylim(0, 48)
-    fig.colorbar(img, ax=ax)
 
-    plt.title('reconstructed CWT of background + signal')
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
-    plt.show()
+    cbar = fig.colorbar(img, ax=ax)
+    cbar.ax.tick_params(labelsize=18)
+
+    plt.title('Output CWT %s' % (title,), fontsize=20)
+    plt.ylabel('Scales', fontsize=18)
+    plt.xlabel('Mass', fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+
+    file_name_out = file_name[0] + '_output' + file_name[1]
+    path_output = 'docs/output/' + file_name_out + '.jpeg'
+    plt.savefig(path_output)
+    plt.close('all')
 
 
 def loss_distribution(test_data, prediction_data):
@@ -150,16 +172,23 @@ def model_efficiency_p_value(bg_losses, signal_losses):
     return p_value
 
 
-def plot_histogram(bgs, signal):
+def plot_histogram(bgs, signal, name, file_name=''):
     # the histogram of the data
     p_value = model_efficiency_p_value(bgs, signal)
 
-    plt.hist(bgs, bins=150, facecolor='red', alpha=0.5, label='background')
-    plt.hist(signal, bins=150, facecolor='blue', alpha=0.5, label='background + signal')
+    fig, ax = plt.subplots(figsize=(9, 7))
 
-    plt.xlabel('Value')
-    plt.ylabel('Count')
-    plt.title('loss distribution, efficiency_p_value: %s' % (p_value, ))
+    plt.hist(bgs, bins=150, range=(min(signal), max(signal)), facecolor='red', alpha=0.5, label='background')
+    plt.hist(signal, bins=150, range=(min(signal), max(signal)), facecolor='blue', alpha=0.5, label='background + signal')
+
+    plt.xlabel('Value', fontsize=18)
+    plt.ylabel('Count', fontsize=18)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.title('%s loss distribution, efficiency_p_value: %s' % (name, p_value, ), fontsize=20)
     plt.grid(True)
-    plt.legend(loc='upper right')
-    plt.show()
+    plt.legend(loc='upper right', fontsize=18)
+
+    path = 'docs/output/' + file_name + '_loss_dist.jpeg'
+    plt.savefig(path)
+    plt.close('all')
