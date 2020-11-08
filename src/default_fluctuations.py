@@ -52,9 +52,9 @@ def main():
     x = dbg.background_range()
 
     plt.plot(x, psi_fluctuations(ds, dbg))
-    plt.title(r"Signal + Background + Noise")
-    plt.ylabel("Amplitude")
-    plt.xlabel("Mass")
+    plt.title(r"Background + Signal \w Fluctuations", fontsize=18)
+    plt.ylabel("Scales", fontsize=16)
+    plt.xlabel("Mass", fontsize=16)
 
     plt.show()
 

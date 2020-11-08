@@ -78,16 +78,17 @@ def main():
 
     img = ax.imshow(amp,
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
-                    interpolation='nearest',
+                    interpolation='sinc',
                     aspect='auto',
-                    cmap='pink')
+                    cmap='bwr')
 
     ax.set_ylim(cmor.min_scales, cmor.max_scales)
     fig.colorbar(img, ax=ax)
 
-    plt.title('CWT w/ noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
+    # plt.title('CWT w/ noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
+    plt.title('CWT of Background + Signal w/ Fluctuations', fontsize=18)
+    plt.ylabel('Scales', fontsize=16)
+    plt.xlabel('Mass', fontsize=16)
     plt.show()
 
 

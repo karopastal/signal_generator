@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 from src.old.analysis.datasets_factory.p_value_transformation import p_value_transformation_local
 from src.default_fluctuations import psi_fluctuations
+from src.default_clean import psi_clean
 from src.default_signal import DefaultSignal
 from src.default_background import DefaultBackground
 
@@ -75,27 +76,30 @@ def main():
     print(cmor.wavelet)
 
     data = psi_fluctuations(ds, dbg)
+    # data = psi_clean(ds, dbg)
     coeffs, freqs = cmor.generate_coefficients(data)
 
     amp = np.abs(coeffs)
+    # new_shape = [48, 64]
     new_shape = [48, 64]
+
     amp_p_value = p_value_transformation_local(rebin(amp, new_shape), new_shape)
-    # amp_p_value = p_value_transformation_local(amp)
 
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    img = ax.imshow(rebin(amp_p_value, new_shape)/-np.log(1/500),
+    img = ax.imshow(rebin(amp, new_shape),
                     extent=(dbg.min_bg, dbg.max_bg, cmor.max_scales, cmor.min_scales),
-                    interpolation='nearest',
+                    interpolation='sinc',
                     aspect='auto',
                     cmap='bwr')
 
     ax.set_ylim(cmor.min_scales, cmor.max_scales)
     fig.colorbar(img, ax=ax)
 
-    plt.title('CWT w/ noise - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
-    plt.ylabel('Scales')
-    plt.xlabel('Translation')
+    # plt.title('CWT - scales range: (%s, %s)' % (cmor.min_scales, cmor.max_scales))
+    plt.title('CWT of Background + Signal w/ Fluctuations', fontsize=18)
+    plt.ylabel('Scales', fontsize=16)
+    plt.xlabel('Mass', fontsize=16)
     plt.show()
 
 

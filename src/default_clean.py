@@ -57,9 +57,9 @@ def main():
     x = dbg.background_range()
 
     plt.plot(x, psi_clean(ds, dbg))
-    plt.title(r"Signal + Background")
-    plt.ylabel("Amplitude")
-    plt.xlabel("Mass")
+    plt.title(r"Background + Signal", fontsize=18)
+    plt.ylabel("Events", fontsize=16)
+    plt.xlabel("Mass", fontsize=16)
 
     plt.show()
 

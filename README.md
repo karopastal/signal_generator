@@ -1,9 +1,10 @@
-# Signals Over Background Discovery
-
+# Physics beyond Standard Model
+## Signal over background discovery using CWT and autoencoders.
 Applying continuous wavelet transforms with autoencoder neural networks for signals over background discovery
 
-<img src="https://media.giphy.com/media/IvrumpcMNOhrO/giphy.gif" width="240" height="120" />
+<!--- <img src="https://media.giphy.com/media/IvrumpcMNOhrO/giphy.gif" width="360" height="240" --->
 
+1. [Overview](#overview)
 1. [Setup](#setup)   
 2. [Signals, Backgrounds and Wavelets](#signals-backgrounds-and-wavelets)
    * [sessions](#sessions)
@@ -11,6 +12,25 @@ Applying continuous wavelet transforms with autoencoder neural networks for sign
 3. [Analysis](#analysis)
     * [classifiers (fully connected, convolutional)](#classifiers)
     * [autoencoders (fully connected, convolutional)](#autoencoders)
+
+<a name="overview"></a>
+## Overview
+This projects aim is to develop a tool for discovering signals in invariant mass 
+distributions. We will take a model-agunostic approach and provide a system
+for custom signal and background generation. In order to analyze the invariant
+mass distribution we will perform a [Continuous Wavelet Transform](https://en.wikipedia.org/wiki/Continuous_wavelet_transform) 
+in order to get the mass intervals where the signal is present. In order to create
+a tool for anomaly detection, meaning detecting when a signal is present, we will train 
+different types and configurations of autoencoders (AE) on background. Thus 
+we will reconstruct background with ease after learning the typical background 
+fluctuations and reconstruct poorly background + signal.
+
+#### Flow:
+
+
+| Italic             |  Block letters |
+:-------------------------:|:-------------------------:
+Signal + Background | ![](https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/figures/clean_bg_signal.png | 240x240)
 
 <a name="setup"></a>
 ## Setup
@@ -40,8 +60,6 @@ $ make web
 
 visit: http://127.0.0.1:5000/
 
-
-old readme at: `docs/examples/README.old.md`
 
 <a name="signals-backgrounds-and-wavelets"></a>
 ## Signals, Backgrounds and Wavelets
