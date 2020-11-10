@@ -24,8 +24,9 @@ fluctuations and reconstruct poorly background + signal.
 
 ### Results Example:
 Comparing the AEs sensitivity to the signal size for a specific dataset:
- 
-<img src="https://github.com/karopastal/signal_generator/blob/master/docs/figures/results/pvalue_vs_signal_size.jpeg" width="620" height="360">
+ <div style="text-align:center">
+    <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/pvalue_vs_signal_size.jpeg" width="620" height="360">
+ </div>
 
 
 ### Flow Example:
@@ -33,11 +34,11 @@ Comparing the AEs sensitivity to the signal size for a specific dataset:
 
 | Type             |  Plot |
 :-------------------------:|:-------------------------:
-Signal + Background | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/figures/clean_bg_signal.png" width="512" height="256">
-Signal + Background + Fluctuations | <img src="https://github.com/karopastal/signal_generator/blob/master/docs/figures/fluc_bg_signal.png" width="512" height="256">
-CWT | <img src="https://github.com/karopastal/signal_generator/blob/master/docs/figures/cwt_bg_signal_fluc.png" width="512" height="256">
-Local p-value representation | <img src="https://github.com/karopastal/signal_generator/blob/master/docs/figures/p_value_bg_signal.png" width="512" height="256">
-Example: SAE KL reconstruction | <img src="https://github.com/karopastal/signal_generator/blob/master/docs/figures/sae_kl_output_bg_signal.png" width="512" height="256">
+Signal + Background | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/cwt/clean_bg_signal.jpeg" width="512" height="256">
+Signal + Background + Fluctuations | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/cwt/fluc_bg_signal.jpeg" width="512" height="256">
+CWT | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/cwt/cwt_bg_signal_fluc.jpeg" width="512" height="256">
+Local p-value representation | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/cwt/rebin_p_value.jpeg" width="512" height="256">
+Example: Sparse AE with KL divergence reconstruction | <img src="https://raw.githubusercontent.com/karopastal/signal_generator/master/docs/output/sae_kl_output_bg_signal.jpeg" width="512" height="256">
 <a name="setup"></a>
 
 
