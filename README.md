@@ -1,4 +1,4 @@
-# Physics beyond Standard Model
+# Physics beyond the Standard Model
 ## Signal over background discovery using CWT and autoencoders.
 
 1. [Overview](#overview)
